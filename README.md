@@ -19,3 +19,10 @@ All of these can work with the simple "task" object.
 - Potentially as deadlines approach, can be reminded about deadline task, as well as warned when you may not have time to do the task due to preexiting schedule. Ex. You have a task to do essay in the next week with estimated time needed of 6 hrs, but you only have 5 hrs of unblocked time, it warns you. 
 - Potentially gamify accomplishing tasks????
 -->
+
+# Installation 
+Install python
+Install flask-restx
+
+    pip install flask-restx
+ 
