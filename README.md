@@ -23,9 +23,9 @@ All of these can work with the simple "task" object.
 # Installation 
 Install python
 
-Install requirements
+To build run `make prod`
 
-	pip install -r requirements.txt
+To build for development run `make dev_env`
 
 <!--
     mkdir source
