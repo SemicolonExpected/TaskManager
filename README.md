@@ -23,7 +23,11 @@ All of these can work with the simple "task" object.
 # Installation 
 Install python
 
-Install flask-restx
+Install flask and flask-restx
 
+	pip install flask
     pip install flask-restx
+
+<!--bundle these into requirements later-->
  
+<!-- automatic-doodle is a good repo name -->
