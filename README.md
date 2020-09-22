@@ -23,11 +23,19 @@ All of these can work with the simple "task" object.
 # Installation 
 Install python
 
-Install flask and flask-restx
+Install requirements
 
-	pip install flask
-    pip install flask-restx
+	pip install -r requirements.txt
 
+<!--
+    mkdir source
+    cd source
+-->
 <!--bundle these into requirements later-->
  
 <!-- automatic-doodle is a good repo name -->
+<!--from flask import Flask
+from flask-restx Resource, Api
+
+app = Flask(__name__)
+api = API(-->
