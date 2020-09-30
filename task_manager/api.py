@@ -8,8 +8,8 @@ from flask import Flask, Blueprint
 
 from flask_restx import Resource, Api
 
-from task_manager.routes.tasks import task as task_namespace
-from task_manager.routes.users import user as user_namespace
+#from task_manager.routes.tasks import task as task_namespace
+#from task_manager.routes.users import user as user_namespace
 
 
 app = Flask(__name__)                  # Create a Flask WSGI application
@@ -34,7 +34,7 @@ class CreateTask(Resource):
 @api.route('/task/')
 @api.route('/task/<int:task_id>')
 class GetTask(Resource):
-	def getTask(task_id = -1):
+	def get(self, task_id = -1):
 		return 'Task %d' % task_id
 
 
@@ -65,10 +65,8 @@ class CreateUser(Resource):
 @api.route('/user/')
 @api.route('/user/<int:user_id>')
 class GetUser(Resource):
-	def get(self):
-		return {'User':self}
-	#def getUser(user_id = -1):
-	#	return 'User %d' % user_id
+	def get(self, user_id = -1):
+		return {'User': user_id}
 
 
 @api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
@@ -90,8 +88,8 @@ class DeleteUser(Resource):
 def initialize_app(flask_app):
 	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
 	api.init_app(blueprint)
-	api.add_namespace(task_namespace)
-	api.add_namespace(user_namespace)
+#	api.add_namespace(task_namespace)
+#	api.add_namespace(user_namespace)
 	flask_app.register_blueprint(blueprint)
 
 
