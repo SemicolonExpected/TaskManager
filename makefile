@@ -1,5 +1,5 @@
 LINTER = flake8
-SRC_DIR = source
+SRC_DIR = task_manager
 REQ_DIR = requirements
 
 FORCE:
@@ -7,7 +7,7 @@ FORCE:
 prod: tests github
 
 github: FORCE
-	git add .
+	git add .  # this adds every file under the dir
 	-git commit -a
 	git push origin master
 
