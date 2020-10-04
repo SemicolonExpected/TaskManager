@@ -31,7 +31,7 @@ class CreateTask(Resource):
 		return {'Show': 'Form'}
 
 	def post(self):
-		return {'Create':'Task'} 
+		return {'Create':'Task'}
 
 
 @api.route('/task/')
