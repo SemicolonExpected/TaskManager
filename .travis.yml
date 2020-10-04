@@ -1,7 +1,4 @@
 language: python
 
-install:
-  - pip3 install -r requirements/requirements.txt
-
 script:
   flake8 . 

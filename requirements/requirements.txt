@@ -1,3 +1,7 @@
 flask
 flask-restx
+<<<<<<< HEAD
 flake8
+=======
+flake8
+>>>>>>> origin/master
