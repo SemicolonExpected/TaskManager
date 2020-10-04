@@ -2,5 +2,6 @@ language: python
 
 install:
   pip3 install flake8
+  pip3 install lintly
 script:
-  flake8 . --exit-zero --ignore=W191,E265
+  flake8 . --exit-zero --ignore=W191,E265 | lintly --format=flake8
