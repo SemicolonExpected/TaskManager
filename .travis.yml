@@ -1,4 +1,6 @@
 language: python
 
+install:
+  pip3 install flake8
 script:
   flake8 . 
