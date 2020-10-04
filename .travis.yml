@@ -3,4 +3,4 @@ language: python
 install:
   pip3 install flake8
 script:
-  flake8 . 
+  flake8 . --exit-zero --ignore=W191,E265
