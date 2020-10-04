@@ -4,4 +4,4 @@ install:
   - pip3 install -r requirements/requirements.txt
 
 script:
-  flake8 . 
+  flake8 . --exit-zero --ignore=W191,E265
