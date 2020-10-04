@@ -21,7 +21,9 @@ class HelloWorld(Resource):            # Create a RESTful resource
 	def get(self):                     # Create GET endpoint
 		return {'hello':'world'}
 
-
+'''
+CREATE NEW TASK
+'''
 @api.route('/task/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
 	def get(self):
