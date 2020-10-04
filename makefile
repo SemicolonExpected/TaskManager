@@ -19,7 +19,7 @@ unit: FORCE
 	#flake8 here
 
 lint: FORCE
-	$(LINTER) $(SRC_DIR)/*py --ignore=W191,E117,E265,E231,E309,E251
+	$(LINTER) $(SRC_DIR)/*py --exit-zero --ignore=W191 # ,E117,E265,E231,E309,E251
 	#lint all python ignoring tabs vs indents, and '# ' wrt block comments
 	#also ignoring the "overindented" E231 and 2 lines between every function E309.
 	#also ignoring E251 unexpected spaces around keyword / parameter equals, I like that whitespace

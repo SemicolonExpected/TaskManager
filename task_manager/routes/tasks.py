@@ -4,7 +4,7 @@ from flask import request
 from flask_restx import Resource, Api
 
 
-api = Api(version = 'alpha', title = 'Task Manager', description = 'Another Productivity App') 
+api =Api(version = 'alpha', title = 'Task Manager', description = 'Another Productivity App') 
 
 task = api.namespace('task', description = "Task Related Functions")
 
