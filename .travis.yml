@@ -1,0 +1,12 @@
+language: python
+
+jobs:
+  include:
+    - stage: lint 
+      install: 
+        pip install flake8
+        pip install lintly
+      script: flake8 . --exit-zero --ignore=W191,E265 | lintly --format=flake8
+
+stages:
+  lint
