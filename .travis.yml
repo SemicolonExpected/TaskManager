@@ -15,6 +15,7 @@ jobs:
     - stage: deploy
       install:
         - pip install -r requirements/requirements.txt
+        - pip install flake8 #delete this after we have scripts
       script:
         - flake8 . --exit-zero  # literally just dummy stuff just to have a script
 stages:
