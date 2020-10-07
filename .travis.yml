@@ -1,5 +1,10 @@
 language: python
 
+env:
+  global:
+    LINTLY_API_KEY = ${GITHUB_TOKEN} 
+
+
 jobs:
   include:
     - stage: lint 
@@ -7,6 +12,17 @@ jobs:
         pip install flake8
         pip install lintly
       script: flake8 . --exit-zero --ignore=W191,E265 | lintly --format=flake8
-
+    - stage: deploy
+      install:
+        - pip install -r requirements/requirements.txt
 stages:
-  lint
+  - lint
+  - deploy
+
+#deploy:
+#  provider: pages
+#  skip_cleanup: true
+#  github_token: ${GITHUB_TOKEN}  # Set in the settings page of your repository, as a secure variable
+#  keep_history: true
+#  on:
+#    branch: master
