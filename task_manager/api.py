@@ -10,7 +10,7 @@ from flask_restx import Resource, Api
 
 #from task_manager.routes.tasks import task as task_namespace
 #from task_manager.routes.users import user as user_namespace
-
+import model_delete_task
 
 app = Flask(__name__)                  # Create a Flask WSGI application
 api = Api(app)                          # Create a Flask-RESTPlus API
@@ -53,7 +53,8 @@ class UpdateTask(Resource):
 @api.route('/task/delete/<int:task_id>', methods=['PUT', 'DELETE'])
 class DeleteTask(Resource):
 	def delete(self, task_id):
-		return 'Task %d' % task_id
+		# return 'Task %d' % task_id
+		return model_delete_task(task_id)
 
 
 @api.route('/user/create', methods=['GET', 'POST'])
@@ -84,7 +85,7 @@ class UpdateUser(Resource):
 @api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 # I dont know if I want to do DELETE or PUT
 class DeleteUser(Resource):
-	def delete(user_id):
+	def delete(self,user_id):
 		return 'User %d' % user_id
 
 
