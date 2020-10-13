@@ -1,4 +1,4 @@
-#Database
+# Database
 
-##Schema
+## Schema
 ![ERD](erd.png)
