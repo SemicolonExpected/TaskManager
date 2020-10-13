@@ -2,52 +2,63 @@
 Bootstrap program
 '''
 
-#import os
+# import os
 from flask import Flask, Blueprint
-#from flask import request
+# from flask import request
 
 from flask_restx import Resource, Api
 
-#from task_manager.routes.tasks import task as task_namespace
-#from task_manager.routes.users import user as user_namespace
-import model_delete_task
+# from task_manager.routes.tasks import task as task_namespace
+# from task_manager.routes.users import user as user_namespace
+
+from routes.tasks import model_get_create_task, model_post_create_task, model_fetch_task, model_get_update_task, model_post_update_task, model_delete_task
 
 app = Flask(__name__)                  # Create a Flask WSGI application
 api = Api(app)                          # Create a Flask-RESTPlus API
 
 
 ''' HELLO '''
+
+
 @api.route('/hello')                   # Create a URL route to this resource
 class HelloWorld(Resource):            # Create a RESTful resource
 	def get(self):                     # Create GET endpoint
 		return {'hello':'world'}
 
+
 '''
 CREATE NEW TASK
 '''
+
+
 @api.route('/task/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
 	def get(self):
-		return {'Show': 'Form'}
+		# return {'Show': 'Form'}
+		return model_get_create_task()
 
 	def post(self):
-		return {'Create':'Task'}
+		# return {'Create':'Task'}
+		return model_post_create_task()
 
 
 @api.route('/task/')
 @api.route('/task/<int:task_id>')
-class GetTask(Resource):
+class FetchTask(Resource):
 	def get(self, task_id = -1):
-		return 'Task %d' % task_id
+		# return 'Task %d' % task_id
+		return model_fetch_task(task_id)
 
 
 @api.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
 	def get(self, task_id):
-		return {'Show': 'Form'}
+		# return {'Show': 'Form'}
+		return model_get_update_task(task_id)
 
 	def post(self, task_id):
-		return {'Update':'Task'}
+		# return {'Update':'Task'}
+		return model_post_update_task(task_id)
 
 
 @api.route('/task/delete/<int:task_id>', methods=['PUT', 'DELETE'])
