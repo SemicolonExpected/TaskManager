@@ -3,10 +3,12 @@ Bootstrap program
 '''
 
 # import os
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint,render_template, make_response,request,redirect
 # from flask import request
 
 from flask_restx import Resource, Api
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 # from task_manager.routes.tasks import task as task_namespace
 # from task_manager.routes.users import user as user_namespace
@@ -14,7 +16,18 @@ from flask_restx import Resource, Api
 from routes.tasks import model_get_create_task, model_post_create_task, model_fetch_task, model_get_update_task, model_post_update_task, model_delete_task
 
 app = Flask(__name__)                  # Create a Flask WSGI application
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 api = Api(app)                          # Create a Flask-RESTPlus API
+
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(200), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Task %r>' % self.id
 
 
 ''' HELLO '''
@@ -47,7 +60,10 @@ class CreateTask(Resource):
 class FetchTask(Resource):
 	def get(self, task_id = -1):
 		# return 'Task %d' % task_id
-		return model_fetch_task(task_id)
+		task= Task.query.all()
+		headers = {'Content-Type': 'text/html'}
+		# return render_template('index.html', tasks=task)
+		return make_response(render_template('index.html', tasks=task),200,headers)
 
 
 @api.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
@@ -100,19 +116,20 @@ class DeleteUser(Resource):
 		return 'User %d' % user_id
 
 
-def initialize_app(flask_app):
-	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
-	api.init_app(blueprint)
-#	api.add_namespace(task_namespace)
-#	api.add_namespace(user_namespace)
-	flask_app.register_blueprint(blueprint)
+# def initialize_app(flask_app):
+# 	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
+# 	api.init_app(blueprint)
+# #	api.add_namespace(task_namespace)
+# #	api.add_namespace(user_namespace)
+# 	flask_app.register_blueprint(blueprint)
 
 
-def main():
-	initialize_app(app)
-	app.run(debug=True)  # Start a development server
+# def main():
+# 	initialize_app(app)
+# 	app.run(debug=True)  # Start a development server
 
 
 if __name__ == '__main__':
 	#app.run(debug=True)	 # Start a development server
-	main()
+	db.create_all()
+	app.run(debug=True)
