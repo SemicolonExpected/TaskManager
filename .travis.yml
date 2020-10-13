@@ -2,7 +2,7 @@ language: python
 
 env:
   global:
-    LINTLY_API_KEY = ${GITHUB_TOKEN} 
+    - LINTLY_API_KEY=${GITHUB_TOKEN} 
 
 
 jobs:
@@ -20,6 +20,7 @@ jobs:
         - flake8 . --exit-zero  # literally just dummy stuff just to have a script
 stages:
   - lint
+  #- test
   - deploy
 
 #deploy:
