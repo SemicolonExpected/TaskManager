@@ -4,7 +4,11 @@ REQ_DIR = requirements
 
 FORCE:
 
-prod: tests github
+prod: tests document github
+
+document: FORCE
+	pydoc -w ./
+	mv *.html docs
 
 github: FORCE
 	git add .  # this adds every file under the dir
@@ -24,4 +28,6 @@ lint: FORCE
 	#lint all python ignoring tabs vs indents, and '# ' wrt block comments
 
 dev_env: FORCE
-	pip install -r $(REQ_DIR)/requirements-dev.txt 
+	pip install -r $(REQ_DIR)/requirements-dev.txt
+	sudo apt install python-dev-is-python3 
+
