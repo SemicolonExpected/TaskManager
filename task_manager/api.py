@@ -7,8 +7,13 @@ from flask import Flask, Blueprint
 # from flask import request
 
 from flask_restx import Resource, Api
-from routes.tasks import *
-from routes.users import *
+from routes.tasks import model_get_create_task, model_post_create_task
+from routes.tasks import model_fetch_task, model_get_update_task
+from routes.tasks import model_post_update_task, model_delete_task
+from routes.users import model_get_create_user, model_post_create_user
+from routes.users import model_fetch_user, model_get_update_user
+from routes.users import model_post_update_user, model_delete_user
+
 
 app = Flask(__name__)                  # Create a Flask WSGI application
 api = Api(app)                          # Create a Flask-RESTPlus API
