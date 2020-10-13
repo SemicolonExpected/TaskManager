@@ -23,7 +23,7 @@ api = Api(app)                          # Create a Flask-RESTPlus API
 class HelloWorld(Resource):            # Create a RESTful resource
 	''' HOME PAGE '''
 	def get(self):                     # Create GET endpoint
-		return {'hello':'world'}
+		return {'hello': 'world'}
 
 @api.route('/task/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
@@ -69,11 +69,11 @@ class DeleteTask(Resource):
 @api.route('/user/create', methods=['GET', 'POST'])
 class CreateUser(Resource):
 	def get(self):
-		# return {'Show':'Form'}
+		# return {'Show': 'Form'}
 		return model_get_create_user()
 
 	def post(self):
-		# return {'create':'user'}
+		# return {'create': 'user'}
 		return model_post_create_user()
 
 
@@ -87,19 +87,19 @@ class FetchUser(Resource):
 
 @api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	def get(self):
-		# return {'Show':'Form'}
+	def get(self, user_id):
+		# return {'Show': 'Form'}
 		return model_get_update_user(user_id)
 
-	def post(self):
-		# return {'update':'user'}
+	def post(self, user_id):
+		# return {'update': 'user'}
 		return model_post_update_user(user_id)
 
 
 @api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 # I dont know if I want to do DELETE or PUT
 class DeleteUser(Resource):
-	def delete(self,user_id):
+	def delete(self, user_id):
 		# return 'User %d' % user_id
 		return model_delete_user(user_id)
 
