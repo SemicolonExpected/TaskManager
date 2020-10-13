@@ -9,7 +9,7 @@ prod: tests github
 github: FORCE
 	git add .  # this adds every file under the dir
 	-git commit -a
-	git push origin master
+	git push origin
 
 tests: lint unit 
 	echo "Sprinkle some flakey flakey goodness here"
