@@ -9,19 +9,6 @@ from flask_restx import Resource, Api
 # task = api.namespace('task', description = "Task Related Functions")
 
 
-# @task.route('/')
-# @task.route('/<int:task_id>')
-# class GetTask(Resource):
-# 	def get(self, task_id = -1):
-# 		return 'Task %d' % task_id
-
-# #@api.route('/task/')
-# #@api.route('/task/<int:task_id>')
-# #class GetTask(Resource):
-# #	def getTask(task_id = -1):
-# #		return 'Task %d' % task_id
-
-
 def model_get_create_task():
     return {'Show': 'Form'}
 
