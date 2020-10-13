@@ -7,11 +7,8 @@ from flask import Flask, Blueprint
 # from flask import request
 
 from flask_restx import Resource, Api
-
-# from task_manager.routes.tasks import task as task_namespace
-# from task_manager.routes.users import user as user_namespace
-
-from routes.tasks import model_get_create_task, model_post_create_task, model_fetch_task, model_get_update_task, model_post_update_task, model_delete_task
+from routes.tasks import *
+from routes.users import *
 
 app = Flask(__name__)                  # Create a Flask WSGI application
 api = Api(app)                          # Create a Flask-RESTPlus API
@@ -66,46 +63,48 @@ class DeleteTask(Resource):
 
 @api.route('/user/create', methods=['GET', 'POST'])
 class CreateUser(Resource):
-	''' CREATE USER '''
 	def get(self):
-		return {'Show':'Form'}
+		# return {'Show':'Form'}
+		return model_get_create_user()
 
 	def post(self):
-		return {'create':'user'}
+		# return {'create':'user'}
+		return model_post_create_user()
 
 
 @api.route('/user/')
 @api.route('/user/<int:user_id>')
 class FetchUser(Resource):
-	''' FETCH USER '''
 	def get(self, user_id = -1):
-		return {'User': user_id}
+		# return {'User': user_id}
+		return model_fetch_user(user_id)
 
 
 @api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	''' UPDATE USER '''
 	def get(self):
-		return {'Show':'Form'}
+		# return {'Show':'Form'}
+		return model_get_update_user(user_id)
 
 	def post(self):
-		return {'update':'user'}
+		# return {'update':'user'}
+		return model_post_update_user(user_id)
 
 
 @api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 # I dont know if I want to do DELETE or PUT
 class DeleteUser(Resource):
-	''' DELETE USER '''
 	def delete(self,user_id):
-		return 'User %d' % user_id
+		# return 'User %d' % user_id
+		return model_delete_user(user_id)
 
 
-def initialize_app(flask_app):
-	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
-	api.init_app(blueprint)
-#	api.add_namespace(task_namespace)
-#	api.add_namespace(user_namespace)
-	flask_app.register_blueprint(blueprint)
+# def initialize_app(flask_app):
+# 	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
+# 	api.init_app(blueprint)
+# #	api.add_namespace(task_namespace)
+# #	api.add_namespace(user_namespace)
+# 	flask_app.register_blueprint(blueprint)
 
 
 def main():
