@@ -26,4 +26,3 @@ def model_post_update_user(user_id):
 
 def model_delete_user(user_id):
     return 'User %d' % user_id
-
