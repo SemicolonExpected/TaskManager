@@ -3,9 +3,6 @@ from flask import request
 
 from flask_restx import Resource, Api
 
-# api = Api(version = 'alpha', title = 'Task Manager', description = 'Another Productivity App')
-
-# user = api.namespace('user', description = "User Related Functions")
 
 def model_get_create_user():
     return {'Show': 'Form'}
@@ -29,3 +26,4 @@ def model_post_update_user(user_id):
 
 def model_delete_user(user_id):
     return 'User %d' % user_id
+
