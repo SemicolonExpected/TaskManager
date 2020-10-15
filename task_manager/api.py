@@ -3,32 +3,20 @@ Bootstrap program
 '''
 
 # import os
-from flask import Flask, Blueprint,render_template, make_response,request,redirect
-# from flask import request
-
 from flask_restx import Resource, Api
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+# from Models.task import Task
+from __init__ import db
+from __init__ import create_app
+from routes.tasks import model_get_create_task, model_post_create_task
+from routes.tasks import model_fetch_task, model_get_update_task
+from routes.tasks import model_post_update_task, model_delete_task
+from routes.users import model_get_create_user, model_post_create_user
+from routes.users import model_fetch_user, model_get_update_user
+from routes.users import model_post_update_user, model_delete_user
 
-# from task_manager.routes.tasks import task as task_namespace
-# from task_manager.routes.users import user as user_namespace
 
-from routes.tasks import model_get_create_task, model_post_create_task, model_fetch_task, model_get_update_task, model_post_update_task, model_delete_task
-from routes.users import *
-
-app = Flask(__name__)                  # Create a Flask WSGI application
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
+app = create_app()
 api = Api(app)                          # Create a Flask-RESTPlus API
-
-
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200), nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
-
-    def __repr__(self):
-        return '<Task %r>' % self.id
 
 
 ''' HELLO '''
@@ -37,7 +25,7 @@ class Task(db.Model):
 @api.route('/hello')                   # Create a URL route to this resource
 class HelloWorld(Resource):            # Create a RESTful resource
 	def get(self):                     # Create GET endpoint
-		return {'hello':'world'}
+		return {'hello': 'world'}
 
 
 '''
@@ -60,11 +48,7 @@ class CreateTask(Resource):
 @api.route('/task/<int:task_id>')
 class FetchTask(Resource):
 	def get(self, task_id = -1):
-		# return 'Task %d' % task_id
-		task= Task.query.all()
-		headers = {'Content-Type': 'text/html'}
-		# return render_template('index.html', tasks=task)
-		return make_response(render_template('index.html', tasks=task),200,headers)
+		return model_fetch_task(task_id)
 
 
 @api.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
@@ -78,9 +62,9 @@ class UpdateTask(Resource):
 		return model_post_update_task(task_id)
 
 
-@api.route('/task/delete/<int:task_id>', methods=['PUT', 'DELETE'])
+@api.route('/task/delete/<int:task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
-	def delete(self, task_id):
+	def get(self, task_id):
 		# return 'Task %d' % task_id
 		return model_delete_task(task_id)
 
@@ -106,11 +90,11 @@ class FetchUser(Resource):
 
 @api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	def get(self):
+	def get(self,user_id):
 		# return {'Show':'Form'}
 		return model_get_update_user(user_id)
 
-	def post(self):
+	def post(self,user_id):
 		# return {'update':'user'}
 		return model_post_update_user(user_id)
 
@@ -123,20 +107,6 @@ class DeleteUser(Resource):
 		return model_delete_user(user_id)
 
 
-# def initialize_app(flask_app):
-# 	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
-# 	api.init_app(blueprint)
-# #	api.add_namespace(task_namespace)
-# #	api.add_namespace(user_namespace)
-# 	flask_app.register_blueprint(blueprint)
-
-
-# def main():
-# 	initialize_app(app)
-# 	app.run(debug=True)  # Start a development server
-
-
 if __name__ == '__main__':
-	#app.run(debug=True)	 # Start a development server
 	db.create_all()
-	app.run(debug=True)
+	app.run(debug=True)		# Start a development server
