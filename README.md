@@ -42,6 +42,8 @@ To build run `make prod`
 
 To build for development run `make dev_env`
 
+To start dev environment run `make run_dev`
+
 <!--
     mkdir source
     cd source
