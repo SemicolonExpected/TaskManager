@@ -1,35 +1,30 @@
-import os
+from os import environ, path
+from dotenv import load_dotenv
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(basedir, '.env'))
+
+""" config file accesses a local .env file stored at base directory of the project
+we store secret keys and other sensitive info on our local devices """
 
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY', 'generaterandomkeyhere')
-    DEBUG = False
+    """ Set Parent Class config variables """
+    SECRET_KEY = environ.get('SECRET_KEY')
+    STATIC_FOLDER = 'static'
+    TEMPLATES_FOLDER = 'templates'
 
 
 class DevelopmentConfig(Config):
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_main.db')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-
-class TestingConfig(Config):
+    FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_test.db')
-    PRESERVE_CONTEXT_ON_EXCEPTION = False
+    SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):
+    FLASK_ENV = 'production'
     DEBUG = False
-
-
-config_by_name = dict(
-    dev=DevelopmentConfig,
-    test=TestingConfig,
-    prod=ProductionConfig
-)
-
-key = Config.SECRET_KEY
+    TESTING = False
+    SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
