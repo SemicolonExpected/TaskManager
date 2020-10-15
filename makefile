@@ -29,5 +29,7 @@ lint: FORCE
 
 dev_env: FORCE
 	pip install -r $(REQ_DIR)/requirements-dev.txt
-	sudo apt install python-dev-is-python3 
+	sudo apt install python-dev-is-python3
 
+run_dev:
+	FLASK_APP=SRC_DIR FLASK_ENV=development flask run
