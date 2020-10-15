@@ -1,0 +1,5 @@
+pycodestyle:  # Same as scanner.linter value. Other option is flake8
+    max-line-length: 128  # Default is 79 in PEP 8
+    ignore:
+      - W191  # Indents
+      - E265  # Block comment should start with '# '
