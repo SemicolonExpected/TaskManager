@@ -1,28 +1,37 @@
-from flask import Flask
-from flask import request
+from flask import Blueprint
+from flask import current_app as app
+from flask_restx import Api, Resource
 
-from flask_restx import Resource, Api
-
-
-def model_get_create_user():
-    return {'Show': 'Form'}
+user_bp = Blueprint('user_bp', __name__, url_prefix='/user')
+api = Api(user_bp)
 
 
-def model_post_create_user():
-    return {'Create': 'User'}
+@api.route('/create', methods=['GET', 'POST'])
+class CreateUser(Resource):
+    def get(self):
+        return {'Show': 'Form'}
+
+    def post(self):
+        return {'create': 'user'}
 
 
-def model_fetch_user(user_id):
-    return 'User %d' % user_id
+@api.route('/')
+@api.route('/<int:user_id>')
+class FetchUser(Resource):
+    def get(self, user_id=-1):
+        return {'User': user_id}
 
 
-def model_get_update_user(user_id):
-    return {'Show': 'Form'}
+@api.route('/edit/<int:user_id>', methods=['GET', 'POST'])
+class UpdateUser(Resource):
+    def get(self):
+        return {'Show': 'Form'}
+
+    def post(self):
+        return {'update': 'user'}
 
 
-def model_post_update_user(user_id):
-    return {'Update': 'User'}
-
-
-def model_delete_user(user_id):
-    return 'User %d' % user_id
+@api.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
+class DeleteUser(Resource):
+    def delete(self, user_id):
+        return 'User %d' % user_id
