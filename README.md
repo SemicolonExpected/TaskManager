@@ -42,6 +42,8 @@ To build run `make prod`
 
 To build for development run `make dev_env`
 
+To check out the web page [IP Address]/task/
+
 <!--
     mkdir source
     cd source
