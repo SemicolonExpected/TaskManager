@@ -97,6 +97,7 @@ class UpdateUser(Resource):
 
 @api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 # I dont know if I want to do DELETE or PUT
+class DeleteUser(Resource):
 	def delete(self,user_id):
 		# return 'User %d' % user_id
 		return model_delete_user(user_id)
