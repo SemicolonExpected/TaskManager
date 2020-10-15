@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block head %}
-<title>Task Master</title>
+<title>Task Manager</title>
 {% endblock %}
 
 {% block body %}
@@ -20,7 +20,7 @@
                 <td>{{ task.content }}</td>
                 <td>{{ task.date_created.date() }}</td>
                 <td>
-                    <a href="/delete/{{task.id}}">Delete</a>
+                    <a href="/task/delete/{{task.id}}">Delete</a>
                     <br>
                     <a href="/update/{{task.id}}">Update</a>
                 </td>
