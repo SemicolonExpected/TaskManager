@@ -32,4 +32,4 @@ dev_env: FORCE
 	sudo apt install python-dev-is-python3
 
 run_dev:
-	FLASK_APP=SRC_DIR FLASK_ENV=development flask run
+	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
