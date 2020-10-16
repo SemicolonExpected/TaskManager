@@ -20,11 +20,11 @@ class DevelopmentConfig(Config):
     FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///dev.sqlite3'
 
 
 class ProductionConfig(Config):
     FLASK_ENV = 'production'
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///prod.sqlite3'
