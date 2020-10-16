@@ -29,9 +29,20 @@ All of these can work with the simple "task" object.
 # Installation 
 Install python
 
+Clone this repo using:
+
+- git clone https://github.com/SemicolonExpected/TaskManager.git
+
+or if you're using an ssh key
+
+- git clone git@github.com:SemicolonExpected/TaskManager.git
+
+
 To build run `make prod`
 
 To build for development run `make dev_env`
+
+To check out the web page [IP Address]/task/
 
 <!--
     mkdir source
