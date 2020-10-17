@@ -1,2 +1,4 @@
 flask
 flask-restx
+Flask-Login
+Flask-SQLAlchemy
