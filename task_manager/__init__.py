@@ -1,7 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
+# global objects
 db = SQLAlchemy()
+migrate = Migrate()
 
 
 def create_app():
@@ -11,14 +14,13 @@ def create_app():
 
     """ Initialize plugins """
     db.init_app(app)
+    migrate.init_app(app, db)
 
     with app.app_context():
+        from .routes import api
 
-        # Register blueprints and routes here
-        from .routes import tasks, users
-
-        app.register_blueprint(tasks.task_bp)
-        app.register_blueprint(users.user_bp)
+        app.register_blueprint(api.task_bp)
+        app.register_blueprint(api.user_bp)
 
         # Create db tables
         db.create_all()
