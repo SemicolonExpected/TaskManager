@@ -4,9 +4,6 @@ from dotenv import load_dotenv
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.env'))
 
-""" config file accesses a local .env file stored at base directory of the project
-we store secret keys and other sensitive info on our local devices """
-
 
 class Config:
     """ Set Parent Class config variables """
