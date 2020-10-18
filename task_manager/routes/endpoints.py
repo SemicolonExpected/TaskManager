@@ -1,11 +1,7 @@
-from flask import Blueprint
-from flask_restx import Api, Resource
+from flask_restx import Resource, Namespace
 
-user_bp = Blueprint('user_bp', __name__, url_prefix='/user')
-user_api = Api(user_bp)
-
-task_bp = Blueprint('task_bp', __name__, url_prefix='/task')
-task_api = Api(task_bp)
+user_api = Namespace('user', description='User API endpoints')
+task_api = Namespace('task', description='Task API endpoints')
 
 
 @user_api.route('/create', methods=['GET', 'POST'])

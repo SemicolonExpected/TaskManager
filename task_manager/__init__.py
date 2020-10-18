@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_restx import Api
 
 # global objects
 db = SQLAlchemy()
@@ -17,10 +18,15 @@ def create_app():
     migrate.init_app(app, db)
 
     with app.app_context():
-        from .routes import api
+        from .routes.endpoints import user_api, task_api
 
-        app.register_blueprint(api.task_bp)
-        app.register_blueprint(api.user_bp)
+        blueprint = Blueprint('api', __name__, url_prefix='/api')
+        api = Api(blueprint, title="RestX APIs", description="")
+
+        app.register_blueprint(blueprint)
+
+        api.add_namespace(user_api)
+        api.add_namespace(task_api)
 
         # Create db tables
         db.create_all()
