@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restx import Api
 
+
 # global objects
 db = SQLAlchemy()
 migrate = Migrate()
@@ -14,10 +15,14 @@ def create_app():
     app.config.from_object('config.DevelopmentConfig')
 
     """ Initialize plugins """
+    from .models.user import User
+    from .models.task import Task
+
     db.init_app(app)
     migrate.init_app(app, db)
 
     with app.app_context():
+        # Register api blueprint and add namespaces
         from .routes.endpoints import user_api, task_api
 
         blueprint = Blueprint('api', __name__, url_prefix='/api')
@@ -30,5 +35,8 @@ def create_app():
 
         # Create db tables
         db.create_all()
+
+        # make migrations
+
 
         return app
