@@ -14,13 +14,12 @@ def create_app():
     """ Initialize plugins """
     db.init_app(app)
     login_manager.init_app(app)
-    login_manager.login_view = 'login'
+
+    # login_manager.login_view = 'login'
 
     with app.app_context():
-
         # Register blueprints and routes here
         from .routes import tasks, users, auth
-        # from .assets import compile_assets
 
         app.register_blueprint(tasks.task_bp)
         app.register_blueprint(users.user_bp)
@@ -29,7 +28,6 @@ def create_app():
         # Create models
         db.create_all()
 
-        # compile static assets for dev only:
-        # compile_assets(app)
+        # compile static assets for dev testing only
 
         return app

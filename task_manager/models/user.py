@@ -21,6 +21,3 @@ class User(db.Model, UserMixin):
         return '<User {} {} {}>'.format(self.username, self.email, self.password)
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
