@@ -41,7 +41,7 @@ class CreateTask(Resource):
         return {'Show': 'Form'}
 
     def post(self):
-        return {'Create':'Task'}
+        return {'Create': 'Task'}
 
 
 @task_api.route('/')
@@ -59,7 +59,7 @@ class UpdateTask(Resource):
         return {'Show': 'Form'}
 
     def post(self, task_id):
-        return {'Update':'Task'}
+        return {'Update': 'Task'}
 
 
 @task_api.route('/delete/<int:task_id>', methods=['PUT', 'DELETE'])
