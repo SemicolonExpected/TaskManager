@@ -1,7 +1,7 @@
 # from flask_restx import Resource, Api
 # from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from __init__ import db
+from ..__init__ import db
 
 
 class Task(db.Model):

@@ -5,14 +5,14 @@ Bootstrap program
 # import os
 from flask_restx import Resource, Api
 # from Models.task import Task
-from __init__ import db
-from __init__ import create_app
-from routes.tasks import model_get_create_task, model_post_create_task
-from routes.tasks import model_fetch_task, model_get_update_task
-from routes.tasks import model_post_update_task, model_delete_task
-from routes.users import model_get_create_user, model_post_create_user
-from routes.users import model_fetch_user, model_get_update_user
-from routes.users import model_post_update_user, model_delete_user
+from .__init__ import db
+from .__init__ import create_app
+from .routes.tasks import model_get_create_task, model_post_create_task
+from .routes.tasks import model_fetch_task, model_get_update_task
+from .routes.tasks import model_post_update_task, model_delete_task
+from .routes.users import model_get_create_user, model_post_create_user
+from .routes.users import model_fetch_user, model_get_update_user
+from .routes.users import model_post_update_user, model_delete_user
 
 
 app = create_app()
@@ -25,7 +25,7 @@ class HelloWorld(Resource):            # Create a RESTful resource
 	def get(self):                     # Create GET endpoint
 		return {'hello': 'world'}
 
-  
+
 @api.route('/task/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
 	''' CREATE NEW TASK '''

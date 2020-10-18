@@ -1,7 +1,7 @@
 from flask import make_response, render_template, request
 from flask import redirect
-from Models.task import Task
-from __init__ import db
+from ..Models.task import Task
+from ..__init__ import db
 
 
 def model_get_create_task():
