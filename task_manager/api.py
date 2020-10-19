@@ -25,14 +25,14 @@ task_api = Namespace('task', description='Task API endpoints')
 
 
 @user_api.route('/')
-@user_api.route('/hello')                   # Create a URL route to this resource
+@user_api.route('/hello')              # Create a URL route to this resource
 class HelloWorld(Resource):            # Create a RESTful resource
 	''' HOME PAGE '''
 	def get(self):                     # Create GET endpoint
 		return {'hello': 'world'}
 
 
-@task_api.route('/task/create', methods=['GET', 'POST'])
+@task_api.route('/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
 	''' CREATE NEW TASK '''
 	def get(self):
@@ -44,15 +44,15 @@ class CreateTask(Resource):
 		return model_post_create_task()
 
 
-@task_api.route('/task/')
-@task_api.route('/task/<int:task_id>')
+@task_api.route('/')
+@task_api.route('/<int:task_id>')
 class FetchTask(Resource):
 	''' FETCH TASK '''
 	def get(self, task_id=-1):
 		return model_fetch_task(task_id)
 
 
-@task_api.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
+@task_api.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
 	''' UPDATE TASK '''
 	def get(self, task_id):
@@ -64,14 +64,14 @@ class UpdateTask(Resource):
 		return model_post_update_task(task_id)
 
 
-@task_api.route('/task/delete/<int:task_id>', methods=['GET', 'POST'])
+@task_api.route('/delete/<int:task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
 	def get(self, task_id):
 		# return 'Task %d' % task_id
 		return model_delete_task(task_id)
 
 
-@task_api.route('/user/create', methods=['GET', 'POST'])
+@task_api.route('/create', methods=['GET', 'POST'])
 class CreateUser(Resource):
 	def get(self):
 		# return {'Show':'Form'}
@@ -82,15 +82,15 @@ class CreateUser(Resource):
 		return model_post_create_user()
 
 
-@user_api.route('/user/')
-@user_api.route('/user/<int:user_id>')
+@user_api.route('/')
+@user_api.route('/<int:user_id>')
 class FetchUser(Resource):
 	def get(self, user_id=-1):
 		# return {'User': user_id}
 		return model_fetch_user(user_id)
 
 
-@user_api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
+@user_api.route('/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
 	def get(self, user_id):
 		# return {'Show':'Form'}
@@ -101,8 +101,7 @@ class UpdateUser(Resource):
 		return model_post_update_user(user_id)
 
 
-@user_api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
-# I dont know if I want to do DELETE or PUT
+@user_api.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 class DeleteUser(Resource):
 	def delete(self, user_id):
 		# return 'User %d' % user_id

@@ -38,7 +38,7 @@ def create_app():
 
     with app.app_context():
         # Register api blueprint and add namespaces
-        from .routes.endpoints import user_api, task_api
+        from task_manager.api import user_api, task_api
 
         blueprint = Blueprint('api', __name__, url_prefix='/api')
         api = Api(blueprint, title="RestX APIs", description="")
