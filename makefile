@@ -1,5 +1,5 @@
 LINTER = flake8
-SRC_DIR = task_manager
+SRC_DIR = task_manager/api
 REQ_DIR = requirements
 
 FORCE:
@@ -34,3 +34,5 @@ dev_env: FORCE
 run_dev:
 	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
 
+run_dev:
+	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
