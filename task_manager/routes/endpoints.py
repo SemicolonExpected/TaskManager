@@ -1,6 +1,6 @@
 from flask_restx import Resource, Namespace
 
-#from task_manager.routes.users import get_user
+# from task_manager.routes.users import get_user
 
 user_api = Namespace('user', description='User API endpoints')
 task_api = Namespace('task', description='Task API endpoints')
@@ -10,6 +10,7 @@ task_api = Namespace('task', description='Task API endpoints')
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}
+
 
 @user_api.route('/create', methods=['POST'])
 class CreateUser(Resource):
