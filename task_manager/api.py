@@ -18,6 +18,7 @@ from .routes.users import model_post_update_user, model_delete_user
 app = create_app()
 api = Api(app)                          # Create a Flask-RESTPlus API
 
+
 @api.route('/')
 @api.route('/hello')                   # Create a URL route to this resource
 class HelloWorld(Resource):            # Create a RESTful resource
@@ -42,7 +43,7 @@ class CreateTask(Resource):
 @api.route('/task/<int:task_id>')
 class FetchTask(Resource):
 	''' FETCH TASK '''
-	def get(self, task_id = -1):
+	def get(self, task_id=-1):
 		return model_fetch_task(task_id)
 
 
@@ -79,7 +80,7 @@ class CreateUser(Resource):
 @api.route('/user/')
 @api.route('/user/<int:user_id>')
 class FetchUser(Resource):
-	def get(self, user_id = -1):
+	def get(self, user_id=-1):
 		# return {'User': user_id}
 		return model_fetch_user(user_id)
 
@@ -98,7 +99,7 @@ class UpdateUser(Resource):
 @api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 # I dont know if I want to do DELETE or PUT
 class DeleteUser(Resource):
-	def delete(self,user_id):
+	def delete(self, user_id):
 		# return 'User %d' % user_id
 		return model_delete_user(user_id)
 
