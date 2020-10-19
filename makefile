@@ -1,5 +1,5 @@
 LINTER = flake8
-SRC_DIR = task_manager/api
+SRC_DIR = task_manager
 REQ_DIR = requirements
 
 FORCE:
