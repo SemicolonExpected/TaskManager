@@ -1,10 +1,15 @@
 from flask_restx import Resource, Namespace
 
-from task_manager.routes.users import get_user
+#from task_manager.routes.users import get_user
 
 user_api = Namespace('user', description='User API endpoints')
 task_api = Namespace('task', description='Task API endpoints')
 
+
+@user_api.route('/')
+class HelloWorld(Resource):
+    def get(self):
+        return {'hello': 'world'}
 
 @user_api.route('/create', methods=['POST'])
 class CreateUser(Resource):
@@ -13,11 +18,10 @@ class CreateUser(Resource):
         return {'create': 'user'}
 
 
-@user_api.route('/')
 @user_api.route('/<int:user_id>')
 class GetUser(Resource):
-    def get(self, user_id):
-        return get_user(user_id)
+    def get(self, user_id = -1):
+        return {'User: ': user_id}
 
 
 @user_api.route('/edit/<int:user_id>', methods=['GET', 'POST'])
@@ -31,7 +35,7 @@ class UpdateUser(Resource):
 
 @user_api.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 class DeleteUser(Resource):
-    def delete(self, user_id):
+    def delete(self, user_id = -1):
         return 'User %d' % user_id
 
 
@@ -44,7 +48,6 @@ class CreateTask(Resource):
         return {'Create': 'Task'}
 
 
-@task_api.route('/')
 @task_api.route('/<int:task_id>')
 class FetchTask(Resource):
     def get(self, task_id=-1):
