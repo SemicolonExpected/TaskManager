@@ -2,3 +2,5 @@ flask
 flask-restx
 Flask-SQLAlchemy
 Flask-Migrate
+Flask-Login
+python-dotenv
