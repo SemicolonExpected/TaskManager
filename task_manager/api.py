@@ -86,11 +86,11 @@ class FetchUser(Resource):
 
 @api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	def get(self,user_id):
+	def get(self, user_id):
 		# return {'Show':'Form'}
 		return model_get_update_user(user_id)
 
-	def post(self,user_id):
+	def post(self, user_id):
 		# return {'update':'user'}
 		return model_post_update_user(user_id)
 
@@ -104,5 +104,5 @@ class DeleteUser(Resource):
 
 
 if __name__ == '__main__':
-	db.create_all()
+	# db.create_all()
 	app.run(debug=True)		# Start a development server

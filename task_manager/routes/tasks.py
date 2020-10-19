@@ -1,6 +1,6 @@
 from flask import make_response, render_template, request
 from flask import redirect
-from ..Models.task import Task
+from ..Model.task import Task
 from ..__init__ import db
 
 
@@ -15,7 +15,7 @@ def model_post_create_task():
         db.session.add(new_task)
         db.session.commit()
         return redirect('/task/')
-    except:
+    except Exception:
         return 'There was an issue adding your task'
     return {'Create': 'Task'}
 
@@ -41,6 +41,6 @@ def model_delete_task(task_id):
         db.session.delete(task_to_delete)
         db.session.commit()
         return redirect('/task/')
-    except:
+    except Exception:
         return 'There was a problem deleting that task'
     return 'Task %d' % task_id

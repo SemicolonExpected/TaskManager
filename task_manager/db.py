@@ -4,10 +4,6 @@ At first, it will just contain stubs that return fake data.
 Gradually, we will fill in actual calls to our datastore.
 """
 
-#from flask_pymongo import pymongo
-
-#CONNECTION_STRING=
-
 taskid = 1
 userid = 1
 
@@ -19,7 +15,7 @@ def fetch_tasks():
     return {"Task1": 1, "Task2": 2, "Task3": 3}
 
 
-def create_task(name,optional_priority):
+def create_task(name, optional_priority):
     """
     A function to create a task.
     """
