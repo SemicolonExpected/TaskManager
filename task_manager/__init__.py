@@ -14,10 +14,14 @@ def create_app():
     app.config.from_object('config.DevelopmentConfig')
 
     """ Initialize plugins """
+    from .models.user import User  # noqa: F401
+    from .models.task import Task  # noqa: F401
+
     db.init_app(app)
     migrate.init_app(app, db)
 
     with app.app_context():
+        # Register api blueprint and add namespaces
         from .routes.endpoints import user_api, task_api
 
         blueprint = Blueprint('api', __name__, url_prefix='/api')
