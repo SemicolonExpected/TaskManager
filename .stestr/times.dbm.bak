@@ -1,6 +1,6 @@
 'task_manager.tests.test_task.Test_Task.test_Create', (0, 8)
-'task_manager.tests.test_task.Test_Task.test_Delete', (512, 8)
-'task_manager.tests.test_task.Test_Task.test_Get', (1024, 7)
+'task_manager.tests.test_task.Test_Task.test_Delete', (512, 6)
+'task_manager.tests.test_task.Test_Task.test_Get', (1024, 8)
 'task_manager.tests.test_task.Test_Task.test_Update', (1536, 8)
 'task_manager.tests.test_user.Test_User.test_Create', (2048, 8)
 'task_manager.tests.test_user.Test_User.test_Delete', (2560, 8)
