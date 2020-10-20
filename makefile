@@ -15,8 +15,10 @@ github: FORCE
 	-git commit -a
 	git push origin
 
-tests: lint unit 
-	echo "Sprinkle some flakey flakey goodness here"
+tests: 
+	-lint unit 
+	-stestr run
+	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
 	echo "Standardized unit testing"

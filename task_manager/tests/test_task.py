@@ -1,22 +1,23 @@
 import unittest
-from ..routes.tasks import *
+#from ..routes.tasks import *
 
 
 class Test_Task(unittest.TestCase):
 	def setup(self):
 		pass
 
-	def createTest(self):
+	def test_Create(self):
 		self.assertEqual('1','1')
 
-	def getTest(self):
+	def test_Get(self):
 		self.assertEqual('1','1')
 
-	def updateTest(self):
+	def test_Update(self):
 		self.assertEqual('1','1')
 
-	def deleteTest(self):
+	def test_Delete(self):
 		self.assertEqual('1','1')
 
-if __name__ == '__main__':
-    unittest.main()
+
+#if __name__ == '__main__':
+#	unittest.main()
