@@ -59,7 +59,7 @@ class UpdateTask(Resource):
 		return model_post_update_task(task_id)
 
 
-@api.route('/task/delete/<int:task_id>', methods=['GET', 'POST'])
+@api.route('/task/delete/<int:task_id>', methods=['PUT', 'DELETE'])
 class DeleteTask(Resource):
 	def get(self, task_id):
 		# return 'Task %d' % task_id
