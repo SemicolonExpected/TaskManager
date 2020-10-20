@@ -9,12 +9,16 @@ def model_get_create_task():
 
 
 def model_post_create_task():
-    task_content = request.form['content']
+    if request.form['content']:
+        task_content = request.form['content']
+    else:
+        task_content = "dummy test"
     new_task = Task(content=task_content)
     try:
         db.session.add(new_task)
         db.session.commit()
-        return redirect('/task/')
+        # redirect('/task/')
+        return new_task.id
     except Exception:
         return 'There was an issue adding your task'
     return {'Create': 'Task'}
@@ -40,7 +44,8 @@ def model_delete_task(task_id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/task/')
+        redirect('/task/')
+        return task_id
     except Exception:
         return 'There was a problem deleting that task'
     return 'Task %d' % task_id
