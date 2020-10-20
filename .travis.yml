@@ -15,8 +15,9 @@ jobs:
     - stage: test
       install:
         - pip install stestr
-      script
-        - stestr run
+      script:
+        #- stestr run
+        python run_tests.py
     - stage: deploy
       install:
         - pip install -r requirements/requirements.txt

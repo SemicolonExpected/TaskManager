@@ -17,7 +17,7 @@ github: FORCE
 
 tests: 
 	-lint unit 
-	-stestr run
+	#-stestr run
 	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
