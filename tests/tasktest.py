@@ -1,4 +1,5 @@
 import unittest
+from ..routes.tasks import *
 
 
 class Test_Task(unittest.TestCase):
@@ -6,13 +7,16 @@ class Test_Task(unittest.TestCase):
 		pass
 
 	def createTest(self):
-		pass
+		self.assertEqual('1','1')
 
 	def getTest(self):
-		pass
+		self.assertEqual('1','1')
 
 	def updateTest(self):
-		pass
+		self.assertEqual('1','1')
 
 	def deleteTest(self):
-		pass
+		self.assertEqual('1','1')
+
+if __name__ == '__main__':
+    unittest.main()
