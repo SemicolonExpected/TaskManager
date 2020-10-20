@@ -5,17 +5,17 @@ class Test_User(unittest.TestCase):
 	def setup(self):
 		pass
 
-	def createTest(self):
+	def test_Create(self):
 		self.assertEqual('1','1')
 
-	def getTest(self):
+	def test_Get(self):
 		self.assertEqual('1','1')
 
-	def updateTest(self):
+	def test_Update(self):
 		self.assertEqual('1','1')
 
-	def deleteTest(self):
+	def test_Delete(self):
 		self.assertEqual('1','1')
 
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+#    unittest.main()
