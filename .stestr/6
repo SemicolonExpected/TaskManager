@@ -1,0 +1,56 @@
+time: 2020-10-20 12:25:10.377586Z
+tags: worker-0
+test: task_manager.tests.test_task.Test_Task.test_Create
+time: 2020-10-20 12:25:10.377790Z
+successful: task_manager.tests.test_task.Test_Task.test_Create [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.378392Z
+tags: worker-0
+test: task_manager.tests.test_task.Test_Task.test_Delete
+time: 2020-10-20 12:25:10.378549Z
+successful: task_manager.tests.test_task.Test_Task.test_Delete [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.378867Z
+tags: worker-0
+test: task_manager.tests.test_task.Test_Task.test_Get
+time: 2020-10-20 12:25:10.379017Z
+successful: task_manager.tests.test_task.Test_Task.test_Get [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.379341Z
+tags: worker-0
+test: task_manager.tests.test_task.Test_Task.test_Update
+time: 2020-10-20 12:25:10.379488Z
+successful: task_manager.tests.test_task.Test_Task.test_Update [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.379809Z
+tags: worker-0
+test: task_manager.tests.test_user.Test_User.test_Create
+time: 2020-10-20 12:25:10.379961Z
+successful: task_manager.tests.test_user.Test_User.test_Create [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.380317Z
+tags: worker-0
+test: task_manager.tests.test_user.Test_User.test_Delete
+time: 2020-10-20 12:25:10.380464Z
+successful: task_manager.tests.test_user.Test_User.test_Delete [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.380770Z
+tags: worker-0
+test: task_manager.tests.test_user.Test_User.test_Get
+time: 2020-10-20 12:25:10.380916Z
+successful: task_manager.tests.test_user.Test_User.test_Get [ multipart
+]
+tags: -worker-0
+time: 2020-10-20 12:25:10.381239Z
+tags: worker-0
+test: task_manager.tests.test_user.Test_User.test_Update
+time: 2020-10-20 12:25:10.381386Z
+successful: task_manager.tests.test_user.Test_User.test_Update [ multipart
+]
+tags: -worker-0
