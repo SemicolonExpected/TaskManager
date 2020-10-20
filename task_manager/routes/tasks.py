@@ -9,10 +9,9 @@ def model_get_create_task():
 
 
 def model_post_create_task():
-    if request.form['content']:
+    task_content = "dummy test"
+    if request.form:
         task_content = request.form['content']
-    else:
-        task_content = "dummy test"
     new_task = Task(content=task_content)
     try:
         db.session.add(new_task)
