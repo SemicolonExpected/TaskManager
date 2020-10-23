@@ -15,8 +15,10 @@ github: FORCE
 	-git commit -a
 	git push origin
 
-tests: lint unit 
-	echo "Sprinkle some flakey flakey goodness here"
+tests:
+	-lint unit
+	#-stestr run
+	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
 	echo "Standardized unit testing"
@@ -28,8 +30,8 @@ lint: FORCE
 	#lint all python ignoring tabs vs indents, and '# ' wrt block comments
 
 dev_env: FORCE
-	pip install -r $(REQ_DIR)/requirements-dev.txt
-	sudo apt install python-dev-is-python3
+	-pip3 install -r $(REQ_DIR)/requirements-dev.txt
+	-sudo apt install python-dev-is-python3 sqlite3
 
 run_dev:
 	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
