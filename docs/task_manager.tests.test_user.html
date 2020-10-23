@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: module tests.usertest</title>
+<html><head><title>Python: module task_manager.tests.test_user</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head><body bgcolor="#f0f0f8">
 
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="tests.html"><font color="#ffffff">tests</font></a>.usertest</strong></big></big></font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="task_manager.html"><font color="#ffffff">task_manager</font></a>.<a href="task_manager.tests.html"><font color="#ffffff">tests</font></a>.test_user</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/semicolonexpected/TaskManager/tests/usertest.py">/home/semicolonexpected/TaskManager/tests/usertest.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/semicolonexpected/TaskManager/task_manager/tests/test_user.py">/home/semicolonexpected/TaskManager/task_manager/tests/test_user.py</a></font></td></tr></table>
     <p></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -29,7 +29,7 @@
 <dt><font face="helvetica, arial"><a href="unittest.case.html#TestCase">unittest.case.TestCase</a>(<a href="builtins.html#object">builtins.object</a>)
 </font></dt><dd>
 <dl>
-<dt><font face="helvetica, arial"><a href="tests.usertest.html#Test_User">Test_User</a>
+<dt><font face="helvetica, arial"><a href="task_manager.tests.test_user.html#Test_User">Test_User</a>
 </font></dt></dl>
 </dd>
 </dl>
@@ -74,21 +74,21 @@ When&nbsp;subclassing&nbsp;<a href="unittest.case.html#TestCase">TestCase</a>,&n
 &nbsp;&nbsp;&nbsp;&nbsp;attribute&nbsp;so&nbsp;can&nbsp;be&nbsp;configured&nbsp;by&nbsp;individual&nbsp;tests&nbsp;if&nbsp;required.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
-<dd><a href="tests.usertest.html#Test_User">Test_User</a></dd>
+<dd><a href="task_manager.tests.test_user.html#Test_User">Test_User</a></dd>
 <dd><a href="unittest.case.html#TestCase">unittest.case.TestCase</a></dd>
 <dd><a href="builtins.html#object">builtins.object</a></dd>
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="Test_User-createTest"><strong>createTest</strong></a>(self)</dt></dl>
-
-<dl><dt><a name="Test_User-deleteTest"><strong>deleteTest</strong></a>(self)</dt></dl>
-
-<dl><dt><a name="Test_User-getTest"><strong>getTest</strong></a>(self)</dt></dl>
-
 <dl><dt><a name="Test_User-setup"><strong>setup</strong></a>(self)</dt></dl>
 
-<dl><dt><a name="Test_User-updateTest"><strong>updateTest</strong></a>(self)</dt></dl>
+<dl><dt><a name="Test_User-test_Create"><strong>test_Create</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Test_User-test_Delete"><strong>test_Delete</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Test_User-test_Get"><strong>test_Get</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Test_User-test_Update"><strong>test_Update</strong></a>(self)</dt></dl>
 
 <hr>
 Methods inherited from <a href="unittest.case.html#TestCase">unittest.case.TestCase</a>:<br>
@@ -393,7 +393,7 @@ the&nbsp;specified&nbsp;test&nbsp;method's&nbsp;docstring.</tt></dd></dl>
 
 <dl><dt><a name="Test_User-skipTest"><strong>skipTest</strong></a>(self, reason)</dt><dd><tt>Skip&nbsp;this&nbsp;test.</tt></dd></dl>
 
-<dl><dt><a name="Test_User-subTest"><strong>subTest</strong></a>(self, msg=&lt;object object at 0x7efe84576350&gt;, **params)</dt><dd><tt>Return&nbsp;a&nbsp;context&nbsp;manager&nbsp;that&nbsp;will&nbsp;return&nbsp;the&nbsp;enclosed&nbsp;block<br>
+<dl><dt><a name="Test_User-subTest"><strong>subTest</strong></a>(self, msg=&lt;object object at 0x7fe412263350&gt;, **params)</dt><dd><tt>Return&nbsp;a&nbsp;context&nbsp;manager&nbsp;that&nbsp;will&nbsp;return&nbsp;the&nbsp;enclosed&nbsp;block<br>
 of&nbsp;code&nbsp;in&nbsp;a&nbsp;subtest&nbsp;identified&nbsp;by&nbsp;the&nbsp;optional&nbsp;message&nbsp;and<br>
 keyword&nbsp;parameters.&nbsp;&nbsp;A&nbsp;failure&nbsp;in&nbsp;the&nbsp;subtest&nbsp;marks&nbsp;the&nbsp;test<br>
 case&nbsp;as&nbsp;failed&nbsp;but&nbsp;resumes&nbsp;execution&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;enclosed<br>
