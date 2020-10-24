@@ -4,8 +4,9 @@ import unittest
 # from ..routes.tasks import *
 class TestTask(unittest.TestCase):
 	def setup(self):
-        pass
-    def test_Create(self):
+		pass
+
+	def test_Create(self):
 		'''
 		TEST CREATE TASK
 		'''
@@ -28,4 +29,3 @@ class TestTask(unittest.TestCase):
 		TEST DELETE TASK
 		'''
 		self.assertEqual('1','1')
-		

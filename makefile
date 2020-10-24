@@ -4,7 +4,7 @@ REQ_DIR = requirements
 
 FORCE:
 
-prod:   tests document
+prod: tests document github
 
 document: FORCE
 	pydoc -w ./
