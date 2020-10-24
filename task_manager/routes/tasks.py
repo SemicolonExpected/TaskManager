@@ -1,7 +1,7 @@
 from flask import make_response, render_template, request
 from flask import redirect
-from ..Model.task import Task
-from ..__init__ import db
+from task_manager.models.task import Task
+from task_manager import db
 
 
 def model_get_create_task():
@@ -23,7 +23,8 @@ def model_post_create_task():
 def model_fetch_task(task_id):
     task = Task.query.all()
     headers = {'Content-Type': 'text/html'}
-    return make_response(render_template('index.html', tasks=task), 200, headers)
+    return make_response(render_template('index.html', tasks=task),
+                         200, headers)
 
 
 def model_get_update_task(task_id):

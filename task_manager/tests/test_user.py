@@ -1,9 +1,9 @@
 import unittest
 
 
-class Test_User(unittest.TestCase):
-	def setup(self):
-		pass
+class TestUser(unittest.TestCase):
+    def setup(self):
+        pass
 
 	def test_Create(self):
 		'''
