@@ -1,13 +1,13 @@
 from os import environ, path
+
 from dotenv import load_dotenv
 
 basedir = path.abspath(path.dirname(__file__))
-#load_dotenv(path.join(basedir, '.env'))
+load_dotenv(path.join(basedir, '.env'))
 
 
 class Config:
     """ Set Parent Class config variables """
-    #SECRET_KEY = environ.get('SECRET_KEY')
     SECRET_KEY = "very_secret_key_1234567"
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
@@ -15,6 +15,7 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    SECRET_KEY = environ.get('SECRET_KEY')
     FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True

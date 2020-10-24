@@ -4,7 +4,7 @@ REQ_DIR = requirements
 
 FORCE:
 
-prod: tests document github
+prod:   tests document
 
 document: FORCE
 	pydoc -w ./
@@ -15,8 +15,7 @@ github: FORCE
 	-git commit -a
 	git push origin
 
-tests: 
-	-lint unit 
+tests:  lint unit
 	#-stestr run
 	-echo "Sprinkle some flakey flakey goodness here"
 
