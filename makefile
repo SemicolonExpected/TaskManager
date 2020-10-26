@@ -20,7 +20,8 @@ tests: lint unit
 	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
-	- python run_tests.py
+	- coverage run run_tests.py
+	- coverage report
 	echo "Standardized unit testing"
 	#flake8 here
 
