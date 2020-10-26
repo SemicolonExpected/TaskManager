@@ -1,21 +1,30 @@
 import unittest
 
 
-class Test_User(unittest.TestCase):
+class TestUser(unittest.TestCase):
 	def setup(self):
 		pass
 
 	def test_Create(self):
-		self.assertEqual('1','1')
+		'''
+		TEST CREATE USER
+		'''
+		self.assertEqual('1', '1')
 
 	def test_Get(self):
-		self.assertEqual('1','1')
+		'''
+		TEST FETCH USER
+		'''
+		self.assertEqual('1', '1')
 
 	def test_Update(self):
-		self.assertEqual('1','1')
+		'''
+		TEST UPDATE USER
+		'''
+		self.assertEqual('1', '1')
 
 	def test_Delete(self):
-		self.assertEqual('1','1')
-
-#if __name__ == '__main__':
-#    unittest.main()
+		'''
+		TEST DELETE USER
+		'''
+		self.assertEqual('1', '1')
