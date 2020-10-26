@@ -1,13 +1,13 @@
-from task_manager import db
 from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from task_manager import db, login_manager
+from task_manager import db, login
 from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
+
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(80), unique=True, nullable=False)
@@ -20,6 +20,19 @@ class User(db.Model, UserMixin):
     def validate_password(self, password):
         return check_password_hash(self.password, password)
 
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete_user(self):
+        db.session.delete(self)
+        db.session.commit()
+
     def __repr__(self):
         return '<User {} {} {}>'.format(
             self.username, self.email, self.password)
+
+
+@login.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
