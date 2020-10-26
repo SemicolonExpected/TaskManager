@@ -10,22 +10,22 @@ class TestTask(unittest.TestCase):
 		'''
 		TEST CREATE TASK
 		'''
-		self.assertEqual('1','1')
+		self.assertEqual('1', '1')
 
 	def test_Get(self):
 		'''
 		TEST FETCH TASK
 		'''
-		self.assertEqual('1','1')
+		self.assertEqual('1', '1')
 
 	def test_Update(self):
 		'''
 		TEST UPDATE TASK
 		'''
-		self.assertEqual('1','1')
+		self.assertEqual('1', '1')
 
 	def test_Delete(self):
 		'''
 		TEST DELETE TASK
 		'''
-		self.assertEqual('1','1')
+		self.assertEqual('1', '1')
