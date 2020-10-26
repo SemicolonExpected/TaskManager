@@ -2,4 +2,4 @@
 
 flake8
 stestr
-overage
+coverage

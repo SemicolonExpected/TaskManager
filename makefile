@@ -26,7 +26,7 @@ unit: FORCE
 	#flake8 here
 
 lint: FORCE
-	$(LINTER) . --ignore=W191,E265
+	$(LINTER) . --ignore=W191,E265 --exclude=./migrations/
 	#$(LINTER) . --exit-zero --ignore=W191,E265
 	#lint all python ignoring tabs vs indents, and '# ' wrt block comments
 
