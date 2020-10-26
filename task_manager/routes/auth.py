@@ -1,4 +1,5 @@
-from flask import url_for, flash, render_template, request, redirect, make_response
+from flask import url_for, flash, render_template, request, redirect, \
+    make_response
 from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
 
@@ -20,7 +21,8 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return make_response(render_template('login.html', title='Sign In', form=form))
+    return make_response(
+        render_template('login.html', title='Sign In', form=form))
 
 
 def logout():
@@ -38,4 +40,5 @@ def register():
         User.save_user(user)
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return make_response(render_template('register.html', title='Register', form=form))
+    return make_response(
+        render_template('register.html', title='Register', form=form))
