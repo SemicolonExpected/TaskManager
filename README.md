@@ -38,7 +38,7 @@ or if you're using an ssh key
 - git clone git@github.com:SemicolonExpected/TaskManager.git
 
 
-To build run `make prod`
+To build and push to github run `make prod`
 
 To build for development run `make dev_env`
 
