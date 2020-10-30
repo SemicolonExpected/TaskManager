@@ -12,30 +12,43 @@
     <table>
         <tr>
             <th>Task</th>
-            <th>Added</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Start Time</th>
+            <th>End Time</th>
             <th>Actions</th>
         </tr>
         {% for task in tasks %}
             <tr>
-                <td><a href="/task/{{task.id}}"> {{task.content}} </a> </td>
-                <td>{{ task.date_created.date() }}</td>
+                <td><a href="/api/task/{{task.id}}"> {{task.title}} </a> </td>
+              
+                <td>{{task.priority}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.start_time}}</td>
+                <td>{{task.end_time}}</td>
                 <td>
-                    <a href="/task/delete/{{task.id}}">Delete</a>
+                    <a href="/api/task/delete/{{task.id}}">Delete</a>
                     <br>
-                    <a href="/update/{{task.id}}">Update</a>
+                    <a href="/api/update/{{task.id}}">Update</a>
                 </td>
             </tr>
         {% endfor %}
     </table>
     {% endif %}
 
-    <!-- <div class=button style="align-items: center">
-        <button>Create task</button>
-    </div> -->
-
-    <div class="form">
-        <form action="/task/create" method="POST">
-            <input type="text" name="content" id="content">
+ 
+    <div class="form" style="justify-content:center; display: flex;">
+        <form action="/api/task/create" method="POST" >
+            <label for="content">Title:</label><br>
+            <input type="text" name="content" id="content"><br>
+            <label for="priority">Priority:</label><br>
+            <input type="text" name="priority" id="priority"><br>
+            <label for="description">Description:</label><br>
+            <input type="text" name="description" id="description"><br>
+            <label for="start_time">Start Time:</label><br>
+            <input type="datetime-local" name="start_time" id="start_time"><br>
+            <label for="end_time">End Time:</label><br>
+            <input type="datetime-local" name="end_time" id="end_time"><br>
             <input type="submit" value="Add Task">
         </form>
     </div>
