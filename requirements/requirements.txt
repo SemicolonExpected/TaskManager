@@ -4,3 +4,5 @@ Flask-SQLAlchemy
 Flask-Migrate
 Flask-Login
 python-dotenv
+email-validator
+Flask-WTF
