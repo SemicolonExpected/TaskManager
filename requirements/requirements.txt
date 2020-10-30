@@ -6,3 +6,5 @@ Flask-Login
 python-dotenv
 flask-marshmallow
 marshmallow-SQLAlchemy
+email-validator
+Flask-WTF

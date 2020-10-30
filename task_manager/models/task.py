@@ -12,7 +12,7 @@ class Task(db.Model):
     end_time = Column(DateTime, nullable=True)
     time_estimate = Column(String(80), nullable=True)
 
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = db.Column(Integer, ForeignKey('user.id'))
 
     def __repr__(self):
         return '<Task {} {}>'.format(self.title, self.priority)

@@ -15,7 +15,7 @@ github: FORCE
 	-git commit -a
 	git push origin
 
-tests: lint unit 
+tests: lint unit
 	#-stestr run
 	-echo "Sprinkle some flakey flakey goodness here"
 
@@ -32,6 +32,17 @@ lint: FORCE
 
 dev_env: FORCE
 	-pip3 install -r $(REQ_DIR)/requirements-dev.txt
+	-sudo apt-get update
+	-sudo apt install python-dev-is-python3	sqlite3 docker.io
+	echo "Installing docker"
+	-sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+	-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	#Use the following command to set up the stable repository. To add the nightly or test repository, add the word nightly or test (or both) after the word stable in the commands below. Learn about nightly and test channels.
+	-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable test"
+	-sudo apt-get update
+	-sudo apt-get install docker-ce docker-ce-cli containerd.io
+	echo "Test Docker"
+	-sudo docker run hello-world
 
 run_dev:
 	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
