@@ -82,14 +82,13 @@ class DeleteTask(Resource):
         return tasks.model_delete_task(task_id)
 
 
-# @task_ns.route('/create', methods=['GET', 'POST'])
-# class CreateUser(Resource):
-#     def get(self):
-#         return users.model_get_create_user()
-#
-#     def post(self):
-#         return users.model_post_create_user()
+@task_ns.route('/create', methods=['GET', 'POST'])
+class CreateUser(Resource):
+    def get(self):
+        return users.model_get_create_user()
 
+    def post(self):
+        return users.model_post_create_user()
 
 @user_ns.route('/')
 @user_ns.route('/<int:user_id>')

@@ -25,9 +25,10 @@ def create_app():
     from .models.user import User  # noqa: F401
 
     db.init_app(app)
-    migrate.init_app(app, db)
-    login.init_app(app)
     ma.init_app(app)
+    login.init_app(app)
+
+    migrate.init_app(app, db)
 
     login.login_view = 'login'
 
