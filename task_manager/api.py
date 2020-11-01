@@ -1,85 +1,113 @@
-from .routes.tasks import model_get_create_task, model_post_create_task
-from .routes.tasks import model_fetch_task, model_get_update_task
-from .routes.tasks import model_post_update_task, model_delete_task
-from .routes.users import model_get_create_user, model_post_create_user
-from .routes.users import model_fetch_user, model_get_update_user
-from .routes.users import model_post_update_user, model_delete_user
+from flask import current_app as app, render_template, make_response
+from flask_restx import Resource, Namespace, Api
+from flask_login import login_required
 
-from flask_restx import Resource, Namespace
+import task_manager.routes.tasks as tasks
+import task_manager.routes.users as users
+import task_manager.routes.auth as auth
 
+api = Api(app, title="Task Manager App",
+          description="A productivity tool")
 
-user_api = Namespace('user', description='User API endpoints')
-task_api = Namespace('task', description='Task API endpoints')
-
-
-@user_api.route('/')
-@user_api.route('/hello')              # Create a URL route to this resource
-class HelloWorld(Resource):            # Create a RESTful resource
-	''' HOME PAGE '''
-	def get(self):                     # Create GET endpoint
-		return {'hello': 'world'}
+user_ns = Namespace('user', description='User API endpoints')
+task_ns = Namespace('task', description='Task API endpoints')
 
 
-@task_api.route('/create', methods=['GET', 'POST'])
+@api.route('/index')
+class Index(Resource):
+    @login_required
+    def get(self):
+        return make_response(render_template("index2.html", title='Home Page'))
+
+
+@api.route('/register')
+class Register(Resource):
+    def get(self):
+        return auth.register()
+
+    def post(self):
+        return auth.register()
+
+
+@api.route('/login')
+class Login(Resource):
+    def get(self):
+        return auth.login()
+
+    def post(self):
+        return auth.login()
+
+
+@api.route('/logout')
+class Logout(Resource):
+    @login_required
+    def get(self):
+        return auth.logout()
+
+
+@task_ns.route('/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
-	''' CREATE NEW TASK '''
-	def get(self):
-		return model_get_create_task()
+    ''' CREATE NEW TASK '''
 
-	def post(self):
-		return model_post_create_task()
+    def get(self):
+        return tasks.model_get_create_task()
+
+    def post(self):
+        return tasks.model_post_create_task()
 
 
-@task_api.route('/')
-@task_api.route('/<int:task_id>')
+@task_ns.route('/')
+@task_ns.route('/<int:task_id>')
 class FetchTask(Resource):
-	''' FETCH TASK '''
-	def get(self, task_id=-1):
-		return model_fetch_task(task_id)
+    ''' FETCH TASK '''
+
+    def get(self, task_id=-1):
+        return tasks.model_fetch_task(task_id)
 
 
-@task_api.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
-	''' UPDATE TASK '''
-	def get(self, task_id):
-		return model_get_update_task(task_id)
+    ''' UPDATE TASK '''
 
-	def post(self, task_id):
-		return model_post_update_task(task_id)
+    def get(self, task_id):
+        return tasks.model_get_update_task(task_id)
+
+    def post(self, task_id):
+        return tasks.model_post_update_task(task_id)
 
 
-@task_api.route('/delete/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/delete/<int:task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
-	def get(self, task_id):
-		return model_delete_task(task_id)
+    def get(self, task_id):
+        return tasks.model_delete_task(task_id)
 
 
-@task_api.route('/create', methods=['GET', 'POST'])
-class CreateUser(Resource):
-	def get(self):
-		return model_get_create_user()
-
-	def post(self):
-		return model_post_create_user()
-
-
-@user_api.route('/')
-@user_api.route('/<int:user_id>')
-class FetchUser(Resource):
-	def get(self, user_id=-1):
-		return model_fetch_user(user_id)
+# @task_ns.route('/create', methods=['GET', 'POST'])
+# class CreateUser(Resource):
+#     def get(self):
+#         return users.model_get_create_user()
+#
+#     def post(self):
+#         return users.model_post_create_user()
 
 
-@user_api.route('/edit/<int:user_id>', methods=['GET', 'POST'])
+@user_ns.route('/')
+@user_ns.route('/<int:user_id>')
+class GetUser(Resource):
+    def get(self, user_id):
+        return users.model_get_user(user_id)
+
+
+@user_ns.route('/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	def get(self, user_id):
-		return model_get_update_user(user_id)
+    def get(self, user_id):
+        return users.model_get_update_user(user_id)
 
-	def post(self, user_id):
-		return model_post_update_user(user_id)
+    def post(self, user_id):
+        return users.model_post_update_user(user_id)
 
 
-@user_api.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
+@user_ns.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 class DeleteUser(Resource):
-	def delete(self, user_id):
-		return model_delete_user(user_id)
+    def delete(self, user_id):
+        return users.model_delete_user(user_id)

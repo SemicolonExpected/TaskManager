@@ -1,5 +1,5 @@
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
-from task_manager import db
+from task_manager import db, ma
 
 
 class Task(db.Model):
@@ -16,3 +16,9 @@ class Task(db.Model):
 
     def __repr__(self):
         return '<Task {} {}>'.format(self.title, self.priority)
+
+
+class TaskSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Task
+        include_fk = True

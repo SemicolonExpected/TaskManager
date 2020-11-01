@@ -1,21 +1,45 @@
 import unittest
+from task_manager import db
+from task_manager.models.user import User
+from flask import current_app as app
 
 
-class Test_User(unittest.TestCase):
-	def setup(self):
-		pass
+class TestUserModel(unittest.TestCase):
+	def setUp(self):
+		app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://test.sqlite3'
+		db.create_all()
 
-	def test_Create(self):
-		self.assertEqual('1','1')
+	def tearDown(self):
+		db.session.remove()
+		db.drop_all()
+
+	def test_password_validation(self):
+		user = User(username='alice', email='alice@test.com', password='')
+		user.set_password('test')
+		self.assertFalse(user.validate_password('password'))
+		self.assertTrue(user.validate_password('test'))
+
+	def test_create(self):
+		user = User(username='alice', email='alice@test.com', password='')
+		user.set_password('test')
+		user.save_user()
+		db_user = User.query.filter_by(username='alice').first()
+		self.assertEqual(user, db_user)
 
 	def test_Get(self):
-		self.assertEqual('1','1')
+		'''
+		TEST FETCH USER
+		'''
+		self.assertEqual('1', '1')
 
 	def test_Update(self):
-		self.assertEqual('1','1')
+		'''
+		TEST UPDATE USER
+		'''
+		self.assertEqual('1', '1')
 
 	def test_Delete(self):
-		self.assertEqual('1','1')
-
-#if __name__ == '__main__':
-#    unittest.main()
+		'''
+		TEST DELETE USER
+		'''
+		self.assertEqual('1', '1')
