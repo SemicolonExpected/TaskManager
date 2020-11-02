@@ -8,4 +8,6 @@ flask-marshmallow
 marshmallow-SQLAlchemy
 email-validator
 Flask-WTF
-
+flake8
+stestr
+coverage
