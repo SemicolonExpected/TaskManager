@@ -7,8 +7,6 @@ import task_manager.routes.tasks as tasks
 import task_manager.routes.users as users
 import task_manager.routes.auth as auth
 
-# api = Api(app, title="Task Manager App",
-#           description="A productivity tool")
 
 user_ns = Namespace('user', description='User API endpoints')
 task_ns = Namespace('task', description='Task API endpoints')
