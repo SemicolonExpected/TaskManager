@@ -1,1 +1,1 @@
-web: gunicorn task_manager:app
+web: gunicorn "task_manager:create_app"
