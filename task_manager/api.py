@@ -22,7 +22,7 @@ class Test(Resource):
 class Index(Resource):
     @login_required
     def get(self):
-        return make_response(render_template("index2.html", title='Home Page'))
+        return make_response(render_template("index.html", title='Home Page'))
 
 
 @apis.route('/register')
@@ -93,7 +93,7 @@ class GetUser(Resource):
         return users.get_user(user_id)
 
 
-@user_ns.route('/users')
+@user_ns.route('/')
 class GetUsers(Resource):
     def get(self):
         return users.get_users()
