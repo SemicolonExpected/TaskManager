@@ -11,3 +11,4 @@ Flask-WTF
 flake8
 stestr
 coverage
+gunicorn
