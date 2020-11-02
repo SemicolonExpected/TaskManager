@@ -1,11 +1,8 @@
-import logging
-import os
-from logging.handlers import RotatingFileHandler
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
+from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
 
 # global objects
@@ -13,6 +10,7 @@ db = SQLAlchemy()
 login = LoginManager()
 migrate = Migrate()
 ma = Marshmallow()
+apis = Api()
 
 
 def create_app():
@@ -27,6 +25,7 @@ def create_app():
     db.init_app(app)
     ma.init_app(app)
     login.init_app(app)
+    apis.init_app(app)
 
     migrate.init_app(app, db)
 
@@ -34,23 +33,12 @@ def create_app():
 
     with app.app_context():
         # Register api blueprint and add namespaces
-        from task_manager.api import api, user_ns, task_ns
+        from task_manager.api import user_ns, task_ns
 
-        api.add_namespace(user_ns)
-        api.add_namespace(task_ns)
+        apis.add_namespace(user_ns)
+        apis.add_namespace(task_ns)
 
         # Create db tables
         db.create_all()
-
-        # Debug
-        if not app.debug:
-            if not os.path.exists('logs'):
-                os.mkdir('logs')
-            file_handler = RotatingFileHandler('logs/task_manager.log',
-                                               maxBytes=10240, backupCount=10)
-            file_handler.setLevel(logging.INFO)
-            app.logger.addHandler(file_handler)
-            app.logger.setLevel(logging.INFO)
-            app.logger.info('Task Manager')
 
         return app
