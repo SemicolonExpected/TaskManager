@@ -1,5 +1,5 @@
-from flask import make_response, render_template, request
-from flask import redirect, jsonify, json
+from flask import request  # , make_response, render_template
+from flask import jsonify  # , redirect, jsonify, json
 from task_manager.models.task import Task
 from task_manager import db
 from datetime import datetime
