@@ -13,7 +13,7 @@ user_ns = Namespace('user', description='User API endpoints')
 task_ns = Namespace('task', description='Task API endpoints')
 
 
-@api.route('/index')
+@api.route('/')
 class Index(Resource):
     @login_required
     def get(self):
