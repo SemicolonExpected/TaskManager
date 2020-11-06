@@ -46,6 +46,12 @@ class Logout(Resource):
         return auth.logout()
 
 
+@api.route('/viewTask')
+class ViewTask(Resource):
+    def get(self):
+        return make_response(render_template("viewTask.html"))
+
+
 @task_ns.route('/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
     ''' CREATE NEW TASK '''
