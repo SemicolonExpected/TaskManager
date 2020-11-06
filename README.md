@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/SemicolonExpected/TaskManager.svg?branch=master)](https://travis-ci.com/SemicolonExpected/TaskManager)
+
 # TaskManager
 Time and Task Management Tool
 
