@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/SemicolonExpected/TaskManager.svg?branch=master)](https://travis-ci.com/SemicolonExpected/TaskManager)
+
 # TaskManager
 Time and Task Management Tool
 
@@ -29,9 +31,20 @@ All of these can work with the simple "task" object.
 # Installation 
 Install python
 
-To build run `make prod`
+Clone this repo using:
+
+- git clone https://github.com/SemicolonExpected/TaskManager.git
+
+or if you're using an ssh key
+
+- git clone git@github.com:SemicolonExpected/TaskManager.git
+
+
+To build and push to github run `make prod`
 
 To build for development run `make dev_env`
+
+To start dev environment run `make run_dev`
 
 <!--
     mkdir source

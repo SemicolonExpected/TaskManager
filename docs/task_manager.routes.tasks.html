@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module task_manager.routes.tasks</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="task_manager.html"><font color="#ffffff">task_manager</font></a>.<a href="task_manager.routes.html"><font color="#ffffff">routes</font></a>.tasks</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/semicolonexpected/TaskManager/task_manager/routes/tasks.py">/home/semicolonexpected/TaskManager/task_manager/routes/tasks.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">flask_marshmallow.sqla.SQLAlchemyAutoSchema</a>(<a href="marshmallow_sqlalchemy.schema.sqlalchemy_schema.html#SQLAlchemyAutoSchema">marshmallow_sqlalchemy.schema.sqlalchemy_schema.SQLAlchemyAutoSchema</a>, <a href="flask_marshmallow.schema.html#Schema">flask_marshmallow.schema.Schema</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="task_manager.routes.tasks.html#TaskSchema">TaskSchema</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="TaskSchema">class <strong>TaskSchema</strong></a>(<a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">flask_marshmallow.sqla.SQLAlchemyAutoSchema</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#TaskSchema">TaskSchema</a>(*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+<a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">SQLAlchemyAutoSchema</a>&nbsp;that&nbsp;automatically&nbsp;generates&nbsp;marshmallow&nbsp;fields<br>
+from&nbsp;a&nbsp;SQLAlchemy&nbsp;model's&nbsp;or&nbsp;table's&nbsp;column.<br>
+Uses&nbsp;the&nbsp;scoped&nbsp;session&nbsp;from&nbsp;Flask-SQLAlchemy&nbsp;by&nbsp;default.<br>
+&nbsp;<br>
+See&nbsp;`marshmallow_sqlalchemy.<a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">SQLAlchemyAutoSchema</a>`&nbsp;for&nbsp;more&nbsp;details<br>
+on&nbsp;the&nbsp;`<a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">SQLAlchemyAutoSchema</a>`&nbsp;API.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="task_manager.routes.tasks.html#TaskSchema">TaskSchema</a></dd>
+<dd><a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">flask_marshmallow.sqla.SQLAlchemyAutoSchema</a></dd>
+<dd><a href="marshmallow_sqlalchemy.schema.sqlalchemy_schema.html#SQLAlchemyAutoSchema">marshmallow_sqlalchemy.schema.sqlalchemy_schema.SQLAlchemyAutoSchema</a></dd>
+<dd><a href="marshmallow_sqlalchemy.schema.sqlalchemy_schema.html#SQLAlchemySchema">marshmallow_sqlalchemy.schema.sqlalchemy_schema.SQLAlchemySchema</a></dd>
+<dd>marshmallow_sqlalchemy.schema.load_instance_mixin.Schema</dd>
+<dd><a href="flask_marshmallow.schema.html#Schema">flask_marshmallow.schema.Schema</a></dd>
+<dd><a href="marshmallow.schema.html#Schema">marshmallow.schema.Schema</a></dd>
+<dd><a href="marshmallow.base.html#SchemaABC">marshmallow.base.SchemaABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>Meta</strong> = &lt;class 'task_manager.routes.tasks.TaskSchema.Meta'&gt;</dl>
+
+<dl><dt><strong>opts</strong> = &lt;flask_marshmallow.sqla.SQLAlchemyAutoSchemaOpts object&gt;</dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_marshmallow.sqla.html#SQLAlchemyAutoSchema">flask_marshmallow.sqla.SQLAlchemyAutoSchema</a>:<br>
+<dl><dt><strong>OPTIONS_CLASS</strong> = &lt;class 'flask_marshmallow.sqla.SQLAlchemyAutoSchemaOpts'&gt;</dl>
+
+<hr>
+Methods inherited from marshmallow_sqlalchemy.schema.load_instance_mixin.Schema:<br>
+<dl><dt><a name="TaskSchema-__init__"><strong>__init__</strong></a>(self, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-get_instance"><strong>get_instance</strong></a>(self, data)</dt><dd><tt>Retrieve&nbsp;an&nbsp;existing&nbsp;record&nbsp;by&nbsp;primary&nbsp;key(s).&nbsp;If&nbsp;the&nbsp;schema&nbsp;instance<br>
+is&nbsp;transient,&nbsp;return&nbsp;None.<br>
+&nbsp;<br>
+:param&nbsp;data:&nbsp;Serialized&nbsp;data&nbsp;to&nbsp;inform&nbsp;lookup.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-load"><strong>load</strong></a>(self, data, *, session=None, instance=None, transient=False, **kwargs)</dt><dd><tt>Deserialize&nbsp;data&nbsp;to&nbsp;internal&nbsp;representation.<br>
+&nbsp;<br>
+:param&nbsp;session:&nbsp;Optional&nbsp;SQLAlchemy&nbsp;session.<br>
+:param&nbsp;instance:&nbsp;Optional&nbsp;existing&nbsp;instance&nbsp;to&nbsp;modify.<br>
+:param&nbsp;transient:&nbsp;Optional&nbsp;switch&nbsp;to&nbsp;allow&nbsp;transient&nbsp;instantiation.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-make_instance"><strong>make_instance</strong></a>(self, data, **kwargs)</dt><dd><tt>Deserialize&nbsp;data&nbsp;to&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;model&nbsp;if&nbsp;self.<strong>load_instance</strong>&nbsp;is&nbsp;True.<br>
+Update&nbsp;an&nbsp;existing&nbsp;row&nbsp;if&nbsp;specified&nbsp;in&nbsp;`self.<strong>instance</strong>`&nbsp;or&nbsp;loaded&nbsp;by&nbsp;primary&nbsp;key(s)&nbsp;in&nbsp;the&nbsp;data;<br>
+else&nbsp;create&nbsp;a&nbsp;new&nbsp;row.<br>
+&nbsp;<br>
+:param&nbsp;data:&nbsp;Data&nbsp;to&nbsp;deserialize.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-validate"><strong>validate</strong></a>(self, data, *, session=None, **kwargs)</dt></dl>
+
+<hr>
+Data descriptors inherited from marshmallow_sqlalchemy.schema.load_instance_mixin.Schema:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>session</strong></dt>
+</dl>
+<dl><dt><strong>transient</strong></dt>
+</dl>
+<hr>
+Methods inherited from <a href="flask_marshmallow.schema.html#Schema">flask_marshmallow.schema.Schema</a>:<br>
+<dl><dt><a name="TaskSchema-jsonify"><strong>jsonify</strong></a>(self, obj, many=&lt;object object at 0x7f7763387c60&gt;, *args, **kwargs)</dt><dd><tt>Return&nbsp;a&nbsp;JSON&nbsp;response&nbsp;containing&nbsp;the&nbsp;serialized&nbsp;data.<br>
+&nbsp;<br>
+&nbsp;<br>
+:param&nbsp;obj:&nbsp;Object&nbsp;to&nbsp;serialize.<br>
+:param&nbsp;bool&nbsp;many:&nbsp;Whether&nbsp;`obj`&nbsp;should&nbsp;be&nbsp;serialized&nbsp;as&nbsp;an&nbsp;instance<br>
+&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;as&nbsp;a&nbsp;collection.&nbsp;If&nbsp;unset,&nbsp;defaults&nbsp;to&nbsp;the&nbsp;value&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`many`&nbsp;attribute&nbsp;on&nbsp;this&nbsp;Schema.<br>
+:param&nbsp;kwargs:&nbsp;Additional&nbsp;keyword&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;`flask.jsonify`.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.6.0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Takes&nbsp;the&nbsp;same&nbsp;arguments&nbsp;as&nbsp;`marshmallow.Schema.dump`.&nbsp;Additional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;keyword&nbsp;arguments&nbsp;are&nbsp;passed&nbsp;to&nbsp;`flask.jsonify`.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.6.3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;`many`&nbsp;argument&nbsp;for&nbsp;this&nbsp;method&nbsp;defaults&nbsp;to&nbsp;the&nbsp;value&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;`many`&nbsp;attribute&nbsp;on&nbsp;the&nbsp;Schema.&nbsp;Previously,&nbsp;the&nbsp;`many`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;argument&nbsp;of&nbsp;this&nbsp;method&nbsp;defaulted&nbsp;to&nbsp;False,&nbsp;regardless&nbsp;of&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;of&nbsp;`Schema.many`.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="marshmallow.schema.html#Schema">marshmallow.schema.Schema</a>:<br>
+<dl><dt><a name="TaskSchema-__repr__"><strong>__repr__</strong></a>(self) -&gt; str</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-dump"><strong>dump</strong></a>(self, obj: Any, *, many: bool = None)</dt><dd><tt>Serialize&nbsp;an&nbsp;object&nbsp;to&nbsp;native&nbsp;Python&nbsp;data&nbsp;types&nbsp;according&nbsp;to&nbsp;this<br>
+Schema's&nbsp;fields.<br>
+&nbsp;<br>
+:param&nbsp;obj:&nbsp;The&nbsp;object&nbsp;to&nbsp;serialize.<br>
+:param&nbsp;many:&nbsp;Whether&nbsp;to&nbsp;serialize&nbsp;`obj`&nbsp;as&nbsp;a&nbsp;collection.&nbsp;If&nbsp;`None`,&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;`self.<strong>many</strong>`&nbsp;is&nbsp;used.<br>
+:return:&nbsp;A&nbsp;dict&nbsp;of&nbsp;serialized&nbsp;data<br>
+:rtype:&nbsp;dict<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;1.0.0<br>
+..&nbsp;versionchanged::&nbsp;3.0.0b7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;method&nbsp;returns&nbsp;the&nbsp;serialized&nbsp;data&nbsp;rather&nbsp;than&nbsp;a&nbsp;``(data,&nbsp;errors)``&nbsp;duple.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:exc:`ValidationError&nbsp;&lt;marshmallow.exceptions.ValidationError&gt;`&nbsp;is&nbsp;raised<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;``obj``&nbsp;is&nbsp;invalid.<br>
+..&nbsp;versionchanged::&nbsp;3.0.0rc9<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Validation&nbsp;no&nbsp;longer&nbsp;occurs&nbsp;upon&nbsp;serialization.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-dumps"><strong>dumps</strong></a>(self, obj: Any, *args, many: bool = None, **kwargs)</dt><dd><tt>Same&nbsp;as&nbsp;:meth:`dump`,&nbsp;except&nbsp;return&nbsp;a&nbsp;JSON-encoded&nbsp;string.<br>
+&nbsp;<br>
+:param&nbsp;obj:&nbsp;The&nbsp;object&nbsp;to&nbsp;serialize.<br>
+:param&nbsp;many:&nbsp;Whether&nbsp;to&nbsp;serialize&nbsp;`obj`&nbsp;as&nbsp;a&nbsp;collection.&nbsp;If&nbsp;`None`,&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;`self.<strong>many</strong>`&nbsp;is&nbsp;used.<br>
+:return:&nbsp;A&nbsp;``json``&nbsp;string<br>
+:rtype:&nbsp;str<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;1.0.0<br>
+..&nbsp;versionchanged::&nbsp;3.0.0b7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;method&nbsp;returns&nbsp;the&nbsp;serialized&nbsp;data&nbsp;rather&nbsp;than&nbsp;a&nbsp;``(data,&nbsp;errors)``&nbsp;duple.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:exc:`ValidationError&nbsp;&lt;marshmallow.exceptions.ValidationError&gt;`&nbsp;is&nbsp;raised<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;``obj``&nbsp;is&nbsp;invalid.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-get_attribute"><strong>get_attribute</strong></a>(self, obj: Any, attr: str, default: Any)</dt><dd><tt>Defines&nbsp;how&nbsp;to&nbsp;pull&nbsp;values&nbsp;from&nbsp;an&nbsp;object&nbsp;to&nbsp;serialize.<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;2.0.0<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;3.0.0a1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Changed&nbsp;position&nbsp;of&nbsp;``obj``&nbsp;and&nbsp;``attr``.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-handle_error"><strong>handle_error</strong></a>(self, error: marshmallow.exceptions.ValidationError, data: Any, *, many: bool, **kwargs)</dt><dd><tt>Custom&nbsp;error&nbsp;handler&nbsp;function&nbsp;for&nbsp;the&nbsp;schema.<br>
+&nbsp;<br>
+:param&nbsp;error:&nbsp;The&nbsp;`ValidationError`&nbsp;raised&nbsp;during&nbsp;(de)serialization.<br>
+:param&nbsp;data:&nbsp;The&nbsp;original&nbsp;input&nbsp;data.<br>
+:param&nbsp;many:&nbsp;Value&nbsp;of&nbsp;``many``&nbsp;on&nbsp;dump&nbsp;or&nbsp;load.<br>
+:param&nbsp;partial:&nbsp;Value&nbsp;of&nbsp;``partial``&nbsp;on&nbsp;load.<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;2.0.0<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;3.0.0rc9<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Receives&nbsp;`many`&nbsp;and&nbsp;`partial`&nbsp;(on&nbsp;deserialization)&nbsp;as&nbsp;keyword&nbsp;arguments.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-loads"><strong>loads</strong></a>(self, json_data: str, *, many: bool = None, partial: Union[bool, Sequence[str], Set[str]] = None, unknown: str = None, **kwargs)</dt><dd><tt>Same&nbsp;as&nbsp;:meth:`load`,&nbsp;except&nbsp;it&nbsp;takes&nbsp;a&nbsp;JSON&nbsp;string&nbsp;as&nbsp;input.<br>
+&nbsp;<br>
+:param&nbsp;json_data:&nbsp;A&nbsp;JSON&nbsp;string&nbsp;of&nbsp;the&nbsp;data&nbsp;to&nbsp;deserialize.<br>
+:param&nbsp;many:&nbsp;Whether&nbsp;to&nbsp;deserialize&nbsp;`obj`&nbsp;as&nbsp;a&nbsp;collection.&nbsp;If&nbsp;`None`,&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;for&nbsp;`self.<strong>many</strong>`&nbsp;is&nbsp;used.<br>
+:param&nbsp;partial:&nbsp;Whether&nbsp;to&nbsp;ignore&nbsp;missing&nbsp;fields&nbsp;and&nbsp;not&nbsp;require<br>
+&nbsp;&nbsp;&nbsp;&nbsp;any&nbsp;fields&nbsp;declared.&nbsp;Propagates&nbsp;down&nbsp;to&nbsp;``Nested``&nbsp;fields&nbsp;as&nbsp;well.&nbsp;If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;its&nbsp;value&nbsp;is&nbsp;an&nbsp;iterable,&nbsp;only&nbsp;missing&nbsp;fields&nbsp;listed&nbsp;in&nbsp;that&nbsp;iterable<br>
+&nbsp;&nbsp;&nbsp;&nbsp;will&nbsp;be&nbsp;ignored.&nbsp;Use&nbsp;dot&nbsp;delimiters&nbsp;to&nbsp;specify&nbsp;nested&nbsp;fields.<br>
+:param&nbsp;unknown:&nbsp;Whether&nbsp;to&nbsp;exclude,&nbsp;include,&nbsp;or&nbsp;raise&nbsp;an&nbsp;error&nbsp;for&nbsp;unknown<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fields&nbsp;in&nbsp;the&nbsp;data.&nbsp;Use&nbsp;`EXCLUDE`,&nbsp;`INCLUDE`&nbsp;or&nbsp;`RAISE`.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`None`,&nbsp;the&nbsp;value&nbsp;for&nbsp;`self.<strong>unknown</strong>`&nbsp;is&nbsp;used.<br>
+:return:&nbsp;Deserialized&nbsp;data<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;1.0.0<br>
+..&nbsp;versionchanged::&nbsp;3.0.0b7<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;method&nbsp;returns&nbsp;the&nbsp;deserialized&nbsp;data&nbsp;rather&nbsp;than&nbsp;a&nbsp;``(data,&nbsp;errors)``&nbsp;duple.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;:exc:`ValidationError&nbsp;&lt;marshmallow.exceptions.ValidationError&gt;`&nbsp;is&nbsp;raised<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;invalid&nbsp;data&nbsp;are&nbsp;passed.</tt></dd></dl>
+
+<dl><dt><a name="TaskSchema-on_bind_field"><strong>on_bind_field</strong></a>(self, field_name: str, field_obj: marshmallow.fields.Field) -&gt; None</dt><dd><tt>Hook&nbsp;to&nbsp;modify&nbsp;a&nbsp;field&nbsp;when&nbsp;it&nbsp;is&nbsp;bound&nbsp;to&nbsp;the&nbsp;`Schema`.<br>
+&nbsp;<br>
+No-op&nbsp;by&nbsp;default.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="marshmallow.schema.html#Schema">marshmallow.schema.Schema</a>:<br>
+<dl><dt><a name="TaskSchema-from_dict"><strong>from_dict</strong></a>(fields: Dict[str, Union[marshmallow.fields.Field, type]], *, name: str = 'GeneratedSchema') -&gt; type<font color="#909090"><font face="helvetica, arial"> from <a href="marshmallow_sqlalchemy.schema.sqlalchemy_schema.html#SQLAlchemyAutoSchemaMeta">marshmallow_sqlalchemy.schema.sqlalchemy_schema.SQLAlchemyAutoSchemaMeta</a></font></font></dt><dd><tt>Generate&nbsp;a&nbsp;`Schema`&nbsp;class&nbsp;given&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;fields.<br>
+&nbsp;<br>
+..&nbsp;code-block::&nbsp;python<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;marshmallow&nbsp;import&nbsp;Schema,&nbsp;fields<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PersonSchema&nbsp;=&nbsp;Schema.<a href="#TaskSchema-from_dict">from_dict</a>({"name":&nbsp;fields.Str()})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(PersonSchema().<a href="#TaskSchema-load">load</a>({"name":&nbsp;"David"}))&nbsp;&nbsp;#&nbsp;=&gt;&nbsp;{'name':&nbsp;'David'}<br>
+&nbsp;<br>
+Generated&nbsp;schemas&nbsp;are&nbsp;not&nbsp;added&nbsp;to&nbsp;the&nbsp;class&nbsp;registry&nbsp;and&nbsp;therefore&nbsp;cannot<br>
+be&nbsp;referred&nbsp;to&nbsp;by&nbsp;name&nbsp;in&nbsp;`Nested`&nbsp;fields.<br>
+&nbsp;<br>
+:param&nbsp;dict&nbsp;fields:&nbsp;Dictionary&nbsp;mapping&nbsp;field&nbsp;names&nbsp;to&nbsp;field&nbsp;instances.<br>
+:param&nbsp;str&nbsp;name:&nbsp;Optional&nbsp;name&nbsp;for&nbsp;the&nbsp;class,&nbsp;which&nbsp;will&nbsp;appear&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;``repr``&nbsp;for&nbsp;the&nbsp;class.<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;3.0.0</tt></dd></dl>
+
+<hr>
+Readonly properties inherited from <a href="marshmallow.schema.html#Schema">marshmallow.schema.Schema</a>:<br>
+<dl><dt><strong>dict_class</strong></dt>
+</dl>
+<dl><dt><strong>set_class</strong></dt>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="marshmallow.schema.html#Schema">marshmallow.schema.Schema</a>:<br>
+<dl><dt><strong>TYPE_MAPPING</strong> = {&lt;class 'str'&gt;: &lt;class 'marshmallow.fields.String'&gt;, &lt;class 'bytes'&gt;: &lt;class 'marshmallow.fields.String'&gt;, &lt;class 'datetime.datetime'&gt;: &lt;class 'marshmallow.fields.DateTime'&gt;, &lt;class 'float'&gt;: &lt;class 'marshmallow.fields.Float'&gt;, &lt;class 'bool'&gt;: &lt;class 'marshmallow.fields.Boolean'&gt;, &lt;class 'tuple'&gt;: &lt;class 'marshmallow.fields.Raw'&gt;, &lt;class 'list'&gt;: &lt;class 'marshmallow.fields.Raw'&gt;, &lt;class 'set'&gt;: &lt;class 'marshmallow.fields.Raw'&gt;, &lt;class 'int'&gt;: &lt;class 'marshmallow.fields.Integer'&gt;, &lt;class 'uuid.UUID'&gt;: &lt;class 'marshmallow.fields.UUID'&gt;, ...}</dl>
+
+<dl><dt><strong>error_messages</strong> = {}</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-model_delete_task"><strong>model_delete_task</strong></a>(task_id)</dt></dl>
+ <dl><dt><a name="-model_fetch_task"><strong>model_fetch_task</strong></a>(task_id)</dt></dl>
+ <dl><dt><a name="-model_get_create_task"><strong>model_get_create_task</strong></a>()</dt></dl>
+ <dl><dt><a name="-model_get_update_task"><strong>model_get_update_task</strong></a>(task_id)</dt></dl>
+ <dl><dt><a name="-model_post_create_task"><strong>model_post_create_task</strong></a>()</dt></dl>
+ <dl><dt><a name="-model_post_update_task"><strong>model_post_update_task</strong></a>(task_id)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>db</strong> = &lt;SQLAlchemy engine=None&gt;<br>
+<strong>ma</strong> = &lt;flask_marshmallow.Marshmallow object&gt;<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;</td></tr></table>
+</body></html>

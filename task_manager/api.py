@@ -1,106 +1,114 @@
-'''
-Bootstrap program
-'''
+from flask import current_app as app, render_template, make_response
+from flask_restx import Resource, Namespace, Api
+from flask_login import login_required
 
-#import os
-from flask import Flask, Blueprint
-#from flask import request
+import task_manager.routes.tasks as tasks
+import task_manager.routes.users as users
+import task_manager.routes.auth as auth
 
-from flask_restx import Resource, Api
+api = Api(app, title="Task Manager App",
+          description="A productivity tool")
 
-#from task_manager.routes.tasks import task as task_namespace
-#from task_manager.routes.users import user as user_namespace
-
-
-app = Flask(__name__)                  # Create a Flask WSGI application
-api = Api(app)                          # Create a Flask-RESTPlus API
+user_ns = Namespace('user', description='User API endpoints')
+task_ns = Namespace('task', description='Task API endpoints')
 
 
-''' HELLO '''
-@api.route('/hello')                   # Create a URL route to this resource
-class HelloWorld(Resource):            # Create a RESTful resource
-	def get(self):                     # Create GET endpoint
-		return {'hello':'world'}
+# @api.route('/index')
+@api.route('/')
+class Index(Resource):
+    @login_required
+    def get(self):
+        return make_response(render_template("index2.html", title='Home Page'))
 
-'''
-CREATE NEW TASK
-'''
-@api.route('/task/create', methods=['GET', 'POST'])
+
+@api.route('/register')
+class Register(Resource):
+    def get(self):
+        return auth.register()
+
+    def post(self):
+        return auth.register()
+
+
+@api.route('/login')
+class Login(Resource):
+    def get(self):
+        return auth.login()
+
+    def post(self):
+        return auth.login()
+
+
+@api.route('/logout')
+class Logout(Resource):
+    @login_required
+    def get(self):
+        return auth.logout()
+
+
+@task_ns.route('/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
-	def get(self):
-		return {'Show': 'Form'}
+    ''' CREATE NEW TASK '''
 
-	def post(self):
-		return {'Create':'Task'}
+    def get(self):
+        return tasks.model_get_create_task()
 
-
-@api.route('/task/')
-@api.route('/task/<int:task_id>')
-class GetTask(Resource):
-	def get(self, task_id = -1):
-		return 'Task %d' % task_id
+    def post(self):
+        return tasks.model_post_create_task()
 
 
-@api.route('/task/edit/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/')
+@task_ns.route('/<int:task_id>')
+class FetchTask(Resource):
+    ''' FETCH TASK '''
+
+    def get(self, task_id=-1):
+        return tasks.model_fetch_task(task_id)
+
+
+@task_ns.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
-	def get(self, task_id):
-		return {'Show': 'Form'}
+    ''' UPDATE TASK '''
 
-	def post(self, task_id):
-		return {'Update':'Task'}
+    def get(self, task_id):
+        return tasks.model_get_update_task(task_id)
+
+    def post(self, task_id):
+        return tasks.model_post_update_task(task_id)
 
 
-@api.route('/task/delete/<int:task_id>', methods=['PUT', 'DELETE'])
+@task_ns.route('/delete/<int:task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
-	def delete(self, task_id):
-		return 'Task %d' % task_id
+    def get(self, task_id):
+        return tasks.model_delete_task(task_id)
 
 
-@api.route('/user/create', methods=['GET', 'POST'])
+@task_ns.route('/create', methods=['GET', 'POST'])
 class CreateUser(Resource):
-	def get(self):
-		return {'Show':'Form'}
+    def get(self):
+        return users.model_get_create_user()
 
-	def post(self):
-		return {'create':'user'}
-
-
-@api.route('/user/')
-@api.route('/user/<int:user_id>')
-class GetUser(Resource):
-	def get(self, user_id = -1):
-		return {'User': user_id}
+    def post(self):
+        return users.model_post_create_user()
 
 
-@api.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
+@user_ns.route('/')
+@user_ns.route('/<int:user_id>')
+class FetchUser(Resource):
+    def get(self, user_id=-1):
+        return users.model_fetch_user(user_id)
+
+
+@user_ns.route('/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
-	def get(self):
-		return {'Show':'Form'}
+    def get(self, user_id):
+        return users.model_get_update_user(user_id)
 
-	def post(self):
-		return {'update':'user'}
+    def post(self, user_id):
+        return users.model_post_update_user(user_id)
 
 
-@api.route('/user/delete/<int:user_id>', methods=['PUT', 'DELETE'])
-# I dont know if I want to do DELETE or PUT
+@user_ns.route('/delete/<int:user_id>', methods=['PUT', 'DELETE'])
 class DeleteUser(Resource):
-	def delete(user_id):
-		return 'User %d' % user_id
-
-
-def initialize_app(flask_app):
-	blueprint = Blueprint('api', __name__, url_prefix = '/routes')
-	api.init_app(blueprint)
-#	api.add_namespace(task_namespace)
-#	api.add_namespace(user_namespace)
-	flask_app.register_blueprint(blueprint)
-
-
-def main():
-	initialize_app(app)
-	app.run(debug=True)  # Start a development server
-
-
-if __name__ == '__main__':
-	#app.run(debug=True)	 # Start a development server
-	main()
+    def delete(self, user_id):
+        return users.model_delete_user(user_id)
