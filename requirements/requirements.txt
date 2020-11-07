@@ -8,4 +8,4 @@ flask-marshmallow
 marshmallow-SQLAlchemy
 email-validator
 Flask-WTF
-
+gunicorn
