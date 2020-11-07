@@ -11,12 +11,14 @@ import task_manager.routes.auth as auth
 user_ns = Namespace('user', description='User API endpoints')
 task_ns = Namespace('task', description='Task API endpoints')
 
+
 @apis.route('/test', methods=['GET'])
 class Test(Resource):
     def get(self):
         return "Hello World"
-@api.route('/')
 
+
+@apis.route('/')
 class Index(Resource):
     @login_required
     def get(self):
