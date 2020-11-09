@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <h1 style="text-align: center">Task Manager</h1>
+    {% if tasks|length < 1 %}
+    <h4 style="text-align: center">There are no tasks. Create one below!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th>
+            <th>Assignees</th> <!--People you do the task with-->
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td><a href="/task/{{task.id}}"> {{task.title}} </a> </td>
+              
+                <td>{{task.priority}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.start_time}}</td>
+                <td>{{task.end_time}}</td>
+                <td>
+                    <a href="/task/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+ 
+    <!-- <div class="form" style="justify-content:center; display: flex;">
+        <form action="/api/task/create" method="POST" >
+            <label for="content">Title:</label><br>
+            <input type="text" name="content" id="content"><br>
+            <label for="priority">Priority:</label><br>
+            <input type="text" name="priority" id="priority"><br>
+            <label for="description">Description:</label><br>
+            <input type="text" name="description" id="description"><br>
+            <label for="start_time">Start Time:</label><br>
+            <input type="datetime-local" name="start_time" id="start_time"><br>
+            <label for="end_time">End Time:</label><br>
+            <input type="datetime-local" name="end_time" id="end_time"><br>
+            <input type="submit" value="Add Task">
+        </form>
+    </div> -->
+</div>
+{% endblock %}
