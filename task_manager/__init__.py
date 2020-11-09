@@ -1,15 +1,16 @@
 from flask import Flask
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
 from flask_login import LoginManager
-
+from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
+from flask_restx import Api
+from flask_sqlalchemy import SQLAlchemy
 
 # global objects
 db = SQLAlchemy()
 login = LoginManager()
 migrate = Migrate()
 ma = Marshmallow()
+apis = Api()
 
 
 def create_app():
@@ -18,12 +19,13 @@ def create_app():
     app.config.from_object('config.DevelopmentConfig')
 
     """ Initialize plugins """
-    from .models.user import User  # noqa: F401
     from .models.task import Task  # noqa: F401
+    from .models.user import User  # noqa: F401
 
     db.init_app(app)
     ma.init_app(app)
     login.init_app(app)
+    apis.init_app(app)
 
     migrate.init_app(app, db)
 
@@ -31,10 +33,10 @@ def create_app():
 
     with app.app_context():
         # Register api blueprint and add namespaces
-        from task_manager.api import api, user_ns, task_ns
+        from task_manager.api import user_ns, task_ns
 
-        api.add_namespace(user_ns)
-        api.add_namespace(task_ns)
+        apis.add_namespace(user_ns)
+        apis.add_namespace(task_ns)
 
         # Create db tables
         db.create_all()

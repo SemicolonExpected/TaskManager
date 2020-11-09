@@ -1,8 +1,13 @@
 from sqlalchemy import Column, Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from task_manager import db, login
+from task_manager import db, login, ma
 from flask_login import UserMixin
+
+
+@login.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class User(db.Model, UserMixin):
@@ -30,9 +35,13 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return '<User {} {} {}>'.format(
-            self.username, self.email, self.password)
+            self.id, self.username, self.email)
 
 
-@login.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+class UserSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = User
+
+    id = ma.auto_field()
+    username = ma.auto_field()
+    tasks = ma.auto_field()

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form action='' method="post">
+    Are you sure you want to delete?
+    <p>Click YES to confirm</p>
+    <input type='submit' value='YES'>
+    <a href='{{ url_for('index') }}'>Back</a>
+</form>
+{% endblock %}
