@@ -17,16 +17,16 @@
         </tr>
         {% for task in tasks %}
             <tr>
-                <td><a href="/api/task/{{task.id}}"> {{task.title}} </a> </td>
+                <td><a href="/task/{{task.id}}"> {{task.title}} </a> </td>
               
                 <td>{{task.priority}}</td>
                 <td>{{task.description}}</td>
                 <td>{{task.start_time}}</td>
                 <td>{{task.end_time}}</td>
                 <td>
-                    <a href="/api/task/delete/{{task.id}}">Delete</a>
+                    <a href="/task/delete/{{task.id}}">Delete</a>
                     <br>
-                    <a href="/api/update/{{task.id}}">Update</a>
+                    <a href="/update/{{task.id}}">Update</a>
                 </td>
             </tr>
         {% endfor %}
@@ -34,7 +34,7 @@
     {% endif %}
 
  
-    <div class="form" style="justify-content:center; display: flex;">
+    <!-- <div class="form" style="justify-content:center; display: flex;">
         <form action="/api/task/create" method="POST" >
             <label for="content">Title:</label><br>
             <input type="text" name="content" id="content"><br>
@@ -48,6 +48,6 @@
             <input type="datetime-local" name="end_time" id="end_time"><br>
             <input type="submit" value="Add Task">
         </form>
-    </div>
+    </div> -->
 </div>
 {% endblock %}
