@@ -20,6 +20,8 @@ class Test(Resource):
 
 @apis.route('/')
 class Index(Resource):
+	'''If logged in display index, else display homepage'''
+
 	@login_required
 	def get(self):
 		return make_response(render_template("index.html", title='Home Page'))
@@ -56,10 +58,20 @@ class Logout(Resource):
 		return auth.logout()
 
 
-@apis.route('/viewTask')
+@task_ns.route('/')
 class ViewTask(Resource):
+	'''View All Tasks'''
+
 	def get(self):
 		return make_response(render_template("viewTask.html"))
+
+
+@task_ns.route('/<int:task_id>')
+class FetchTask(Resource):
+	''' FETCH TASK '''
+
+	def get(self, task_id=-1):
+		return tasks.model_fetch_task(task_id)
 
 
 @task_ns.route('/create', methods=['GET', 'POST'])
@@ -71,15 +83,6 @@ class CreateTask(Resource):
 
 	def post(self):
 		return tasks.model_post_create_task()
-
-
-@task_ns.route('/')
-@task_ns.route('/<int:task_id>')
-class FetchTask(Resource):
-	''' FETCH TASK '''
-
-	def get(self, task_id=-1):
-		return tasks.model_fetch_task(task_id)
 
 
 @task_ns.route('/edit/<int:task_id>', methods=['GET', 'POST'])
