@@ -11,3 +11,4 @@ Flask-WTF
 gunicorn
 psycopg2
 sqlalchemy
+Flask-Heroku
