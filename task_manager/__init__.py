@@ -27,7 +27,6 @@ def create_app():
     ma.init_app(app)
     login.init_app(app)
     apis.init_app(app)
-
     migrate.init_app(app, db)
 
     login.login_view = 'login'

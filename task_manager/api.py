@@ -18,6 +18,7 @@ class Test(Resource):
 		return "Hello World"
 
 
+
 @apis.route('/')
 @apis.route('/index')  # dashboard
 class Index(Resource):
