@@ -59,15 +59,13 @@ class Logout(Resource):
 		return auth.logout()
 
 
-# @task_ns.route('/')
-@apis.route('/tasks')
+@api.route('/viewTask')
 class ViewTask(Resource):
-	'''View All Tasks'''
-
-	def get(self):
-		return make_response(render_template("viewTask.html"))
+    def get(self):
+        return make_response(render_template("viewTask.html"))
 
 
+@task_ns.route('/')
 @task_ns.route('/<int:task_id>')
 class FetchTask(Resource):
 	''' FETCH TASK '''
