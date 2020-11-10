@@ -12,7 +12,7 @@ class Config:
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = environ['DATABASE_URI']
+    SQLALCHEMY_DATABASE_URI = environ['DATABASE_URL']
 
 
 class DevelopmentConfig(Config):
