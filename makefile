@@ -20,8 +20,8 @@ tests: lint unit
 	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
-	- coverage run run_tests.py
-	- coverage report
+	- coverage run --source=task_manager run_tests.py
+	- coverage report #--omit=docs,/usr/*,.local*
 	echo "Standardized unit testing"
 	#flake8 here
 
@@ -43,6 +43,10 @@ dev_env: FORCE
 	-sudo apt-get install docker-ce docker-ce-cli containerd.io
 	echo "Test Docker"
 	-sudo docker run hello-world
+
+run:
+	sudo docker build . -t task-manager:latest task_manager
+	sudo docker run -d -p 5000:5000 task_manager
 
 run_dev:
 	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run

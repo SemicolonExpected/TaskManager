@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <script>
+    function onSubmit() {
+    var content= $('#content').val();
+    var priority= $('#priority').val();
+    var description= $('#description').val();
+    var start_time= $('#start_time').val();
+    var end_time= $('#end_time').val();
+	  $.ajax({
+				  url: "/task/create",
+				  type: "POST",
+				  data: {content:content,priority:priority,description:description,start_time:start_time,end_time:end_time},
+			//   }).done(function(data) {
+            //     appendData(data);
+			// 	}).catch(function (err) {
+            //         console.log(err);
+            //     });
+                dataType: 'json',                   
+                success: function(data){
+                    console.log(data)
+                }
+	});
+</script> -->
+<!-- <script>
+    function onSubmit() {
+    var content= $('#content').val();
+    var priority= $('#priority').val();
+    var description= $('#description').val();
+    var start_time= $('#start_time').val();
+    var end_time= $('#end_time').val();
+    $.ajax({
+				  url: "/task/create",
+				  type: "POST",
+				  data: {content:content,priority:priority,description:description,start_time:start_time,end_time:end_time}
+            });
+    }
+</script> -->
+<div class="content">
+    <div class="form" style="justify-content:center; display: flex;">
+        <form action="/task/create" method="POST" >
+            <label for="content">Title:</label><br>
+            <input type="text" name="content" id="content"><br>
+            <label for="priority">Priority:</label><br>
+            <input type="text" name="priority" id="priority"><br>
+            <label for="description">Description:</label><br>
+            <input type="text" name="description" id="description"><br>
+            <label for="start_time">Start Time:</label><br>
+            <input type="datetime-local" name="start_time" id="start_time"><br>
+            <label for="end_time">End Time:</label><br>
+            <input type="datetime-local" name="end_time" id="end_time"><br>
+            <input type="submit" value="Add Task">
+        </form>
+    </div>
+    <p id="res"></p>
+</div>
+{% endblock %}

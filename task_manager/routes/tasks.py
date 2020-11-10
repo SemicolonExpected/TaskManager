@@ -1,5 +1,5 @@
-from flask import request  # , make_response, render_template
-from flask import jsonify  # , redirect, jsonify, json
+from flask import request, make_response, render_template
+from flask import jsonify
 from task_manager.models.task import Task
 from task_manager import db
 from datetime import datetime
@@ -12,7 +12,7 @@ class TaskSchema(ma.SQLAlchemyAutoSchema):
 
 
 def model_get_create_task():
-    return {'Show': 'Form'}
+    return make_response(render_template("createTask.html"))
 
 
 def model_post_create_task():
@@ -25,6 +25,7 @@ def model_post_create_task():
     task_endTime = request.form['end_time']
     task_end = task_endTime.replace('T', ' ')
     task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    print(task_end_time)
     # task_ = request.form['']
     new_task = Task(title=task_title, priority=task_priority,
                     description=task_decription,
@@ -34,6 +35,7 @@ def model_post_create_task():
         db.session.add(new_task)
         db.session.commit()
         # return redirect('/task/')
+        # flash('Task successfully added!')
         return jsonify({'id': new_task.id,
                         'title': new_task.title,
                         'priority': new_task.priority,
