@@ -1,6 +1,6 @@
 from __future__ import with_statement
 
-import logging, os
+import logging
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -27,12 +27,10 @@ config.set_main_option(
     str(current_app.extensions['migrate'].db.engine.url).replace('%', '%%'))
 target_metadata = current_app.extensions['migrate'].db.metadata
 
-# other values from the config, defined by the needs of .env,
+# other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
 
 
 def run_migrations_offline():
