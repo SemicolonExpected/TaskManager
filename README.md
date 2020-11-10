@@ -59,13 +59,17 @@ from flask-restx Resource, Api
 app = Flask(__name__)
 api = API(-->
 
-# Installation 
+# Heroku 
 Heroku deployment instructions:
 
 `heroku login`
+
 `heroku git:remote -a <app instance>`
+
 `git add .`
+
 `git commit -am <commit message>`
+
 `git push heroku <local branch>:main`
 
 Postgres database migration:
