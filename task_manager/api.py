@@ -18,7 +18,7 @@ class Test(Resource):
         return "Hello World"
 
 
-@apis.route('/')
+@apis.route('/index')
 class Index(Resource):
     @login_required
     def get(self):
