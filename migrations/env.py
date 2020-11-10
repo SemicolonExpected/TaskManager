@@ -1,6 +1,6 @@
 from __future__ import with_statement
 
-import logging
+import logging, os
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
@@ -31,6 +31,8 @@ target_metadata = current_app.extensions['migrate'].db.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
 
 
 def run_migrations_offline():
