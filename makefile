@@ -20,8 +20,8 @@ tests: lint unit
 	-echo "Sprinkle some flakey flakey goodness here"
 
 unit: FORCE
-	- coverage run run_tests.py
-	- coverage report
+	- coverage run --source=task_manager run_tests.py
+	- coverage report #--omit=docs,/usr/*,.local*
 	echo "Standardized unit testing"
 	#flake8 here
 
