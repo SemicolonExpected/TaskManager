@@ -59,7 +59,8 @@ class Logout(Resource):
 		return auth.logout()
 
 
-@task_ns.route('/')
+# @task_ns.route('/')
+@apis.route('/tasks')
 class ViewTask(Resource):
 	'''View All Tasks'''
 
