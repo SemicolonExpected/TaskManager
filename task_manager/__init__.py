@@ -4,7 +4,6 @@ from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
-from flask_heroku import Heroku
 
 # global objects
 db = SQLAlchemy()
@@ -12,7 +11,6 @@ login = LoginManager()
 migrate = Migrate()
 ma = Marshmallow()
 apis = Api()
-heroku = Heroku()
 
 
 def create_app():
@@ -29,7 +27,6 @@ def create_app():
     login.init_app(app)
     apis.init_app(app)
     migrate.init_app(app, db)
-    heroku.init_app(app)
 
     login.login_view = 'login'
 
