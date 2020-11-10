@@ -68,6 +68,7 @@ class ViewTask(Resource):
 		return make_response(render_template("viewTask.html"))
 
 
+@task_ns.route('/')
 @task_ns.route('/<int:task_id>')
 class FetchTask(Resource):
 	''' FETCH TASK '''
