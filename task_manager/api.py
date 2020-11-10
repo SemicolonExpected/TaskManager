@@ -19,6 +19,7 @@ class Test(Resource):
 
 
 @apis.route('/')
+@apis.route('/index')
 class Index(Resource):
 	'''If logged in display index, else display homepage'''
 
