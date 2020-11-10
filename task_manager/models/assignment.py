@@ -5,10 +5,10 @@ SERIOUSLY DO NOT DELETE THIS
 '''
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer
-from task_manager import db
+from task_manager import db, ma
 
 
-class Task(db.Model):
+class Assignment(db.Model):
     __tablename__ = 'Assignment'
     id = Column(Integer, primary_key=True)
     time_added = Column(DateTime, nullable=False)
@@ -17,3 +17,9 @@ class Task(db.Model):
 
     def __repr__(self):
         return '<Assignment {} {}>'.format(self.task_id, self.user_id)
+
+
+class AssignmentSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Assignment
+        include_fk = True

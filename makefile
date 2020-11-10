@@ -44,5 +44,9 @@ dev_env: FORCE
 	echo "Test Docker"
 	-sudo docker run hello-world
 
+run:
+	sudo docker build . -t task-manager:latest task_manager
+	sudo docker run -d -p 5000:5000 task_manager
+
 run_dev:
 	FLASK_APP=$(SRC_DIR) FLASK_ENV=development flask run
