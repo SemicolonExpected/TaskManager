@@ -68,15 +68,8 @@ def model_post_update_task(task_id):
     task_endTime = request.form['end_time']
     task_end = task_endTime.replace('T', ' ')
     task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
-    # new_task = Task(title=task_title, priority=task_priority,
-    #                 description=task_decription,
-    #                 start_time=task_start_time,
-    #                 end_time=task_end_time)
     try:
-        # db.session.add(new_task)
         db.session.commit()
-        # return redirect('/task/')
-        # flash('Task successfully added!')
         return jsonify({'id': task.id,
                         'title': task.title,
                         'priority': task.priority,
