@@ -60,7 +60,7 @@ class Logout(Resource):
 		return auth.logout()
 
 
-@api.route('/viewTask')
+@apis.route('/viewTask')
 class ViewTask(Resource):
     def get(self):
         return make_response(render_template("viewTask.html"))
@@ -86,7 +86,7 @@ class CreateTask(Resource):
 		return tasks.model_post_create_task()
 
 
-@task_ns.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/update/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
 	''' UPDATE TASK '''
 
