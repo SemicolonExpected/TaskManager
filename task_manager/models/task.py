@@ -5,9 +5,9 @@ from task_manager import db, ma
 class Task(db.Model):
     __tablename__ = 'task'
     id = Column(Integer, primary_key=True)
-    title = Column(String(80), unique=False, nullable=False)
+    title = Column(String(80), nullable=False)
     priority = Column(Integer, default=1, nullable=False)
-    description = Column(Text, unique=False, nullable=True)
+    description = Column(Text, nullable=True)
     start_time = Column(DateTime, nullable=True)
     end_time = Column(DateTime, nullable=True)
     time_estimate = Column(String(80), nullable=True)

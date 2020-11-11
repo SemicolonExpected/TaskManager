@@ -26,8 +26,6 @@ def model_post_create_task():
     task_endTime = request.form['end_time']
     task_end = task_endTime.replace('T', ' ')
     task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
-    print(task_end_time)
-    # task_ = request.form['']
     new_task = Task(title=task_title, priority=task_priority,
                     description=task_decription,
                     start_time=task_start_time,
@@ -54,20 +52,38 @@ def model_post_create_task():
 
 def model_fetch_task(task_id):
     task = Task.query.all()
-    # headers = {'Content-Type': 'text/html'}
-    # return make_response(render_template('index.html', tasks=task),
-    #                      200, headers)
     task_schema = TaskSchema(many=True)
     output = task_schema.dump(task)
     return jsonify({'task': output})
 
 
 def model_get_update_task(task_id):
-    return {'Show': 'Form'}
+    # return {'Show': 'Form'}
+    task = Task.query.get_or_404(task_id)
+    return make_response(render_template("updateTask.html", task=task))
 
 
 def model_post_update_task(task_id):
-    return {'Update': 'Task'}
+    task = Task.query.get_or_404(task_id)
+    task.title = request.form['content']
+    task.priority = request.form['priority']
+    task.decription = request.form['description']
+    task_startTime = request.form['start_time']
+    task_st = task_startTime.replace(' ', 'T')
+    task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M %s')
+    task_endTime = request.form['end_time']
+    task_end = task_endTime.replace('T', ' ')
+    task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    try:
+        db.session.commit()
+        return jsonify({'id': task.id,
+                        'title': task.title,
+                        'priority': task.priority,
+                        'description': task.description,
+                        'Start time': task.start_time,
+                        'End Time': task.end_time})
+    except Exception:
+        return Exception
 
 
 def model_delete_task(task_id):
