@@ -60,7 +60,7 @@ class Logout(Resource):
 		return auth.logout()
 
 
-@api.route('/viewTask')
+@apis.route('/viewTask')
 class ViewTask(Resource):
     def get(self):
         return make_response(render_template("viewTask.html"))
