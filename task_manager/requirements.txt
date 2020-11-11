@@ -9,5 +9,4 @@ marshmallow-SQLAlchemy
 email-validator
 Flask-WTF
 gunicorn
-psycopg2
 sqlalchemy
