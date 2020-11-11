@@ -18,7 +18,6 @@ class Test(Resource):
 		return "Hello World"
 
 
-
 @apis.route('/')
 @apis.route('/index')  # dashboard
 class Index(Resource):
@@ -60,10 +59,13 @@ class Logout(Resource):
 		return auth.logout()
 
 
-@apis.route('/viewTask')
+# @task_ns.route('/')
+@apis.route('/tasks')
 class ViewTask(Resource):
-    def get(self):
-        return make_response(render_template("viewTask.html"))
+	'''View All Tasks'''
+
+	def get(self):
+		return make_response(render_template("viewTask.html"))
 
 
 @task_ns.route('/')
