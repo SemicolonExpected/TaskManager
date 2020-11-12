@@ -1,5 +1,5 @@
 from flask import request, make_response, render_template
-from flask import jsonify
+from flask import jsonify, redirect
 from task_manager.models.task import Task
 from task_manager import db
 from datetime import datetime
@@ -32,16 +32,15 @@ def model_post_create_task():
     try:
         db.session.add(new_task)
         db.session.commit()
-        # return redirect('/task/')
-        # flash('Task successfully added!')
-        return jsonify({'id': new_task.id,
-                        'title': new_task.title,
-                        'priority': new_task.priority,
-                        'description': new_task.description,
-                        'Start time': new_task.start_time,
-                        'End Time': new_task.end_time})
+        return redirect('/viewTask')
+        # return jsonify({'id': new_task.id,
+        #                 'title': new_task.title,
+        #                 'priority': new_task.priority,
+        #                 'description': new_task.description,
+        #                 'Start time': new_task.start_time,
+        #                 'End Time': new_task.end_time})
     except Exception:
-        return Exception
+        return "Task could not be added :("
 
 
 def model_fetch_task(task_id):
@@ -52,7 +51,6 @@ def model_fetch_task(task_id):
 
 
 def model_get_update_task(task_id):
-    # return {'Show': 'Form'}
     task = Task.query.get_or_404(task_id)
     return make_response(render_template("updateTask.html", task=task))
 
@@ -68,23 +66,17 @@ def model_post_update_task(task_id):
     task_endTime = request.form['end_time']
     task_end = task_endTime.replace('T', ' ')
     task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
-    # new_task = Task(title=task_title, priority=task_priority,
-    #                 description=task_decription,
-    #                 start_time=task_start_time,
-    #                 end_time=task_end_time)
     try:
-        # db.session.add(new_task)
         db.session.commit()
-        # return redirect('/task/')
-        # flash('Task successfully added!')
-        return jsonify({'id': task.id,
-                        'title': task.title,
-                        'priority': task.priority,
-                        'description': task.description,
-                        'Start time': task.start_time,
-                        'End Time': task.end_time})
+        return redirect('/viewTask')
+        # return jsonify({'id': task.id,
+        #                 'title': task.title,
+        #                 'priority': task.priority,
+        #                 'description': task.description,
+        #                 'Start time': task.start_time,
+        #                 'End Time': task.end_time})
     except Exception:
-        return Exception
+        return "Task could not be updated :("
 
 
 def model_delete_task(task_id):
@@ -97,4 +89,3 @@ def model_delete_task(task_id):
         return jsonify({'task_id': task_id})
     except Exception:
         return 'There was a problem deleting that task'
-    return 'Task %d' % task_id
