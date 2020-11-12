@@ -19,7 +19,7 @@ class Test(Resource):
 
 
 @apis.route('/')
-@apis.route('/index')  # dashboard
+@apis.route('/dashboard')  # dashboard
 class Index(Resource):
 	'''If logged in display index, else display homepage'''
 

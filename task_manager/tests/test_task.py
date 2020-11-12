@@ -2,6 +2,8 @@ import unittest
 
 from task_manager import create_app, db
 from task_manager.models.task import Task
+from task_manager.models.assignment import Assignment
+from datetime import date
 
 
 class TestTask(unittest.TestCase):
@@ -33,11 +35,20 @@ class TestTask(unittest.TestCase):
 		self.assertEqual(Task.query.filter_by(id=new_task.id).first(), new_task)
 		self.assertEqual(Task.query.filter_by(id=new_task2.id).first(), new_task2)
 
-	def test_Get(self):
+	def test_Assignment(self):
 		'''
 		TEST FETCH TASK
 		'''
-		self.assertEqual('1', '1')
+		new_task = Task(title="hello", priority='1', description="task_decription")
+
+		db.session.add(new_task)
+		db.session.commit()
+
+		new_assignment = Assignment(time_added=date.today(), user_id=1, task_id=new_task.id)
+		db.session.add(new_assignment)
+		db.session.commit()
+
+		self.assertEqual(Assignment.query.filter_by(task_id=new_task.id).first(), new_assignment)
 
 	def test_Update(self):
 		'''
