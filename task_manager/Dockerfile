@@ -12,7 +12,12 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt 
 
-ENV FLASK_APP=task_manager \ 
+COPY . /app
+
+#ENV FLASK_APP=task_manager \ 
+#	FLASK_ENV=development 
+
+ENV FLASK_APP=app \ 
 	FLASK_ENV=development 
 
 EXPOSE 5000 
