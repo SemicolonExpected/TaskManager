@@ -40,14 +40,10 @@ def model_post_create_task():
 
         '''Add the new task to assignment with the user who created it'''
         new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
-        # return redirect('/task/')
+        db.session.add(new_assignment)
+        db.session.commit()
+
         # flash('Task successfully added!')
-        return jsonify({'id': new_task.id,
-                        'title': new_task.title,
-                        'priority': new_task.priority,
-                        'description': new_task.description,
-                        'Start time': new_task.start_time,
-                        'End Time': new_task.end_time})
 
         return redirect('/tasks')
         #later this should return /tasks/new_task.id
