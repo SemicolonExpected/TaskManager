@@ -89,7 +89,7 @@ class CreateTask(Resource):
 		return tasks.model_post_create_task()
 
 
-@task_ns.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/update/<int:task_id>', methods=['GET', 'POST'])
 class UpdateTask(Resource):
 	''' UPDATE TASK '''
 
