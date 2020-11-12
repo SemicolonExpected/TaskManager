@@ -64,6 +64,7 @@ class Logout(Resource):
 class ViewTask(Resource):
 	'''View All Tasks'''
 
+	@login_required
 	def get(self):
 		return make_response(render_template("viewTask.html"))
 

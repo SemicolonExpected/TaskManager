@@ -1,9 +1,12 @@
 from flask import request, make_response, render_template
 from flask import jsonify
 from task_manager.models.task import Task
-# from task_manager.models.assignment import Assignment
+
+from task_manager.models.assignment import Assignment
+from flask_login import current_user
+
 from task_manager import db
-from datetime import datetime  # , date
+from datetime import datetime, date
 from task_manager import ma
 
 
@@ -35,11 +38,10 @@ def model_post_create_task():
 
     try:
         db.session.add(new_task)
+        db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        # new_assignment = Assignment(time_added=date.today())
-
-        db.session.commit()
+        new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
         # return redirect('/task/')
         # flash('Task successfully added!')
         return jsonify({'id': new_task.id,
