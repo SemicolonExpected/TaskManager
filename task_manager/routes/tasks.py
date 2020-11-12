@@ -38,7 +38,7 @@ def model_post_create_task():
         # new_assignment = Assignment(time_added=date.today())
 
         db.session.commit()
-        return redirect('/viewTask')
+        return redirect('/tasks')
         # return jsonify({'id': new_task.id,
         #                 'title': new_task.title,
         #                 'priority': new_task.priority,
@@ -67,14 +67,14 @@ def model_post_update_task(task_id):
     task.priority = request.form['priority']
     task.decription = request.form['description']
     task_startTime = request.form['start_time']
-    task_st = task_startTime.replace(' ', 'T')
-    task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M %s')
+    task_st = task_startTime.replace('T', ' ')
+    task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
     task_endTime = request.form['end_time']
     task_end = task_endTime.replace('T', ' ')
     task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
     try:
         db.session.commit()
-        return redirect('/viewTask')
+        return redirect('/tasks')
         # return jsonify({'id': task.id,
         #                 'title': task.title,
         #                 'priority': task.priority,
