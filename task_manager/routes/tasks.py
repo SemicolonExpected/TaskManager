@@ -1,9 +1,12 @@
 from flask import request, make_response, render_template
 from flask import jsonify, redirect
 from task_manager.models.task import Task
-# from task_manager.models.assignment import Assignment
+
+from task_manager.models.assignment import Assignment
+from flask_login import current_user
+
 from task_manager import db
-from datetime import datetime  # , date
+from datetime import datetime, date
 from task_manager import ma
 
 
@@ -33,18 +36,18 @@ def model_post_create_task():
 
     try:
         db.session.add(new_task)
+        db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        # new_assignment = Assignment(time_added=date.today())
-
+        new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
+        db.session.add(new_assignment)
         db.session.commit()
+
+        # flash('Task successfully added!')
+
         return redirect('/tasks')
-        # return jsonify({'id': new_task.id,
-        #                 'title': new_task.title,
-        #                 'priority': new_task.priority,
-        #                 'description': new_task.description,
-        #                 'Start time': new_task.start_time,
-        #                 'End Time': new_task.end_time})
+        #later this should return /tasks/new_task.id
+
     except Exception:
         return "Task could not be added :("
 
@@ -75,12 +78,8 @@ def model_post_update_task(task_id):
     try:
         db.session.commit()
         return redirect('/tasks')
-        # return jsonify({'id': task.id,
-        #                 'title': task.title,
-        #                 'priority': task.priority,
-        #                 'description': task.description,
-        #                 'Start time': task.start_time,
-        #                 'End Time': task.end_time})
+        #later this should return /tasks/new_task.id
+
     except Exception:
         return "Task could not be updated :("
 
@@ -91,7 +90,7 @@ def model_delete_task(task_id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        # return redirect('/api/task/')
-        return jsonify({'task_id': task_id})
+        return redirect('/tasks')
+
     except Exception:
         return 'There was a problem deleting that task'
