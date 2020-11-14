@@ -48,8 +48,9 @@ def model_post_create_task():
         return redirect('/tasks')
         #later this should return /tasks/new_task.id
 
-    except Exception:
-        return "Task could not be added :("
+    except Exception as e:
+        print(e)
+        return "Task could not be updated :("
 
 
 def model_fetch_task(task_id):
@@ -80,7 +81,8 @@ def model_post_update_task(task_id):
         return redirect('/tasks')
         #later this should return /tasks/new_task.id
 
-    except Exception:
+    except Exception as e:
+        print(e)
         return "Task could not be updated :("
 
 
@@ -92,5 +94,6 @@ def model_delete_task(task_id):
         db.session.commit()
         return redirect('/tasks')
 
-    except Exception:
+    except Exception as e:
+        print(e)
         return 'There was a problem deleting that task'

@@ -8,7 +8,7 @@ from datetime import date
 
 class TestTask(unittest.TestCase):
 	def setUp(self):
-		self.app = create_app()
+		self.app = create_app('config.DevelopmentConfig')
 		self.app_context = self.app.app_context()
 		self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite3'
 		self.app_context.push()

@@ -13,10 +13,10 @@ ma = Marshmallow()
 apis = Api()
 
 
-def create_app():
+def create_app(config_name):
     """ Factory to initialize app """
-    app = Flask(__name__, instance_relative_config=False)
-    app.config.from_object('config.DevelopmentConfig')
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object(config_name)
 
     """ Initialize plugins """
     from .models.task import Task  # noqa: F401
