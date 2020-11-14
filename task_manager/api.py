@@ -19,7 +19,7 @@ class Test(Resource):
 
 
 @apis.route('/')
-@apis.route('/index')  # dashboard
+@apis.route('/dashboard')  # dashboard
 class Index(Resource):
 	'''If logged in display index, else display homepage'''
 
@@ -64,6 +64,7 @@ class Logout(Resource):
 class ViewTask(Resource):
 	'''View All Tasks'''
 
+	@login_required
 	def get(self):
 		return make_response(render_template("viewTask.html"))
 

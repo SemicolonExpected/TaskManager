@@ -21,7 +21,7 @@ def create_app():
     """ Initialize plugins """
     from .models.task import Task  # noqa: F401
     from .models.user import User  # noqa: F401
-    # from .models.assignment import Assignment
+    from .models.assignment import Assignment  # noqa: F401
 
     db.init_app(app)
     ma.init_app(app)
