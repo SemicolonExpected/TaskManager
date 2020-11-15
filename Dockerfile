@@ -6,13 +6,14 @@ ENV FLASK_ENV development
 
 WORKDIR /docker
 
+COPY requirements.txt requirements.txt
+
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
 RUN pip install --upgrade pip
-COPY task_manager/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-RUN python3 -m pip install -r psycopg2
+#RUN python3 -m pip install -r psycopg2
 
 COPY . /docker/
 
