@@ -7,11 +7,14 @@ ENV FLASK_ENV development
 WORKDIR /docker
 
 COPY task_manager/requirements.txt requirements.txt
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . /docker/
 
 EXPOSE 5000
 
-ENTRYPOINT ["python", "wsgi.py"]
+CMD ["python", "wsgi.py"]
+
+#gunicorn "wsgi:app"
 #CMD ["flask", "run", "--host=0.0.0.0"]
