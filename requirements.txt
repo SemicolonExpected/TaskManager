@@ -11,3 +11,6 @@ Flask-WTF
 gunicorn
 psycopg2
 sqlalchemy
+flake8
+stestr
+coverage
