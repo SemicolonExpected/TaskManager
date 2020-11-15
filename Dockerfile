@@ -9,6 +9,7 @@ WORKDIR /docker
 COPY task_manager/requirements.txt requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install psycopg2
 
 COPY . /docker/
 
