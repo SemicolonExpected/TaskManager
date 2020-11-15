@@ -14,7 +14,6 @@ COPY . /docker/
 
 EXPOSE 5000
 
-CMD ["python", "wsgi.py"]
+CMD ["gunicorn", "wsgi:app"]
 
-#gunicorn "wsgi:app"
 #CMD ["flask", "run", "--host=0.0.0.0"]

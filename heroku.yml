@@ -6,3 +6,8 @@ setup:
 build:
   docker:
     web: Dockerfile
+
+run:
+  web:
+    command:
+      - gunicorn wsgi:app
