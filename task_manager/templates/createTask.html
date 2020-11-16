@@ -25,7 +25,9 @@
       }
     }
 </script>
-<div class="content">
+
+<div class="content ">
+    <h1 style="text-align: center">Create Task</h1>
     <div class="form" style="justify-content:center; display: flex;">
         <form name="createTask-form" action="/task/create" onsubmit="return validateForm()" method="POST" >
             <label for="content">Title:</label><br>
@@ -38,9 +40,12 @@
             <input type="datetime-local" name="start_time" id="start_time"><br>
             <label for="end_time">End Time:</label><br>
             <input type="datetime-local" name="end_time" id="end_time"><br>
+            <br>
             <input type="submit" value="Add Task">
         </form>
     </div>
     <p id="res"></p>
 </div>
+
+
 {% endblock %}

@@ -14,10 +14,10 @@
       }
     }
 </script>
-<div class="content">
+<div class="content ">
     <h1 style="text-align: center">Update Task</h1>
 
-    <div class="form">
+    <div class="form" style="justify-content:center; display: flex;">
         <form name="updateTask-form" action="/task/update/{{task.id}}" onsubmit="return validateForm()" method="POST">
             <label for="content">Title:</label><br>
             <input type="text" name="content" id="content" value="{{task.title}}" required><br>

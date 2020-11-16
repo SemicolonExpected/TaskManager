@@ -23,25 +23,35 @@ def model_post_create_task():
     task_title = request.form['content']
     task_priority = request.form['priority']
     task_decription = request.form['description']
-    task_startTime = request.form['start_time']
-    task_st = task_startTime.replace('T', ' ')
-    task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
-    task_endTime = request.form['end_time']
-    task_end = task_endTime.replace('T', ' ')
-    task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    print(request.form['start_time'])
+    if request.form['start_time']:
+        task_startTime = request.form['start_time']
+        task_st = task_startTime.replace('T', ' ')
+        task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
+    else:
+        now=datetime.now()
+        task_start_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    if request.form['end_time'] :
+        task_endTime = request.form['end_time']
+        task_end = task_endTime.replace('T', ' ')
+        task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    else:
+        now=datetime.now()
+        task_end_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    
     new_task = Task(title=task_title, priority=task_priority,
                     description=task_decription,
                     start_time=task_start_time,
-                    end_time=task_end_time)
+                    end_time=task_end_time,user_id=current_user.id)
 
     try:
         db.session.add(new_task)
         db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
-        db.session.add(new_assignment)
-        db.session.commit()
+        # new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
+        # db.session.add(new_assignment)
+        # db.session.commit()
 
         # flash('Task successfully added!')
 
@@ -54,7 +64,8 @@ def model_post_create_task():
 
 
 def model_fetch_task(task_id):
-    task = Task.query.all()
+    # task = Task.query.all()
+    task = Task.query.filter_by(user_id=current_user.id)
     task_schema = TaskSchema(many=True)
     output = task_schema.dump(task)
     return jsonify({'task': output})
