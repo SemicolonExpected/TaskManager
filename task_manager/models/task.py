@@ -6,10 +6,12 @@ class Task(db.Model):
     __tablename__ = 'task'
     id = Column(Integer, primary_key=True)
     title = Column(String(80), nullable=False)
-    priority = Column(Integer, default=1, nullable=False)  # do a check to make sure is in range
+    priority = Column(Integer, default=1, nullable=False)  
+    # do a check to make sure is in range
     description = Column(Text, nullable=True)
     start_time = Column(String(80), nullable=True)
-    end_time = Column(String(80), nullable=True)  # make sure end time is after start time
+    end_time = Column(String(80), nullable=True) 
+    # make sure end time is after start time
     time_estimate = Column(String(80), nullable=True)
     user_id = db.Column(Integer, ForeignKey('user.id'))
     user = db.relationship('User', backref='tasks')

@@ -31,25 +31,26 @@ def model_post_create_task():
     else:
         now=datetime.now()
         task_start_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    if request.form['end_time'] :
+    if request.form['end_time']:
         task_endTime = request.form['end_time']
         task_end = task_endTime.replace('T', ' ')
         task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
     else:
-        now=datetime.now()
+        now = datetime.now()
         task_end_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    
+
     new_task = Task(title=task_title, priority=task_priority,
                     description=task_decription,
                     start_time=task_start_time,
-                    end_time=task_end_time,user_id=current_user.id)
+                    end_time=task_end_time, user_id=current_user.id)
 
     try:
         db.session.add(new_task)
         db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        # new_assignment = Assignment(time_added=date.today(), user_id=current_user.id, task_id=new_task.id)
+        # new_assignment = Assignment(time_added=date.today(), 
+                                    # user_id=current_user.id, task_id=new_task.id)
         # db.session.add(new_assignment)
         # db.session.commit()
 
