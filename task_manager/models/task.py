@@ -1,7 +1,8 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Column, ForeignKey, Integer, String, Text
 from task_manager import db, ma
 from task_manager.models.user import User
 # User imported for db.relationship
+
 
 class Task(db.Model):
     __tablename__ = 'task'
