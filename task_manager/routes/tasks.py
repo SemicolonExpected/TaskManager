@@ -29,7 +29,7 @@ def model_post_create_task():
         task_st = task_startTime.replace('T', ' ')
         task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
     else:
-        now=datetime.now()
+        now = datetime.now()
         task_start_time = now.strftime("%Y-%m-%d %H:%M:%S")
     if request.form['end_time']:
         task_endTime = request.form['end_time']
@@ -49,8 +49,8 @@ def model_post_create_task():
         db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        # new_assignment = Assignment(time_added=date.today(), 
-                                    # user_id=current_user.id, task_id=new_task.id)
+        # new_assignment = Assignment(time_added=date.today(),
+        # user_id=current_user.id, task_id=new_task.id)
         # db.session.add(new_assignment)
         # db.session.commit()
 
