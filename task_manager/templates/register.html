@@ -1,37 +1,54 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Register</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+<!-- Default form register -->
+<div style="height: 100vh">
+    <div class="flex-center flex-column">
+        <form class="text-center border border-light p-5" style="width:75vh;" action="" method="post">
+
+            <p class="h4 mb-4">Sign up</p>
+            {{ form.hidden_tag() }}
+
+            <!-- Username -->
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=64) }}<br>
+            <input type="text" id="username" name="username" required size="32" class="form-control mb-4" placeholder="Username">
+
+            <!-- E-mail -->
             {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            <input type="text" id="email" name="email" required size="64" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=32) }}<br>
+            <input type="password" id="password" name="password" required size="32" class="form-control mb-4" placeholder="Password">
+            <!-- <small id="password" class="form-text text-muted mb-4">
+                At least 8 characters and 1 digit
+            </small> -->
+
+            <!-- Retype Password -->
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+            <input type="password" id="password2" name="password2" required size="32" class="form-control mb-4" placeholder="Retype Password">
+
+            <!-- Sign up button -->
+            <button class="btn btn-info my-4 btn-block" id="submit" name="submit" type="submit">Register !</button>
+
+        </form>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
 {% endblock %}
