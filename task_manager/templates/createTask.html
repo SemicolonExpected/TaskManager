@@ -18,33 +18,35 @@
 </script> -->
 <script>
     function validateForm() {
-      var x = document.forms["createTask-form"]["priority"].value;
-      if (isNaN(x)) {
-        alert("Priority should be an integer");
-        return false;
-      }
+        var x = document.forms["createTask-form"]["priority"].value;
+        if (isNaN(x)) {
+            alert("Priority should be an integer");
+            return false;
+        }
     }
 </script>
 
-<div class="content ">
-    <h1 style="text-align: center">Create Task</h1>
-    <div class="form" style="justify-content:center; display: flex;">
-        <form name="createTask-form" action="/task/create" onsubmit="return validateForm()" method="POST" >
-            <label for="content">Title:</label><br>
-            <input type="text" name="content" id="content" required><br>
-            <label for="priority">Priority:</label><br>
-            <input type="text" name="priority" id="priority"><br>
-            <label for="description">Description:</label><br>
-            <input type="text" name="description" id="description"><br>
-            <label for="start_time">Start Time:</label><br>
-            <input type="datetime-local" name="start_time" id="start_time"><br>
-            <label for="end_time">End Time:</label><br>
-            <input type="datetime-local" name="end_time" id="end_time"><br>
-            <br>
-            <input type="submit" value="Add Task">
-        </form>
+<div style="height: 100vh">
+    <div class="flex-center flex-column aqua-gradient color-block">
+        <!-- <h1 style="text-align: center">Create Task</h1> -->
+        <div class="form" style="justify-content:center; display: flex;">
+            <form class="text-center border border-light p-4 mb-2 white color-block" name="createTask-form"
+                action="/task/create" onsubmit="return validateForm()" method="POST">
+                <p class="h3 mb-2">Create Task</p>
+                <label for="content">Title:</label>
+                <input class="form-control mb-2" type="text" name="content" id="content" required>
+                <label for="priority">Priority:</label>
+                <input class="form-control mb-2" type="text" name="priority" id="priority">
+                <label for="description">Description:</label>
+                <input class="form-control mb-2" type="text" name="description" id="description">
+                <label for="start_time">Start Time:</label>
+                <input class="form-control mb-2" type="datetime-local" name="start_time" id="start_time">
+                <label for="end_time">End Time:</label>
+                <input class="form-control mb-2" type="datetime-local" name="end_time" id="end_time">
+                <input type="submit" value="Add Task">
+            </form>
+        </div>
     </div>
-    <p id="res"></p>
 </div>
 
 
