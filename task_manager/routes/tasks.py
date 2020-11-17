@@ -23,7 +23,6 @@ def model_post_create_task():
     task_title = request.form['content']
     task_priority = request.form['priority']
     task_decription = request.form['description']
-    print(request.form['start_time'])
     if request.form['start_time']:
         task_startTime = request.form['start_time']
         task_st = task_startTime.replace('T', ' ')
@@ -37,9 +36,14 @@ def model_post_create_task():
         task_end = task_endTime.replace('T', ' ')
         task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
     else:
-        now = datetime.now()
-        task_end_time = now.strftime("%Y-%m-%d %H:%M")
-        task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
+        # now = datetime.now()
+        # task_end_time = now.strftime("%Y-%m-%d %H:%M")
+        # task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
+        task_end_time = task_start_time
+
+    if request.form['start_time'] and request.form['end_time']:
+        if request.form['start_time'] > request.form['end_time']:
+            return "End time is before start time, Please input a valid time."
 
     new_task = Task(title=task_title, priority=task_priority,
                     description=task_decription,
@@ -85,16 +89,32 @@ def model_post_update_task(task_id):
     task.title = request.form['content']
     task.priority = request.form['priority']
     task.decription = request.form['description']
-    task_startTime = request.form['start_time']
-    task_st = task_startTime.replace('T', ' ')
-    task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
-    task_endTime = request.form['end_time']
-    task_end = task_endTime.replace('T', ' ')
-    task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    if request.form['start_time']:
+        task_startTime = request.form['start_time']
+        task_st = task_startTime.replace('T', ' ')
+        task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
+    else:
+        now = datetime.now()
+        task_start_time = now.strftime("%Y-%m-%d %H:%M")
+        task.start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
+    if request.form['end_time']:
+        task_endTime = request.form['end_time']
+        task_end = task_endTime.replace('T', ' ')
+        task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+    else:
+        # now = datetime.now()
+        # task_end_time = now.strftime("%Y-%m-%d %H:%M")
+        # task.end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
+        task.end_time = task.start_time
+
+    if request.form['start_time'] and request.form['end_time']:
+        if request.form['start_time'] > request.form['end_time']:
+            return "End time is before start time, Please input a valid time."
+
     try:
         db.session.commit()
         return redirect('/tasks')
-        #later this should return /tasks/new_task.id
+        # later this should return /tasks/new_task.id
 
     except Exception as e:
         print(e)
