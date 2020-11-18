@@ -11,7 +11,7 @@ jobs:
       install: 
         - pip install flake8
         - pip install lintly
-      script: flake8 . --exit-zero --ignore=W191,E265 | lintly --format=flake8 --exit-zero
+      script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8 --exit-zero
     - stage: test
       install:
         - pip install stestr
@@ -20,7 +20,7 @@ jobs:
         python run_tests.py
     - stage: deploy
       install:
-        - pip install -r requirements/requirements.txt
+        - pip install -r requirements.txt
         - pip install flake8 #delete this after we have scripts
       script:
         - flake8 . --exit-zero  # literally just dummy stuff just to have a script

@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(80), unique=True, nullable=False)
     password = Column(String(80), nullable=False)
-    tasks = db.relationship('Task', backref='user', lazy='dynamic')
+    # tasks = db.relationship('Task', backref='user', lazy='dynamic')
 
     def set_password(self, password):
         self.password = generate_password_hash(password, method='sha256')
@@ -44,4 +44,4 @@ class UserSchema(ma.SQLAlchemySchema):
 
     id = ma.auto_field()
     username = ma.auto_field()
-    tasks = ma.auto_field()
+    # tasks = ma.auto_field()
