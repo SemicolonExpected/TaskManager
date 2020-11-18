@@ -60,11 +60,19 @@ def model_fetch_task(task_id):
 
 
 def model_get_update_task(task_id):
+    '''
+    SHOW UPDATE TASK PAGE
+    '''
+
     task = Task.query.get_or_404(task_id)
     return make_response(render_template("updateTask.html", task=task))
 
 
 def model_post_update_task(task_id):
+    '''
+    UPDATE TASK
+    '''
+
     task = Task.query.get_or_404(task_id)
     task.title = request.form['content']
     task.priority = request.form['priority']
@@ -85,11 +93,17 @@ def model_post_update_task(task_id):
 
 
 def model_delete_task(task_id):
+    '''
+    DELETE TASK
+    '''
     task_to_delete = Task.query.get_or_404(task_id)
 
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+
+        # Delete associated assignment
+
         return redirect('/tasks')
 
     except Exception:
