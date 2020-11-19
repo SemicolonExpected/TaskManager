@@ -57,7 +57,8 @@ def model_post_create_task():
         '''Add the new task to assignment with the user who created it'''
         new_assignment = Assignment(time_added=date.today(),
                                     user_id=current_user.id,
-                                    task_id=new_task.id)
+                                    task_id=new_task.id,
+                                    ifDone=0)
         db.session.add(new_assignment)
         db.session.commit()
 
