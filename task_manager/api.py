@@ -25,7 +25,7 @@ class Index(Resource):
 
 	@login_required
 	def get(self):
-		return make_response(render_template("index.html", title='Home Page'))
+		return make_response(render_template("dashboard.html", title='Home Page'))
 
 
 @apis.route('/register')
