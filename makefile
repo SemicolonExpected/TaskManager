@@ -46,7 +46,7 @@ dev_env: FORCE
 
 run:
 	sudo docker build -t task-manager:latest task_manager
-	sudo docker run -d -p 5000:5000 task-manager
+	sudo docker run -d -p 5000:5000 task-manager:latest
 
 run_dev:
 	FLASK_APP=wsgi FLASK_ENV=development flask run
