@@ -14,6 +14,7 @@ class Assignment(db.Model):
     time_added = Column(DateTime, nullable=False)
     task_id = db.Column(Integer, ForeignKey('task.id'))
     user_id = db.Column(Integer, ForeignKey('user.id'))
+    ifDone = Column(Integer, default=0, nullable=True)  # need to add check constrain to keep it only at 1 and 0
 
     def __repr__(self):
         return '<Assignment {} {}>'.format(self.task_id, self.user_id)

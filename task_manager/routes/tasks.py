@@ -28,18 +28,20 @@ def model_post_create_task():
         task_st = task_startTime.replace('T', ' ')
         task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
     else:
-        now = datetime.now()
-        task_start_time = now.strftime("%Y-%m-%d %H:%M")
-        task_start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
+        task_start_time = None
+        # now = datetime.now()
+        # task_start_time = now.strftime("%Y-%m-%d %H:%M")
+        # task_start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
     if request.form['end_time']:
         task_endTime = request.form['end_time']
         task_end = task_endTime.replace('T', ' ')
         task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
     else:
+        task_end_time = None
         # now = datetime.now()
         # task_end_time = now.strftime("%Y-%m-%d %H:%M")
         # task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
-        task_end_time = task_start_time
+        # task_end_time = task_start_time
 
     if request.form['start_time'] and request.form['end_time']:
         if request.form['start_time'] > request.form['end_time']:
@@ -55,11 +57,19 @@ def model_post_create_task():
         db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        new_assignment = Assignment(time_added=date.today(),
-                                    user_id=current_user.id,
-                                    task_id=new_task.id)
-        db.session.add(new_assignment)
-        db.session.commit()
+        try:
+            new_assignment = Assignment(time_added=date.today(),
+                                        user_id=current_user.id,
+                                        task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
+            db.session.add(new_assignment)
+            db.session.commit()
+
+        except Exception as e:  # if cannot add to assignment delete the task
+
+            db.session.delete(new_task)
+            db.session.commit()
+
+            return "Task could not be created :c"
 
         # flash('Task successfully added!')
 
@@ -80,11 +90,19 @@ def model_fetch_task(task_id):
 
 
 def model_get_update_task(task_id):
+    '''
+    SHOW UPDATE TASK PAGE
+    '''
+
     task = Task.query.get_or_404(task_id)
     return make_response(render_template("updateTask.html", task=task))
 
 
 def model_post_update_task(task_id):
+    '''
+    UPDATE TASK
+    '''
+
     task = Task.query.get_or_404(task_id)
     task.title = request.form['content']
     task.priority = request.form['priority']
@@ -122,11 +140,17 @@ def model_post_update_task(task_id):
 
 
 def model_delete_task(task_id):
+    '''
+    DELETE TASK
+    '''
     task_to_delete = Task.query.get_or_404(task_id)
 
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+
+        # Delete associated assignment
+
         return redirect('/tasks')
 
     except Exception as e:
