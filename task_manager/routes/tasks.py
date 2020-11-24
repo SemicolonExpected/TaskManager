@@ -28,18 +28,20 @@ def model_post_create_task():
         task_st = task_startTime.replace('T', ' ')
         task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
     else:
-        now = datetime.now()
-        task_start_time = now.strftime("%Y-%m-%d %H:%M")
-        task_start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
+        task_start_time = None
+        # now = datetime.now()
+        # task_start_time = now.strftime("%Y-%m-%d %H:%M")
+        # task_start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
     if request.form['end_time']:
         task_endTime = request.form['end_time']
         task_end = task_endTime.replace('T', ' ')
         task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
     else:
+        task_end_time = None
         # now = datetime.now()
         # task_end_time = now.strftime("%Y-%m-%d %H:%M")
         # task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
-        task_end_time = task_start_time
+        # task_end_time = task_start_time
 
     if request.form['start_time'] and request.form['end_time']:
         if request.form['start_time'] > request.form['end_time']:
