@@ -4,7 +4,7 @@ REQ_DIR = requirements
 
 FORCE:
 
-prod: tests document github
+prod: tests run_migrations document github
 
 document: FORCE
 	pydoc -w ./
@@ -43,6 +43,10 @@ dev_env: FORCE
 	-sudo apt-get install docker-ce docker-ce-cli containerd.io
 	echo "Test Docker"
 	-sudo docker run hello-world
+
+run_migrations:
+	flask db migrate
+	flask db upgrade
 
 run:
 	sudo docker build -t task-manager:latest .
