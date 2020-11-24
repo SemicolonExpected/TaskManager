@@ -10,11 +10,14 @@
 <body>
     <h1>Hi, {{ current_user.username }}! <!--{{ current_user.id}}--></h1>
 
-    <h1 style="text-align: center">Task Manager</h1>
+    <h1 style="text-align: center">To Do:</h1>
     <h4 style="text-align: center" class="noTask"></h4>
     <div id="tableBody1"></div>
     <br>
-    <h4 style="text-align: center" ><a href="/task/create"><button style="text-align: center" >Create Task</button></a></h4>
+    <h4 style="text-align: center" >
+    	<button style="text-align: center" >Remove Selected</button>  <!--Doesnt do anything yet-->
+    	<a href="/task/create"><button style="text-align: center" >Create Task</button></a> 
+    </h4>
 
     <script>
         $.getJSON('/task/', function (data) {
@@ -27,7 +30,7 @@
                 var tableBody = '<table width="90%" cellpadding="2" align="center" style="font-size:12px;border-collapse:collapse;" border="1"><tr style="font-weight:bold;background:#16A1E7;"><td style="color:white;">Id</td><td style="color:white;">Task Name</td><td style="color:white;">Priority</td><td style="color:white;">Description</td><td style="color:white;">Start Time</td><td style="color:white;">End Time</td><td style="color:white;">Actions</td></tr>';
                 
                 data.task.forEach(function (d) {
-                    tableBody += '<tr><td>' + d.id + '</td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
+                    tableBody += '<tr><td> <input type="checkbox" id="' + d.id + '"></td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
                 });
                 tableBody += '<table>';
 
