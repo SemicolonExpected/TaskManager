@@ -4,7 +4,7 @@ REQ_DIR = requirements
 
 FORCE:
 
-prod: tests document github
+prod: tests run_migrations document github
 
 document: FORCE
 	pydoc -w ./
@@ -47,6 +47,10 @@ dev_env: FORCE
 run:
 	sudo docker build -t task-manager:latest task_manager
 	sudo docker run -d -p 5000:5000 task-manager
+	
+run_migrations:
+	flask db migrate
+	flask db upgrade
 
 run_dev:
 	FLASK_APP=wsgi FLASK_ENV=development flask run
