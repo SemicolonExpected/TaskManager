@@ -69,6 +69,8 @@ def model_post_create_task():
             db.session.delete(new_task)
             db.session.commit()
 
+            return "Task could not be created :c"
+
         # flash('Task successfully added!')
 
         return redirect('/tasks')
