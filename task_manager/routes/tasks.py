@@ -57,11 +57,17 @@ def model_post_create_task():
         db.session.commit()
 
         '''Add the new task to assignment with the user who created it'''
-        new_assignment = Assignment(time_added=date.today(),
-                                    user_id=current_user.id,
-                                    task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
-        db.session.add(new_assignment)
-        db.session.commit()
+        try:
+            new_assignment = Assignment(time_added=date.today(),
+                                        user_id=current_user.id,
+                                        task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
+            db.session.add(new_assignment)
+            db.session.commit()
+
+        except Exception as e:  # if cannot add to assignment delete the task
+
+            db.session.delete(new_task)
+            db.session.commit()
 
         # flash('Task successfully added!')
 
