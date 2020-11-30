@@ -61,10 +61,10 @@ def model_get_update_task(task_id):
     '''
     SHOW UPDATE TASK PAGE
     '''
-
     task = Task.query.get_or_404(task_id)
-    return make_response(render_template("updateTask.html", task=task,
-                                         form=CreateTaskForm()))
+    form = CreateTaskForm()
+    form.priority.data = task.priority
+    return make_response(render_template("updateTask.html", form=form, task=task))
 
 
 def model_post_update_task(task_id):
@@ -76,16 +76,10 @@ def model_post_update_task(task_id):
     if form.validate_on_submit():
         try:
             task.title = form.title.data
-            task.description = form.priority.data
+            task.description = form.description.data
             task.priority = form.priority.data
             task.start_time = form.start
             task.end_time = form.end
-
-            print(task.title)
-            print(task.description)
-            print(task.priority)
-            print(task.start_time)
-            print(task.end_time)
 
         except Exception as e:
             print(e)
