@@ -1,9 +1,11 @@
-from flask import request, make_response, render_template
+from flask import request, make_response, render_template, url_for, flash
 from flask import jsonify, redirect
+
+from task_manager.forms import CreateTaskForm
 from task_manager.models.task import Task
 
 from task_manager.models.assignment import Assignment
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from task_manager import db
 from datetime import datetime
@@ -16,55 +18,81 @@ class TaskSchema(ma.SQLAlchemyAutoSchema):
 
 
 def model_get_create_task():
-    return make_response(render_template("createTask.html"))
+    return make_response(render_template("createTask.html", form=CreateTaskForm()))
 
 
+# def model_post_create_task():
+#     task_title = request.form['content']
+#     task_priority = request.form['priority']
+#     task_decription = request.form['description']
+#     if request.form['start_time']:
+#         task_startTime = request.form['start_time']
+#         task_st = task_startTime.replace('T', ' ')
+#         task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
+#     else:
+#         task_start_time = None
+#         # now = datetime.now()
+#         # task_start_time = now.strftime("%Y-%m-%d %H:%M")
+#     if request.form['end_time']:
+#         task_endTime = request.form['end_time']
+#         task_end = task_endTime.replace('T', ' ')
+#         task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
+#     else:
+#         task_end_time = None
+#         # now = datetime.now()
+#         # task_end_time = now.strftime("%Y-%m-%d %H:%M")
+#         # task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
+#         # task_end_time = task_start_time
+#
+#     if request.form['start_time'] and request.form['end_time']:
+#         if request.form['start_time'] > request.form['end_time']:
+#             return "End time is before start time, Please input a valid time."
+#
+#     new_task = Task(title=task_title, priority=task_priority,
+#                     description=task_decription,
+#                     start_time=task_start_time,
+#                     end_time=task_end_time, user_id=current_user.id)
+#
+#     try:
+#         db.session.add(new_task)
+#         db.session.flush()
+#
+#         new_assignment = Assignment(time_added=datetime.today(),
+#                                     user_id=current_user.id,
+#                                     task_id=new_task.id)
+#         db.session.add(new_assignment)
+#     except Exception as e:
+#         print(e)
+#         db.session.rollback()
+#     else:
+#         db.session.commit()
+#         return redirect('/tasks')
+
+@login_required
 def model_post_create_task():
-    task_title = request.form['content']
-    task_priority = request.form['priority']
-    task_decription = request.form['description']
-    if request.form['start_time']:
-        task_startTime = request.form['start_time']
-        task_st = task_startTime.replace('T', ' ')
-        task_start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
-    else:
-        task_start_time = None
-        # now = datetime.now()
-        # task_start_time = now.strftime("%Y-%m-%d %H:%M")
-    if request.form['end_time']:
-        task_endTime = request.form['end_time']
-        task_end = task_endTime.replace('T', ' ')
-        task_end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
-    else:
-        task_end_time = None
-        # now = datetime.now()
-        # task_end_time = now.strftime("%Y-%m-%d %H:%M")
-        # task_end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
-        # task_end_time = task_start_time
+    form = CreateTaskForm()
+    if form.validate_on_submit():
+        new_task = Task(title=form.title.data, priority=form.priority.data,
+                        description=form.description.data,
+                        start_time=form.start,
+                        end_time=form.end, user_id=current_user.id)
 
-    if request.form['start_time'] and request.form['end_time']:
-        if request.form['start_time'] > request.form['end_time']:
-            return "End time is before start time, Please input a valid time."
+        try:
+            db.session.add(new_task)
+            db.session.flush()
 
-    new_task = Task(title=task_title, priority=task_priority,
-                    description=task_decription,
-                    start_time=task_start_time,
-                    end_time=task_end_time, user_id=current_user.id)
-
-    try:
-        db.session.add(new_task)
-        db.session.flush()
-
-        new_assignment = Assignment(time_added=datetime.today(),
-                                    user_id=current_user.id,
-                                    task_id=new_task.id)
-        db.session.add(new_assignment)
-    except Exception as e:
-        print(e)
-        db.session.rollback()
-    else:
-        db.session.commit()
-        return redirect('/tasks')
+            new_assignment = Assignment(time_added=datetime.today(),
+                                        user_id=current_user.id,
+                                        task_id=new_task.id)
+            db.session.add(new_assignment)
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+        else:
+            db.session.commit()
+            return redirect(url_for('view_task'))
+    return make_response(
+        render_template('createTask.html', title='Create Task', form=form))
 
 
 def model_fetch_task(task_id):
