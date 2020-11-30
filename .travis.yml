@@ -7,33 +7,13 @@ python:
 #  global:
 #    - LINTLY_API_KEY=${GITHUB_TOKEN}
 
-jobs:
-  include:
-    - stage: install
-      install:
-          - pip install -r requirements.txt
-    - stage: migrations
-      script:
-        - flask db migrate
-        - flask db upgrade
-    - stage: lint
-      script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8 --exit-zero
-    - stage: test
-      script:
-        #- stestr run
-        - coverage run -m pytest
+install:
+  - pip install -r requirements.txt
 
+before_script:
+  - flask db migrate
+  - flask db upgrade
 
-stages:
-  - install
-  - migrations
-  - lint
-  - test
-
-#deploy:
-#  provider: pages
-#  skip_cleanup: true
-#  github_token: ${GITHUB_TOKEN}  # Set in the settings page of your repository, as a secure variable
-#  keep_history: true
-#  on:
-#    branch: master
+script:
+  - flake8 .
+  - coverage run -m pytest
