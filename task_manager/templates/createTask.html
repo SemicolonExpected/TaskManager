@@ -1,40 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- <script>
-    function onSubmit() {
-    var content= $('#content').val();
-    var priority= $('#priority').val();
-    var description= $('#description').val();
-    var start_time= $('#start_time').val();
-    var end_time= $('#end_time').val();
-    $.ajax({
-				  url: "/task/create",
-				  type: "POST",
-				  data: {'content':content,'priority':priority,'description':description,'start_time':start_time,'end_time':end_time}
-            }).done(function(data){
-                $('#res').append(JSON.stringify(data));
-            });
-    }
-</script> -->
-<script>
-    function validateForm() {
-        var x = document.forms["createTask-form"]["priority"].value;
-        if (isNaN(x)) {
-            alert("Priority should be an integer");
-            return false;
-        }
-    }
-</script>
 
 <div style="height: 100vh">
     <div class="flex-center flex-column aqua-gradient color-block">
-        <!-- <h1 style="text-align: center">Create Task</h1> -->
         <div class="form" style="justify-content:center; display: flex;">
             <form class="text-center border border-light p-4 mb-2 white color-block" name="createTask-form"
                 action="" method="POST">
                 <p class="h3 mb-2">Create Task</p>
                 {{ form.hidden_tag() }}
-                <label for="content">Title:</label>
+                <label for="title">Title:</label>
                 {% for error in form.title.errors %}
                     <span style="color: #ff0000;">{{ error }}</span>
                 {% endfor %}
@@ -56,7 +30,7 @@
                 {% endfor %}
                 <label for="description">Description:</label>
                 <input class="form-control mb-2" type="text" name="description"
-                       id="description" placeholder="a short description">
+                       id="description" placeholder="Description">
                 <label for="start_time">Start Time:</label>
                 {% for error in form.start_date.errors %}
                     <span style="color: #ff0000;">{{ error }}</span>

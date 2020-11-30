@@ -29,7 +29,7 @@ class CreateTaskForm(FlaskForm):
         if self.end_date.data and self.end_time.data:
             return datetime.combine(self.end_date.data, self.end_time.data)
 
-    def validate_end_date(self):
+    def validate_end_date(self, field):
         if self.start > self.end:
             raise ValidationError("End date must be after start date.")
 

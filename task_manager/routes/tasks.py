@@ -63,48 +63,40 @@ def model_get_update_task(task_id):
     '''
 
     task = Task.query.get_or_404(task_id)
-    return make_response(render_template("updateTask.html", task=task))
+    return make_response(render_template("updateTask.html", task=task,
+                                         form=CreateTaskForm()))
 
 
 def model_post_update_task(task_id):
     '''
     UPDATE TASK
     '''
-
+    form = CreateTaskForm()
     task = Task.query.get_or_404(task_id)
-    task.title = request.form['content']
-    task.priority = request.form['priority']
-    task.decription = request.form['description']
-    if request.form['start_time']:
-        task_startTime = request.form['start_time']
-        task_st = task_startTime.replace('T', ' ')
-        task.start_time = datetime.strptime(task_st, '%Y-%m-%d %H:%M')
+    if form.validate_on_submit():
+        try:
+            task.title = form.title.data
+            task.description = form.priority.data
+            task.priority = form.priority.data
+            task.start_time = form.start
+            task.end_time = form.end
+
+            print(task.title)
+            print(task.description)
+            print(task.priority)
+            print(task.start_time)
+            print(task.end_time)
+
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+        else:
+            db.session.commit()
+            return redirect(url_for('view_task'))
     else:
-        now = datetime.now()
-        task_start_time = now.strftime("%Y-%m-%d %H:%M")
-        task.start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
-    if request.form['end_time']:
-        task_endTime = request.form['end_time']
-        task_end = task_endTime.replace('T', ' ')
-        task.end_time = datetime.strptime(task_end, '%Y-%m-%d %H:%M')
-    else:
-        # now = datetime.now()
-        # task_end_time = now.strftime("%Y-%m-%d %H:%M")
-        # task.end_time = datetime.strptime(task_end_time, '%Y-%m-%d %H:%M')
-        task.end_time = task.start_time
-
-    if request.form['start_time'] and request.form['end_time']:
-        if request.form['start_time'] > request.form['end_time']:
-            return "End time is before start time, Please input a valid time."
-
-    try:
-        db.session.commit()
-        return redirect('/tasks')
-        # later this should return /tasks/new_task.id
-
-    except Exception as e:
-        print(e)
-        return "Task could not be updated :("
+        print("Invalid form")
+    return make_response(
+        render_template('updateTask.html', title='Create Task', task=task, form=form))
 
 
 def model_delete_task(task_id):
