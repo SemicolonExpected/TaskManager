@@ -1,4 +1,4 @@
-from flask import request, make_response, render_template, url_for
+from flask import make_response, render_template, url_for
 from flask import jsonify, redirect
 
 from task_manager.forms import CreateTaskForm
