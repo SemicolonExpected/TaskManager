@@ -54,31 +54,42 @@ def model_post_create_task():
 
     try:
         db.session.add(new_task)
-        db.session.commit()
-
-        '''Add the new task to assignment with the user who created it'''
-        try:
-            new_assignment = Assignment(time_added=date.today(),
-                                        user_id=current_user.id,
-                                        task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
-            db.session.add(new_assignment)
-            db.session.commit()
-
-        except Exception as e:  # if cannot add to assignment delete the task
-
-            db.session.delete(new_task)
-            db.session.commit()
-
-            return "Task could not be created :c"
-
-        # flash('Task successfully added!')
-
-        return redirect('/tasks')
-        # later this should return /tasks/new_task.id
-
+        new_assignment = Assignment(time_added=datetime.today(),
+                                    user_id=current_user.id,
+                                    task_id=new_task.id)
+        db.session.add(new_assignment)
     except Exception as e:
         print(e)
-        return "Task could not be created :("
+        db.session.rollback()
+    else:
+        db.session.commit()
+    # try:
+    #     db.session.add(new_task)
+    #     db.session.commit()
+    #
+    #     '''Add the new task to assignment with the user who created it'''
+    #     try:
+    #         new_assignment = Assignment(time_added=date.today(),
+    #                                     user_id=current_user.id,
+    #                                     task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
+    #         db.session.add(new_assignment)
+    #         db.session.commit()
+    #
+    #     except Exception as e:  # if cannot add to assignment delete the task
+    #
+    #         db.session.delete(new_task)
+    #         db.session.commit()
+    #
+    #         return "Task could not be created :c"
+    #
+    #     # flash('Task successfully added!')
+    #
+    #     return redirect('/tasks')
+    #     # later this should return /tasks/new_task.id
+    #
+    # except Exception as e:
+    #     print(e)
+    #     return "Task could not be created :("
 
 
 def model_fetch_task(task_id):
