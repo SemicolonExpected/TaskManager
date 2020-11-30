@@ -7,27 +7,21 @@ env:
 
 jobs:
   include:
-    - stage: lint 
-      install: 
-        - pip install flake8
-        - pip install lintly
+    - stage: install
+      install:
+          - pip install -r requirements.txt
+    - stage: lint
       script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8 --exit-zero
     - stage: test
-      install:
-        - pip install stestr
       script:
         #- stestr run
-        python run_tests.py
-    - stage: deploy
-      install:
-        - pip install -r requirements.txt
-        - pip install flake8 #delete this after we have scripts
-      script:
-        - flake8 . --exit-zero  # literally just dummy stuff just to have a script
+        - coverage run -m pytest
+
+
 stages:
+  - install
   - lint
-  #- test
-  - deploy
+  - test
 
 #deploy:
 #  provider: pages
