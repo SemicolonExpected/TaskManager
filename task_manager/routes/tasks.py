@@ -6,7 +6,7 @@ from task_manager.models.assignment import Assignment
 from flask_login import current_user
 
 from task_manager import db
-from datetime import datetime, date
+from datetime import datetime
 from task_manager import ma
 
 
@@ -31,7 +31,6 @@ def model_post_create_task():
         task_start_time = None
         # now = datetime.now()
         # task_start_time = now.strftime("%Y-%m-%d %H:%M")
-        # task_start_time = datetime.strptime(task_start_time, '%Y-%m-%d %H:%M')
     if request.form['end_time']:
         task_endTime = request.form['end_time']
         task_end = task_endTime.replace('T', ' ')
@@ -54,6 +53,8 @@ def model_post_create_task():
 
     try:
         db.session.add(new_task)
+        db.session.flush()
+
         new_assignment = Assignment(time_added=datetime.today(),
                                     user_id=current_user.id,
                                     task_id=new_task.id)
@@ -63,33 +64,7 @@ def model_post_create_task():
         db.session.rollback()
     else:
         db.session.commit()
-    # try:
-    #     db.session.add(new_task)
-    #     db.session.commit()
-    #
-    #     '''Add the new task to assignment with the user who created it'''
-    #     try:
-    #         new_assignment = Assignment(time_added=date.today(),
-    #                                     user_id=current_user.id,
-    #                                     task_id=new_task.id)  # since ifDone has a default value I shouldnt need ifDone
-    #         db.session.add(new_assignment)
-    #         db.session.commit()
-    #
-    #     except Exception as e:  # if cannot add to assignment delete the task
-    #
-    #         db.session.delete(new_task)
-    #         db.session.commit()
-    #
-    #         return "Task could not be created :c"
-    #
-    #     # flash('Task successfully added!')
-    #
-    #     return redirect('/tasks')
-    #     # later this should return /tasks/new_task.id
-    #
-    # except Exception as e:
-    #     print(e)
-    #     return "Task could not be created :("
+        return redirect('/tasks')
 
 
 def model_fetch_task(task_id):
