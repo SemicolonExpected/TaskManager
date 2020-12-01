@@ -59,4 +59,3 @@ class TestAuth(unittest.TestCase):
         user.save_user()
         response = self.login('testlogin', 'pass')
         self.assertEqual(response.status_code, 200)
-

@@ -22,13 +22,13 @@ class TestTask(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def createTask(self, title, priority, description, start_date, start_time, end_date,
-                   end_time):
+    def createTask(self, title, priority, description, start_date,
+                   start_time, end_date, end_time):
         return self.client.post('/task/create', data=dict(title=title,
                                                           priority=priority,
-                                                          description=description,
-                                                          start_date=start_date,
-                                                          start_time=start_time,
+                                                          description=description,  # noqa: E501
+                                                          start_date=start_date,    # noqa: E501
+                                                          start_time=start_time,    # noqa: E501
                                                           end_date=end_date,
                                                           end_time=end_time),
                                 follow_redirects=True)
@@ -41,7 +41,8 @@ class TestTask(unittest.TestCase):
         end_time = time(hour=15, minute=36, second=00)
         response = self.createTask(title='hello', priority=1,
                                    description='test descrip',
-                                   start_date=start_date, start_time=start_time,
+                                   start_date=start_date,
+                                   start_time=start_time,
                                    end_date=end_date, end_time=end_time)
         self.assertEqual(response.status_code, 200)
 
@@ -49,7 +50,8 @@ class TestTask(unittest.TestCase):
         '''
         TEST FETCH TASK
         '''
-        new_task = Task(title="hello", priority='1', description="task_decription")
+        new_task = Task(title="hello", priority='1',
+                        description="task_decription")
 
         db.session.add(new_task)
         db.session.commit()
@@ -59,8 +61,9 @@ class TestTask(unittest.TestCase):
         db.session.add(new_assignment)
         db.session.commit()
 
-        self.assertEqual(Assignment.query.filter_by(task_id=new_task.id).first(),
-                         new_assignment)
+        self.assertEqual(
+            Assignment.query.filter_by(task_id=new_task.id).first(),
+            new_assignment)
 
     def test_Update(self):
         '''

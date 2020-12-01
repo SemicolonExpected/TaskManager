@@ -64,7 +64,8 @@ def model_get_update_task(task_id):
     task = Task.query.get_or_404(task_id)
     form = CreateTaskForm()
     form.priority.data = task.priority
-    return make_response(render_template("updateTask.html", form=form, task=task))
+    return make_response(render_template("updateTask.html",
+                                         form=form, task=task))
 
 
 def model_post_update_task(task_id):
@@ -90,7 +91,8 @@ def model_post_update_task(task_id):
     else:
         print("Invalid form")
     return make_response(
-        render_template('updateTask.html', title='Create Task', task=task, form=form))
+        render_template('updateTask.html', title='Create Task',
+                        task=task, form=form))
 
 
 def model_delete_task(task_id):

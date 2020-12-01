@@ -1,6 +1,5 @@
 import unittest
 
-from flask import url_for
 
 from task_manager import create_app, db
 from task_manager.models.task import Task  # noqa: F401
@@ -42,7 +41,6 @@ class TestUser(unittest.TestCase):
         '''
         user = User(username='carol', email='carol@test.com', password='')
         user.save_user()
-        test_id = user.id
         update_user = User.query.filter_by(username='carol').first()
         update_user.username = 'bob'
         update_user.save_user()
@@ -63,4 +61,5 @@ class TestUser(unittest.TestCase):
         test_id = user.id
         url = '/user/{}'.format(test_id)
         response = self.client.get(url)
-        self.assertEqual(response.data, b'{"user":{"id":1,"username":"getUser"}}\n')
+        self.assertEqual(response.data,
+                         b'{"user":{"id":1,"username":"getUser"}}\n')
