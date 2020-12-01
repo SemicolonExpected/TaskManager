@@ -17,7 +17,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     FLASK_ENV = 'development'
-    DEBUG = True
+    DEBUG = False
     TESTING = True
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///dev.sqlite3'
 
