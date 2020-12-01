@@ -15,7 +15,7 @@ script:
   - coverage run --source=task_manager run_tests.py
   - coverage report
 after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: heroku
   api_key:
