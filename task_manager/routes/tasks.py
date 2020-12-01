@@ -44,7 +44,7 @@ def model_post_create_task():
             db.session.rollback()
         else:
             db.session.commit()
-            return redirect(f'/dashboard')
+            return redirect(f'/dashboard')  # noqa: F541
     return make_response(
         render_template('createTask.html', title='Create Task', form=form))
 
@@ -87,7 +87,7 @@ def model_post_update_task(task_id):
             db.session.rollback()
         else:
             db.session.commit()
-            return redirect(f'/dashboard')
+            return redirect(f'/dashboard')  # noqa: F541
     else:
         print("Invalid form")
     return make_response(
