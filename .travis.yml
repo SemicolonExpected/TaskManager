@@ -16,9 +16,9 @@ jobs:
     script:
     - coverage run --source=task_manager run_tests.py
     - coverage report
-  - stage: deploy
-    services:
-      - docker
+#  - stage: deploy
+#    services:
+#      - docker
 #    deploy:
 #      provider: heroku
 #      api_key:
@@ -32,4 +32,4 @@ jobs:
 stages:
 - lint
 - test
-- deploy
+#- deploy
