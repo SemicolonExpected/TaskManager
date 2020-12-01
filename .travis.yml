@@ -1,21 +1,27 @@
 language: python
+python:
+  - 3.6
 env:
   global:
   - LINTLY_API_KEY=${GITHUB_TOKEN}
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install codecov
+install:
+  - pip install -r requirements.txt
 jobs:
   include:
   - stage: lint
     install:
-    - pip install flake8
-    - pip install lintly
-    script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8
+    script: flake8 . --ignore=W191,E265,E501,F841 | lintly --format=flake8
       --exit-zero
   - stage: test
-    install:
-    - pip install -r requirements.txt
     script:
     - coverage run --source=task_manager run_tests.py
     - coverage report
+after_success:
+  - codecov
 #  - stage: deploy
 #    services:
 #      - docker
@@ -32,4 +38,4 @@ jobs:
 stages:
 - lint
 - test
-#- deploy
+- deploy

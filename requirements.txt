@@ -17,3 +17,5 @@ psycopg2
 python-dotenv
 sqlalchemy
 stestr
+lintly
+codecov
