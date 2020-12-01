@@ -1,39 +1,33 @@
 language: python
-
 env:
   global:
-    - LINTLY_API_KEY=${GITHUB_TOKEN} 
-
-
+  - LINTLY_API_KEY=${GITHUB_TOKEN}
 jobs:
   include:
-    - stage: lint 
-      install: 
-        - pip install flake8
-        - pip install lintly
-      script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8 --exit-zero
-    - stage: test
-      install:
-#        - pip install stestr
-        - pip install -r requirements.txt
-      script:
-        - coverage run --source=task_manager run_tests.py
-        - coverage report
-#    - stage: deploy
-#      install:
-#        - pip install -r requirements.txt
-#        - pip install flake8 #delete this after we have scripts
-#      script:
-#        - flake8 . --exit-zero  # literally just dummy stuff just to have a script
-stages:
-  - lint
-  - test
-#  - deploy
+  - stage: lint
+    install:
+    - pip install flake8
+    - pip install lintly
+    script: flake8 . --exit-zero --ignore=W191,E265,E501,F841 | lintly --format=flake8
+      --exit-zero
+  - stage: test
+    install:
+    - pip install -r requirements.txt
+    script:
+    - coverage run --source=task_manager run_tests.py
+    - coverage report
+  - stage: deploy
+    deploy:
+      provider: heroku
+      api_key:
+        secure: 1hYzlXK3dEZlODMPN1vmT2ksSTWTI7fBskYzkDrZ1d3ysTv2Lruj0BgzsalhYAWZjRDRZcSiwvLP8rF3AGfsAuD+zzh2HB4Pqpf3KAcCIN6pWDEAgs7y/SVY9IUL+EcIue7KoQaHKboQvpXwq7/+8QYwJUYcbnowkiaicR0MqaLw4njf0Cxwg1tEvWvZZd3WzFzCDvttHMWH2lk+Elr8UBvjAB187nK+cua8uJJ5sNVxpKyTOb6tp6Gpb5pVIk6LxV/TUPBBaPbkop7UrgrBLRhUCHy8TjtMbj6ZpQrEw3A3dhaGVD7GSOc8bnIPZ4ECrI4NDHx8O5qfJe3V/2DMir40pzxTjHFDqzqBdHfJfqSoa3fPKYCWIjTOn/I5q36c7L+BHr9yZr8W6x8TrtYeywSuGQhwgwj8/B7kU5MY/HO+CvK7RZK5br71d6gIpq7oInKgTG81hWNKb1QrsAr08Gm5n949NI0bg6az9nln7vXu4lgk/wq8ZzjCcCJ/byXvjlSSRQSdyIdIpwcSsRQf0iVhH0YAf0zICWznsOUWonswaW5ycp9rWALRMTzZfCrVg8IIQAutCEGmhytRmA9paz5e59lLZMK7v3vwB6PG+3GLKG6rUvK4p02/3JPutUTWrCMzsAqLC9M/2xcUnmqO5GPKTaSE5kLQcvVeV+zWUVw=
+      app: devops-task-manager
+      on:
+        repo: SemicolonExpected/TaskManager
+        branch: development
+      skip_cleanup: 'true'
 
-#deploy:
-#  provider: pages
-#  skip_cleanup: true
-#  github_token: ${GITHUB_TOKEN}  # Set in the settings page of your repository, as a secure variable
-#  keep_history: true
-#  on:
-#    branch: master
+stages:
+- lint
+- test
+- deploy
