@@ -1,28 +1,28 @@
 language: python
 python:
-- 3.6
+  - 3.6
+before_install:
+  - "python --version"
+  - "pip install -U pip"
+  - "pip install codecov"
 env:
   global:
-  - LINTLY_API_KEY=${GITHUB_TOKEN}
-before_install:
-- python --version
-- pip install -U pip
-- pip install codecov
+    - "LINTLY_API_KEY=${GITHUB_TOKEN}"
 install:
-- pip install -r requirements.txt
+  - "pip install -r requirements.txt"
 script:
-- flake8 . --ignore=W191,E265,E501,F841 | lintly --format=flake8
-- coverage run --source=task_manager run_tests.py
-- coverage report
+  - "flake8 . --ignore=W191,E265,E501,F841 | lintly --format=flake8"
+  - "coverage run --source=task_manager run_tests.py"
+  - "coverage report"
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - "bash <(curl -s https://codecov.io/bash)"
 deploy:
-  provider: heroku
   api_key:
     secure: S6lP+FX5ymHfFwFEqHl7jVANobSYIIThkIIGJe93YiTpfTWmamYUrjBsNLg/hX0fmDD/xWAn4la/NU5izXkc7aL56WCuorDipIVipgOPdj/FfYeuIlDaMh2hf/rp5OxBwUgG4WiVjfYzRBWpWXz3XGx0t/aXmoewvwIu0e3RkGuYZtvZv5jPipEd/PH8+9Nqn2B2ypwJ+HT96fOG0Pp3CXGgNzUg9nui1+VhNZ93d64SxcO6Fjwhx+cOGygWq1EYUJkhcJ9s8LOck0L02X8zrjbf2vOHQSjWuixjr30LBF1fUJeyjuboHw1l1ADb7DFA7Z2WSI7NJ0HF6bYcFVTOuvZ8e5Qaht5MLN+F5p8uHwn0WaCzjgqbqG34SImX+m4WtiC1CQQJP+6h07FKIwQB/K3wZ9aaUcUW5OBgNgzx9rzo8L4GURqGDTLkKHQbE2xNd4iQfvvyLH11m7hrPzxjIBt3IDYJ4dlV7N+iGMjUYPeTO0wME8ED9ZxS0RWkAIEjKUZeZ5Wcr8jgTnCpSPa5RR8BsQnXCwhcWhMeCzhkdbwcdFXbzgQgshsUsuj6I1JYMva/0AbWTHLNbWei2IuzDXsaXo7jOjkPxSLY3dGxGh2uaVt0e79xYbyudM1vuMG7g4oltfqxInhgC4xWrlmm7Iw10lKlUywllMTAOLZ7NpA=
   app: devops-task-manager
-    on:
-    branch:
-    - development
-    - master
+  provider: heroku
   skip_cleanup: true
+  true:
+    branch:
+      - development
+      - master
