@@ -27,8 +27,8 @@ jobs:
 #        - flake8 . --exit-zero  # literally just dummy stuff just to have a script
 stages:
   - lint
-  #- test
-  - deploy
+  - test
+#  - deploy
 
 #deploy:
 #  provider: pages
