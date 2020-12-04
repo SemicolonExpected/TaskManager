@@ -22,21 +22,21 @@ def create_app(config_name):
     from .models.task import Task  # noqa: F401
     from .models.user import User  # noqa: F401
     from .models.assignment import Assignment  # noqa: F401
+    from task_manager.api import user_ns, task_ns
 
     db.init_app(app)
     ma.init_app(app)
     login.init_app(app)
-    apis.init_app(app)
     migrate.init_app(app, db)
 
     login.login_view = 'login'
 
+    apis.add_namespace(user_ns)
+    apis.add_namespace(task_ns)
+
     with app.app_context():
         # Register api blueprint and add namespaces
-        from task_manager.api import user_ns, task_ns
-
-        apis.add_namespace(user_ns)
-        apis.add_namespace(task_ns)
+        apis.init_app(app)
 
         # Create db tables
         db.create_all()
