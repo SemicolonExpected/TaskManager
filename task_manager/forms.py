@@ -9,6 +9,16 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, \
 from task_manager.models.user import User
 
 
+class UpdateUserForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=4, max=25)])
+    email = StringField('Email',
+                        validators=[DataRequired(), Email(), Length(min=6,
+                                                                    max=35)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Update')
+
+
 class CreateTaskForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(),
                                              Length(min=4, max=25)])

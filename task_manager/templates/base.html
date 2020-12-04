@@ -53,7 +53,7 @@
         aria-expanded="false">
         <i class="fas fa-user"></i> Hi, {{ current_user.username }}! </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-        <a class="dropdown-item" href="#">My account</a>
+        <a class="dropdown-item" href="/user/edit/{{current_user.id}}">My account</a>
         <a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a>
       </div>
     </div>
