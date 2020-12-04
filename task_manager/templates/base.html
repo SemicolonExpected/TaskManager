@@ -1,47 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
-    {% if title %}
-      <title>{{ title }} - TaskManager</title>
-      {% else %}
-      <title>Welcome to TaskManager</title>
-    {% endif %}
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+  {% if title %}
+  <title>{{ title }} - TaskManager</title>
+  {% else %}
+  <title>Welcome to TaskManager</title>
+  {% endif %}
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </head>
-    <body >
-        <div>
-            TaskManager:
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
+<!--Main Navigation-->
+<header>
+  <nav class="navbar d-flex fixed-top navbar-expand-lg navbar-dark white">
+    <div class="mr-auto flex-row">
+      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/Capture2.png') }}" alt="logo"
+          style="width: 40px;height: 30px;">
+        <div class="float-right d-flex flex-row">
+          <div class="pt-2 "><strong>TaskManager</strong></div>
+          <!-- <div class="pl-2 pt-3 "><a href="{{ url_for('index') }}">Home</a></div> -->
         </div>
-        <hr>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-        {% block content %}
-        {% endblock %}
-    </body>
+      </a>
+    </div>
+
+    {% if current_user.is_anonymous %}
+    <div class="p-2">
+      <a href="{{ url_for('login') }}">Login</a>
+    </div>
+    {% else %}
+    <!-- <div class=" pt-2 pl-2">
+      Hi, {{ current_user.username }}!
+      <div class="float-right pl-2 "><a href="{{ url_for('logout') }}">Logout</a></div>
+    </div> -->
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-user"></i> Hi, {{ current_user.username }}! </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+        <a class="dropdown-item" href="#">My account</a>
+        <a class="dropdown-item" href="{{ url_for('logout') }}">Log out</a>
+      </div>
+    </div>
+    {% endif %}
+
+  </nav>
+</header>
+<!--Main Navigation-->
+
+<body>
+  <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="pt-4">
+  <ul class=flashes>
+    {% for message in messages %}
+    <li class="text-center pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
+    {% endfor %}
+  </ul>
+</div>
+  {% endif %}
+  {% endwith %}
+  {% block content %}
+  {% endblock %}
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+
+</body>
+
 </html>
