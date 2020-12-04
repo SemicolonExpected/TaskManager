@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Default form register -->
+<div style="height: 100vh">
+    <div class="flex-center flex-column color block aqua-gradient color-block">
+        <form class="text-center border border-light p-5 color block white" style="width:75vh;" action="" method="post">
+            <h1>Hi, {{ current_user.username }}</h1>
+            <hr>
+            <p class="h4 mb-4">Update your account details below:</p>
+            {{ form.hidden_tag() }}
+
+            <!-- Username -->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <input type="text" id="username" name="username" required size="32" class="form-control mb-4" value="{{user.username}}">
+
+            <!-- E-mail -->
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <input type="text" id="email" name="email" required size="64" class="form-control mb-4" value="{{user.email}}">
+
+            <!-- Password -->
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <input type="password" id="password" name="password" required size="32" class="form-control mb-4" placeholder="Type your new password">
+            <!-- <small id="password" class="form-text text-muted mb-4">
+                At least 8 characters and 1 digit
+            </small> -->
+            
+            <!-- Submit button -->
+            <button class="btn btn-info my-4 btn-block" id="submit" name="submit" type="submit">Update</button>
+
+        </form>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+{% endblock %}

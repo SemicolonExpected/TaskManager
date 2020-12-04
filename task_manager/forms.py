@@ -9,6 +9,36 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, \
 from task_manager.models.user import User
 
 
+class UpdateUserForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=4, max=25)])
+    email = StringField('Email',
+                        validators=[DataRequired(), Email(), Length(min=6,
+                                                                    max=35)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Update')
+
+    def __init__(self, user_name, user_email, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user_name = user_name
+        self.user_email = user_email
+
+    def validate_username(self, username):
+        if username.data != self.user_name:
+            user = User.query.filter_by(username=username.data).first()
+            if user is not None:
+                raise ValidationError('Username already exists, please use a '
+                                      'unique '
+                                      'username')
+
+    def validate_email(self, email):
+        if email.data != self.user_email:
+            user = User.query.filter_by(email=email.data).first()
+            if user is not None:
+                raise ValidationError('Email already exists, please use a '
+                                      'unique email.')
+
+
 class CreateTaskForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(),
                                              Length(min=4, max=25)])
