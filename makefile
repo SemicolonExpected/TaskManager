@@ -52,10 +52,5 @@ run:
 	sudo docker build -t task-manager:latest .
 	sudo docker run -d -p 5000:5000 task-manager
 	
-run_migrations:
-	flask db migrate
-	flask db upgrade
-
-
 run_dev:
 	FLASK_APP=wsgi FLASK_ENV=development flask run

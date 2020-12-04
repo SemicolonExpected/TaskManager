@@ -11,7 +11,7 @@
 
             <!-- Username -->
             {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: #ff0000;">[{{ error }}]</span>
             {% endfor %}
             <input type="text" id="username" name="username" required size="32" class="form-control mb-4" placeholder="Username">
 

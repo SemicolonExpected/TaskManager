@@ -1,6 +1,5 @@
-
 import unittest
-# from flask_login import current_user, login_user, logout_user
+
 
 from task_manager import create_app, db
 from task_manager.models.task import Task  # noqa: F401
@@ -11,6 +10,7 @@ class TestUser(unittest.TestCase):
     def setUp(self):
         self.app = create_app('config.DevelopmentConfig')
         self.app_context = self.app.app_context()
+        self.client = self.app.test_client()
         self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite3'
         self.app_context.push()
         db.create_all()
@@ -35,57 +35,31 @@ class TestUser(unittest.TestCase):
         db_user = User.query.filter_by(username='alice').first()
         self.assertEqual(user, db_user)
 
-    def test_Update(self):
+    def test_update(self):
         '''
         TEST UPDATE USER
         '''
-        self.assertEqual('1', '1')
+        user = User(username='carol', email='carol@test.com', password='')
+        user.save_user()
+        update_user = User.query.filter_by(username='carol').first()
+        update_user.username = 'bob'
+        update_user.save_user()
+        self.assertEqual(update_user.username, 'bob')
 
     def test_delete_user(self):
         """ TEST DELETE USER """
-        user = User(username='alice', email='alice@test.com', password='')
+        user = User(username='bob', email='bob@test.com', password='')
         user.save_user()
         user.delete_user()
-        db_user = User.query.filter_by(username='alice').first()
+        db_user = User.query.filter_by(username='bob').first()
         self.assertEqual(db_user, None)
 
-
-'''
-class TestLogin(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app()
-        self.app_context = self.app.app_context()
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite3'
-        self.app_context.push()
-        db.create_all()
-
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
-
-    def test_login(self):
-        with self.app_context:
-            user = User(username='bob', email='bob@test.com', password='')
-            user.set_password('test')
-            user.save_user()
-
-            user = User.query.filter_by(username='bob').first()
-            user.validate_password('test')
-
-            self.app_context.login_user(user)
-            self.assertEqual(current_user.id, self.user.id, "Wrong User ID")
-
-    def test_logout(self):
-        with self.app_context:
-            user = User(username='bob', email='bob@test.com', password='')
-            user.set_password('test')
-            user.save_user()
-            user = User.query.filter_by(username='bob').first()
-            user.validate_password('test')
-
-            self.app_context.login_user(user)
-            self.app_context.logout_user()
-            self.assertFalse(current_user.is_authenticated, "User was not logged out")
-'''
+    def test_get_user(self):
+        '''TEST GET USER '''
+        user = User(username='getUser', email='getUser@test.com', password='')
+        user.save_user()
+        test_id = user.id
+        url = '/user/{}'.format(test_id)
+        response = self.client.get(url)
+        self.assertEqual(response.data,
+                         b'{"user":{"id":1,"username":"getUser"}}\n')

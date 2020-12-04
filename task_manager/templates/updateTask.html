@@ -5,30 +5,45 @@
 {% endblock %}
 
 {% block content %}
-<script>
-  function validateForm() {
-    var x = document.forms["updateTask-form"]["priority"].value;
-    if (isNaN(x)) {
-      alert("Priority should be an integer");
-      return false;
-    }
-  }
-</script>
+
   <div style="height: 100vh">
     <div class="flex-center flex-column aqua-gradient color-block">
-      <form class="text-center border border-light p-4 mb-2 white color-block" name="updateTask-form" action="/task/update/{{task.id}}"
-        onsubmit="return validateForm()" method="POST">
+      <form class="text-center border border-light p-4 mb-2 white color-block" name="updateTask-form" action="" method="POST">
         <p class="h3 mb-2">Update Task</p>
+        {{ form.hidden_tag() }}
         <label  for="content">Title:</label>
-        <input class="form-control mb-2" type="text" name="content" id="content" value="{{task.title}}" required>
-        <label for="priority">Priority:</label>
-        <input class="form-control mb-2" type="text" name="priority" id="priority" value="{{task.priority}}">
+        <input class="form-control mb-2" type="text" name="title" id="title" value="{{task.title}}">
         <label for="description">Description:</label>
         <input class="form-control mb-2" type="text" name="description" id="description" value="{{task.description}}">
-        <label for="start_time">Start Time:</label>
-        <input class="form-control mb-2" type="datetime-local" name="start_time" id="start_time" value="{{task.start_time}}">
-        <label for="end_time">End Time:</label>
-        <input class="form-control mb-2" type="datetime-local" name="end_time" id="end_time" value="{{task.end_time}}">
+          <label for="priority">Priority:</label><br>
+                <input type="radio" name="priority"
+                       id="1" value=1> <label for="1">1</label>
+                <input type="radio" name="priority"
+                       id="2" value=2> <label for="2">2</label>
+                <input type="radio" name="priority"
+                           id="3" value=3> <label for="3">3</label>
+                <input type="radio" name="priority"
+                       id="4" value=4> <label for="4">4</label>
+                <input type="radio" name="priority"
+                       id="5" value=4> <label for="5">5</label><br>
+            <label for="start_time">Start Time:</label>
+                {% for error in form.start_date.errors %}
+                    <span style="color: #ff0000;">{{ error }}</span>
+                {% endfor %}
+                <input class="form-control mb-2" type="date" name="start_date" id="start_date">
+                {% for error in form.start_time.errors %}
+                    <span style="color: #ff0000;">{{ error }}</span>
+                {% endfor %}
+                <input class="form-control mb-2" type="time" name="start_time" id="start_time">
+                <label for="end_time">End Time:</label>
+                {% for error in form.end_date.errors %}
+                    <span style="color: #ff0000;">{{ error }}</span>
+                {% endfor %}
+                    <input class="form-control mb-2" type="date" name="end_date" id="end_date">
+                {% for error in form.end_time.errors %}
+                    <span style="color: #ff0000;">{{ error }}</span>
+                {% endfor %}
+                <input class="form-control mb-2" type="time" name="end_time" id="end_time">
         <input type="submit" value="Update">
       </form>
     </div>
