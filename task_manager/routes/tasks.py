@@ -1,5 +1,5 @@
 from flask import make_response, render_template
-from flask import jsonify, redirect
+from flask import redirect
 
 from task_manager.forms import CreateTaskForm
 from task_manager.models.task import Task
@@ -10,6 +10,10 @@ from flask_login import current_user, login_required
 from task_manager import db
 from datetime import datetime
 from task_manager import ma
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class TaskSchema(ma.SQLAlchemyAutoSchema):
@@ -26,10 +30,12 @@ def model_get_create_task():
 def model_post_create_task():
     form = CreateTaskForm()
     if form.validate_on_submit():
-        new_task = Task(title=form.title.data, priority=form.priority.data,
+        new_task = Task(title=form.title.data,
+                        priority=form.priority.data,
                         description=form.description.data,
                         start_time=form.start,
-                        end_time=form.end, user_id=current_user.id)
+                        end_time=form.end,
+                        user_id=current_user.id)
 
         try:
             db.session.add(new_task)
@@ -40,21 +46,21 @@ def model_post_create_task():
                                         task_id=new_task.id)
             db.session.add(new_assignment)
         except Exception as e:
-            print(e)
+            logging.error(e)
             db.session.rollback()
         else:
             db.session.commit()
             return redirect(f'/dashboard')  # noqa: F541
-    return make_response(
-        render_template('createTask.html', title='Create Task', form=form))
+    else:
+        logging.error("Invalid form")
+        return redirect(f'/task/create')  # noqa: F541
 
 
-def model_fetch_task(task_id):
-    # task = Task.query.all()
-    task = Task.query.filter_by(user_id=current_user.id)
-    task_schema = TaskSchema(many=True)
-    output = task_schema.dump(task)
-    return jsonify({'task': output})
+# def model_fetch_task():
+#     task = Task.query.filter_by(user_id=current_user.id)
+#     task_schema = TaskSchema(many=True)
+#     output = task_schema.dump(task)
+#     return jsonify({'task': output})
 
 
 def model_get_update_task(task_id):
@@ -63,7 +69,6 @@ def model_get_update_task(task_id):
     '''
     task = Task.query.get_or_404(task_id)
     form = CreateTaskForm()
-    form.priority.data = task.priority
     return make_response(render_template("updateTask.html",
                                          form=form, task=task))
 
@@ -89,10 +94,10 @@ def model_post_update_task(task_id):
             db.session.commit()
             return redirect(f'/dashboard')  # noqa: F541
     else:
-        print("Invalid form")
-    return make_response(
-        render_template('updateTask.html', title='Create Task',
-                        task=task, form=form))
+        logging.error("Invalid form")
+        return make_response(
+            render_template('updateTask.html', title='Create Task',
+                            task=task, form=form))
 
 
 def model_delete_task(task_id):

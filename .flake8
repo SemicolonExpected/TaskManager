@@ -2,3 +2,4 @@
 max-line-length = 79
 per-file-ignores =
     migrations/*:W291
+exclude = venv
