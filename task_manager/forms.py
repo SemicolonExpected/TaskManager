@@ -49,7 +49,7 @@ class CreateTaskForm(FlaskForm):
     end_date = DateTimeLocalField('End Date', format='%Y-%m-%dT%H:%M', validators=[InputRequired()])
 
     def validate_dates(self):
-        if self.start_date.data > self.end_date.data:
+        if self.start_date.data >= self.end_date.data:
             return False
         else:
             return True

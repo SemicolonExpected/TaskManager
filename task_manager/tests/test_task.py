@@ -4,7 +4,7 @@ from task_manager.models.user import User
 from task_manager import create_app, db
 from task_manager.models.task import Task
 from task_manager.models.assignment import Assignment
-from datetime import date, time, datetime
+from datetime import date, time, datetime, timedelta
 
 import logging
 
@@ -28,13 +28,12 @@ class TestTask(unittest.TestCase):
         self.app_context.pop()
 
     def create_task(self, title, priority, description, start_date,
-                    start_time, end_date, end_time):
+                    end_date):
         return self.client.post('/task/create', data={'title': title,
                                                       'priority': priority,
                                                       'description': description,
                                                       'start_date': start_date,
-                                                      'start_time': start_time,
-                                                      'end_date': end_date, 'end_time': end_time},
+                                                      'end_date': end_date},
                                 follow_redirects=True)
 
     def test_create_task_view(self):
@@ -51,27 +50,21 @@ class TestTask(unittest.TestCase):
         get_create_task_view_response = self.client.get('/task/create')
         self.assertEqual(get_create_task_view_response.status_code, 200)
 
-        start_date = date(2020, 11, 30)
-        start_time = time(hour=15, minute=30, second=00)
-        end_date = date(2020, 11, 30)
-        end_time = time(hour=15, minute=36, second=00)
+        start_date = datetime.now()
+        end_date = start_date + timedelta(minutes=10)
 
         response = self.create_task(title='create task',
                                     priority=1,
                                     description='testing create task',
-                                    start_date=start_date,
-                                    start_time=start_time,
-                                    end_date=end_date,
-                                    end_time=end_time)
+                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
+                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
         self.assertEqual(response.status_code, 200)
 
         invalid_form = self.create_task(title=None,
                                         priority=1,
                                         description='testing create task',
-                                        start_date=start_date,
-                                        start_time=start_time,
-                                        end_date=end_date,
-                                        end_time=end_time)
+                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
+                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
 
         self.assertEqual(invalid_form.status_code, 200)
 
@@ -97,15 +90,13 @@ class TestTask(unittest.TestCase):
             new_assignment)
 
     def update_task(self, task_id, title, priority, description, start_date,
-                    start_time, end_date, end_time):
+                    end_date):
         path = '/task/update/{}'.format(task_id)
         return self.client.post(path, data={'title': title,
                                             'priority': priority,
                                             'description': description,
                                             'start_date': start_date,
-                                            'start_time': start_time,
-                                            'end_date': end_date,
-                                            'end_time': end_time},
+                                            'end_date': end_date},
                                 follow_redirects=True)
 
     def test_update_task_view(self):
@@ -131,26 +122,20 @@ class TestTask(unittest.TestCase):
         get_task_view_response = self.client.get(path)
         self.assertEqual(get_task_view_response.status_code, 200)
 
-        start_date = date(2020, 11, 30)
-        start_time = time(hour=15, minute=30, second=00)
-        end_date = date(2020, 11, 30)
-        end_time = time(hour=15, minute=36, second=00)
+        start_date = datetime.now()
+        end_date = start_date + timedelta(minutes=10)
 
         response = self.update_task(task_id=task.id, title='new task', priority=5,
                                     description='new task description',
                                     start_date=start_date,
-                                    start_time=start_time,
-                                    end_date=end_date,
-                                    end_time=end_time)
+                                    end_date=end_date)
 
         self.assertEqual(response.status_code, 200)
 
         invalid_form = self.update_task(task_id=task.id, title=None, priority=5,
                                         description='new task description',
                                         start_date=start_date,
-                                        start_time=start_time,
-                                        end_date=end_date,
-                                        end_time=end_time)
+                                        end_date=end_date)
 
         self.assertEqual(invalid_form.status_code, 200)
 
