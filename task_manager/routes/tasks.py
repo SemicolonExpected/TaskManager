@@ -25,8 +25,6 @@ def model_get_create_task():
 @login_required
 def model_post_create_task():
     form = CreateTaskForm()
-    print(form.start_date)
-    print(type(form.start_date))
     if not form.validate_dates():
         flash('Start date must be before End date.')
         return make_response(render_template("createTask.html", form=form))
@@ -68,9 +66,7 @@ def model_fetch_task(task_id):
 
 
 def model_get_update_task(task_id):
-    '''
-    SHOW UPDATE TASK PAGE
-    '''
+    """SHOW UPDATE TASK PAGE"""
     task = Task.query.get_or_404(task_id)
     form = CreateTaskForm()
     return make_response(render_template("updateTask.html",
@@ -78,11 +74,12 @@ def model_get_update_task(task_id):
 
 
 def model_post_update_task(task_id):
-    '''
-    UPDATE TASK
-    '''
+    """UPDATE TASK"""
     form = CreateTaskForm()
     task = Task.query.get_or_404(task_id)
+    if not form.validate_dates():
+        flash('Start date must be before End date.')
+        return make_response(render_template("updateTask.html", task=task, form=form))
     if form.validate_on_submit():
         try:
             task.title = form.title.data
