@@ -58,7 +58,7 @@ def model_post_create_task():
         render_template("createTask.html", form=form))
 
 
-def model_fetch_task():
+def model_fetch_task(task_id):
     task = Task.query.filter_by(user_id=current_user.id)
     task_schema = TaskSchema(many=True)
     output = task_schema.dump(task)

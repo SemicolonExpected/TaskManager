@@ -69,6 +69,15 @@ class ViewTask(Resource):
         return make_response(render_template("viewTask.html"))
 
 
+@task_ns.route('/')
+@task_ns.route('/<int:task_id>')
+class FetchTask(Resource):
+    ''' FETCH TASK '''
+
+    def get(self, task_id=-1):
+        return tasks.model_fetch_task(task_id)
+
+
 @task_ns.route('/create', methods=['GET', 'POST'])
 class CreateTask(Resource):
     ''' CREATE NEW TASK '''
