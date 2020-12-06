@@ -1,4 +1,4 @@
-from flask import make_response, render_template
+from flask import make_response, render_template, jsonify, flash
 from flask import redirect
 
 from task_manager.forms import CreateTaskForm
@@ -10,10 +10,6 @@ from flask_login import current_user, login_required
 from task_manager import db
 from datetime import datetime
 from task_manager import ma
-
-import logging
-
-logger = logging.getLogger(__name__)
 
 
 class TaskSchema(ma.SQLAlchemyAutoSchema):
@@ -29,12 +25,16 @@ def model_get_create_task():
 @login_required
 def model_post_create_task():
     form = CreateTaskForm()
+    if not form.validate_dates():
+        flash('Start date must be before End date.')
+        return make_response(
+            render_template("createTask.html", form=form))
     if form.validate_on_submit():
         new_task = Task(title=form.title.data,
                         priority=form.priority.data,
                         description=form.description.data,
-                        start_time=form.start,
-                        end_time=form.end,
+                        start_time=form.start_date.data,
+                        end_time=form.end_date.data,
                         user_id=current_user.id)
 
         try:
@@ -46,21 +46,23 @@ def model_post_create_task():
                                         task_id=new_task.id)
             db.session.add(new_assignment)
         except Exception as e:
-            logging.error(e)
+            flash("Exception occured: Unable to add task.")
             db.session.rollback()
         else:
             db.session.commit()
+            flash("Task created!")
             return redirect(f'/dashboard')  # noqa: F541
     else:
-        logging.error("Invalid form")
-        return redirect(f'/task/create')  # noqa: F541
+        flash("Invalid form entry. Please try again.")
+    return make_response(
+        render_template("createTask.html", form=form))
 
 
-# def model_fetch_task():
-#     task = Task.query.filter_by(user_id=current_user.id)
-#     task_schema = TaskSchema(many=True)
-#     output = task_schema.dump(task)
-#     return jsonify({'task': output})
+def model_fetch_task():
+    task = Task.query.filter_by(user_id=current_user.id)
+    task_schema = TaskSchema(many=True)
+    output = task_schema.dump(task)
+    return jsonify({'task': output})
 
 
 def model_get_update_task(task_id):
