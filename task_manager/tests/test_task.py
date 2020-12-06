@@ -127,15 +127,15 @@ class TestTask(unittest.TestCase):
 
         response = self.update_task(task_id=task.id, title='new task', priority=5,
                                     description='new task description',
-                                    start_date=start_date,
-                                    end_date=end_date)
+                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
+                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
 
         self.assertEqual(response.status_code, 200)
 
         invalid_form = self.update_task(task_id=task.id, title=None, priority=5,
                                         description='new task description',
-                                        start_date=start_date,
-                                        end_date=end_date)
+                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
+                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
 
         self.assertEqual(invalid_form.status_code, 200)
 
