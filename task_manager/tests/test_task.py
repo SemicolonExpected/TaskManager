@@ -4,7 +4,7 @@ from task_manager.models.user import User
 from task_manager import create_app, db
 from task_manager.models.task import Task
 from task_manager.models.assignment import Assignment
-from datetime import date, time, datetime, timedelta
+from datetime import datetime, timedelta
 
 import logging
 
@@ -29,11 +29,12 @@ class TestTask(unittest.TestCase):
 
     def create_task(self, title, priority, description, start_date,
                     end_date):
-        return self.client.post('/task/create', data={'title': title,
-                                                      'priority': priority,
-                                                      'description': description,
-                                                      'start_date': start_date,
-                                                      'end_date': end_date},
+        return self.client.post('/task/create',
+                                data={'title': title,
+                                      'priority': priority,
+                                      'description': description,
+                                      'start_date': start_date,
+                                      'end_date': end_date},
                                 follow_redirects=True)
 
     def test_create_task_view(self):
@@ -56,15 +57,15 @@ class TestTask(unittest.TestCase):
         response = self.create_task(title='create task',
                                     priority=1,
                                     description='testing create task',
-                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
-                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
+                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),  # noqa: E501
+                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))  # noqa: E501
         self.assertEqual(response.status_code, 200)
 
         invalid_form = self.create_task(title=None,
                                         priority=1,
                                         description='testing create task',
-                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
-                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
+                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),  # noqa: E501
+                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))  # noqa: E501
 
         self.assertEqual(invalid_form.status_code, 200)
 
@@ -125,17 +126,21 @@ class TestTask(unittest.TestCase):
         start_date = datetime.now()
         end_date = start_date + timedelta(minutes=10)
 
-        response = self.update_task(task_id=task.id, title='new task', priority=5,
+        response = self.update_task(task_id=task.id,
+                                    title='new task',
+                                    priority=5,
                                     description='new task description',
-                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
-                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
+                                    start_date=start_date.strftime("%Y-%m-%dT%H:%M"),  # noqa: E501
+                                    end_date=end_date.strftime("%Y-%m-%dT%H:%M"))  # noqa: E501
 
         self.assertEqual(response.status_code, 200)
 
-        invalid_form = self.update_task(task_id=task.id, title=None, priority=5,
+        invalid_form = self.update_task(task_id=task.id,
+                                        title=None,
+                                        priority=5,
                                         description='new task description',
-                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),
-                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))
+                                        start_date=start_date.strftime("%Y-%m-%dT%H:%M"),  # noqa: E501
+                                        end_date=end_date.strftime("%Y-%m-%dT%H:%M"))  # noqa: E501
 
         self.assertEqual(invalid_form.status_code, 200)
 

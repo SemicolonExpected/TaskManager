@@ -45,8 +45,10 @@ class CreateTaskForm(FlaskForm):
                           default='1', validators=[InputRequired()],
                           coerce=int)
     description = StringField('Description', validators=[InputRequired()])
-    start_date = DateTimeLocalField('Start Date', format='%Y-%m-%dT%H:%M', validators=[InputRequired()])
-    end_date = DateTimeLocalField('End Date', format='%Y-%m-%dT%H:%M', validators=[InputRequired()])
+    start_date = DateTimeLocalField('Start Date', format='%Y-%m-%dT%H:%M',
+                                    validators=[InputRequired()])
+    end_date = DateTimeLocalField('End Date', format='%Y-%m-%dT%H:%M',
+                                  validators=[InputRequired()])
 
     def validate_dates(self):
         if self.start_date.data >= self.end_date.data:

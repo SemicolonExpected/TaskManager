@@ -79,7 +79,8 @@ def model_post_update_task(task_id):
     task = Task.query.get_or_404(task_id)
     if not form.validate_dates():
         flash('Start date must be before End date.')
-        return make_response(render_template("updateTask.html", task=task, form=form))
+        return make_response(
+            render_template("updateTask.html", task=task, form=form))
     if form.validate_on_submit():
         try:
             task.title = form.title.data
