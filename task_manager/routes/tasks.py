@@ -114,7 +114,7 @@ def model_delete_task(task_id):
 
         # Delete associated assignment
 
-        return redirect('/tasks')
+        return redirect('/dashboard')
 
     except Exception as e:
         print(e)

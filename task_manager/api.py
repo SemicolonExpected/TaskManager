@@ -112,7 +112,7 @@ class GetUsers(Resource):
 @user_ns.route('/edit/<int:user_id>', methods=['GET', 'POST'])
 class UpdateUser(Resource):
     def get(self, user_id):
-        return users.update_user(user_id)
+        return users.form_update_user(user_id)
 
     def post(self, user_id):
         return users.update_user(user_id)
