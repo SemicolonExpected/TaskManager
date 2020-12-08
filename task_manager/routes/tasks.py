@@ -111,15 +111,23 @@ def model_delete_task(task_id):
     task_to_delete = Task.query.get_or_404(task_id)
 
     try:
+        # simulate a cascading delete
+        assign = Assignment.query.filter_by(task_id=task_id)
+        [db.session.delete(item) for item in assign]
+        db.session.flush()
+
         db.session.delete(task_to_delete)
-        db.session.commit()
 
         # Delete associated assignment
-        flash("Task deleted!")
-        return redirect('/dashboard')
+        #flash("Task deleted!")
+        #return redirect('/dashboard')
 
     except Exception as e:
         flash("There was a problem deleting that task")
         print(e)
-    return make_response(
-        render_template('dashboard.html', title='Dashboard'))
+        db.session.rollback()
+    else:
+        db.session.commit()
+        flash("Task Deleted!")
+        return redirect(f'/dashboard')  # noqa: F541
+    #return make_response(render_template('dashboard.html', title='Dashboard'))
