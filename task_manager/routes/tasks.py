@@ -113,7 +113,7 @@ def model_delete_task(task_id):
     '''
     DELETE TASK
     '''
-    task_id = task_id.split()
+    task_id = str(task_id).split()
 
     try:
         # simulate a cascading delete
