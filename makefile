@@ -21,7 +21,7 @@ tests: lint unit
 
 unit: FORCE
 	- coverage run --source=task_manager run_tests.py
-	- coverage report #--omit=docs,/usr/*,.local*
+	- coverage report --omit=/tests/*
 	echo "Standardized unit testing"
 	#flake8 here
 

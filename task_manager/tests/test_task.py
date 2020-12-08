@@ -144,6 +144,8 @@ class TestTask(unittest.TestCase):
 
         self.assertEqual(invalid_form.status_code, 200)
 
+        # This doesnt actually check whether the updated task has the right info though, just whether it'll break stuff
+
     def test_delete_task_view(self):
         '''
         TEST DELETE TASK
