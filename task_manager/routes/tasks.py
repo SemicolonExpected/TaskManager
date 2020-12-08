@@ -61,7 +61,7 @@ def model_post_create_task():
 
 
 def model_fetch_task(task_id):
-    task = Task.query.filter_by(user_id=current_user.id).order_by(func.coalesce(Task.start_time, Task.end_time))
+    task = Task.query.filter_by(user_id=current_user.id).order_by(func.coalesce(Task.start_time, Task.end_time), Task.end_time)
     task_schema = TaskSchema(many=True)
     output = task_schema.dump(task)
     return jsonify({'task': output})
