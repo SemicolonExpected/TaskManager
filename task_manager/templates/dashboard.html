@@ -7,49 +7,49 @@
 {% endblock %}
 
 {% block content %}
-<body>
+<!-- <body> -->
     <!-- <h1>Hi, {{ current_user.username }}!</h1> -->
-<div style="height: 100vh">
+<!--<div style="height: 100vh">-->
     <div class="flex-center flex-column peach-gradient color-block">
-    <div class="white color-block p-4 shadow-lg border" style="width: 60vw">
-    <h1 style="text-align: center" class="font-weight-bold" >To Do:</h1>
-    <h4 style="text-align: center" class="noTask"></h4>
-    <div id="tableBody1"></div>
-    <br>
-    <h5 style="text-align: center" >
-    	<button style="text-align: center" >Remove Selected</button>  <!--Doesnt do anything yet-->
-    	<a href="/task/create"><button style="text-align: center" >Create Task</button></a> 
-    </h5>
+	    <div class="white color-block p-4 shadow-lg border" style="width: 60vw">
+	    <h1 style="text-align: center" class="font-weight-bold" >To Do:</h1>
+	    <h4 style="text-align: center" class="noTask"></h4>
+	    <div id="tableBody1"></div>
+	    <br>
+	    <h5 style="text-align: center" >
+	    	<button style="text-align: center" >Remove Selected</button>  <!--Doesnt do anything yet-->
+	    	<a href="/task/create"><button style="text-align: center" >Create Task</button></a> 
+	    </h5>
 
-    <script>
-        $.getJSON('/task/', function (data) {
-            var countKey = Object.keys(data.task).length;
-            if (countKey < 1) {
-                var text = `There are no tasks. Create one below!`
-                $(".noTask").html(text);
-            }
-            else {
-                var tableBody = '<table width="90%" cellpadding="2" align="center" style="font-size:12px;border-collapse:collapse;" border="1"><tr style="font-weight:bold;background:grey;"><td style="color:white;padding:15px;">Select</td><td style="color:white;padding:15px;">Task Name</td><td style="color:white;padding:15px;">Priority</td><td style="color:white;padding:15px;">Description</td><td style="color:white;padding:15px;">Start Time</td><td style="color:white;padding:15px;">End Time</td><td style="color:white;padding:15px;">Actions</td></tr>';
-                
-                data.task.forEach(function (d) {
-                	if(!d.priority){d.priority = "";}
-                	if(!d.start_time){d.start_time = "";}
-                	if(!d.end_time){d.end_time = "";}
+	    <script>
+	        $.getJSON('/task/', function (data) {
+	            var countKey = Object.keys(data.task).length;
+	            if (countKey < 1) {
+	                var text = `There are no tasks. Create one below!`
+	                $(".noTask").html(text);
+	            }
+	            else {
+	                var tableBody = '<table width="90%" cellpadding="2" align="center" style="font-size:12px;border-collapse:collapse;" border="1"><tr style="font-weight:bold;background:grey;"><td style="color:white;padding:15px;">Select</td><td style="color:white;padding:15px;">Task Name</td><td style="color:white;padding:15px;">Priority</td><td style="color:white;padding:15px;">Description</td><td style="color:white;padding:15px;">Start Time</td><td style="color:white;padding:15px;">End Time</td><td style="color:white;padding:15px;">Actions</td></tr>';
+	                
+	                data.task.forEach(function (d) {
+	                	if(!d.priority){d.priority = "";}
+	                	if(!d.start_time){d.start_time = "";}
+	                	if(!d.end_time){d.end_time = "";}
 
-                	d.start_time = d.start_time.replace("T"," ");
-                	d.end_time = d.end_time.replace("T"," ");
-                    tableBody += '<tr align="center"><td> <input type="checkbox" id="' + d.id + '"></td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
-                });
-                tableBody += '<table>';
+	                	d.start_time = d.start_time.replace("T"," ");
+	                	d.end_time = d.end_time.replace("T"," ");
+	                    tableBody += '<tr align="center"><td> <input type="checkbox" id="' + d.id + '"></td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
+	                });
+	                tableBody += '<table>';
 
-                var divContainer = document.getElementById("tableBody1");
-                divContainer.innerHTML = tableBody;
+	                var divContainer = document.getElementById("tableBody1");
+	                divContainer.innerHTML = tableBody;
 
-            }
-        });
-    </script>
-    </div>
-</div>
-</div>
-</body>
+	            }
+	        });
+	    </script>
+	    </div>
+	</div>
+<!--</div>-->
+<!--</body>-->
 {% endblock %}
