@@ -176,7 +176,7 @@ class TestTask(unittest.TestCase):
         db.session.commit()
         ids = [str(tasks[i].id) for i in range(len(tasks))]
         path = '/task/delete/{}'.format(",".join(ids))
-        response = self.client.post(path, follow_redirects=True)
+        response = self.client.get(path, follow_redirects=True)
         self.assertEqual(response.status_code, 200, path)
 
         for i in ids:
