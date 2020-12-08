@@ -65,20 +65,22 @@
 
 <body>
   <div style="height: 100vh">
-  <hr>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <div class="pt-4">
-    <ul class=flashes>
-      {% for message in messages %}
-      <li class="text-center bg-transparent pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-  {% endwith %}
-  {% block content %}
-  {% endblock %}
+    <div class="flex-center flex-column peach-gradient color-block">
+      <hr>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="pt-4 bg-transparent">
+        <ul class=flashes>
+          {% for message in messages %}
+          <li class="text-center pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% endwith %}
+      {% block content %}
+      {% endblock %}
+    </div>
   </div>
 
   <!-- jQuery -->
