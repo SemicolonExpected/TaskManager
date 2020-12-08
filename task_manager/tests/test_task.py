@@ -162,3 +162,23 @@ class TestTask(unittest.TestCase):
         path = '/task/delete/{}'.format(task.id)
         response = self.client.get(path, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+
+        db_user = Task.query.filter_by(id=task.id).first()
+        self.assertEqual(db_user, None)
+
+    @unittest.expectedFailure
+    def test_delete_multiple_tasks(self):
+        tasks = [Task(title=str(i), priority=1,
+                      description="delete task description",
+                      start_time=datetime.now(),
+                      end_time=datetime.now()) for i in range(5)]
+        [db.session.add(i) for i in tasks]
+        db.session.commit()
+        ids = [str(tasks[i].id) for i in range(len(tasks))]
+        path = '/task/delete/{}'.format(" ".join(ids))
+        response = self.client.post(path, follow_redirects=True)
+        self.assertEqual(response.status_code, 200, path)
+
+        for i in ids:
+            db_user = Task.query.filter_by(id=i).first()
+            self.assertEqual(db_user, None, id)
