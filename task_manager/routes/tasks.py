@@ -1,6 +1,8 @@
 from flask import make_response, render_template, jsonify, flash
 from flask import redirect
 
+from sqlalchemy import func
+
 from task_manager.forms import CreateTaskForm
 from task_manager.models.task import Task
 
@@ -59,7 +61,7 @@ def model_post_create_task():
 
 
 def model_fetch_task(task_id):
-    task = Task.query.filter_by(user_id=current_user.id)
+    task = Task.query.filter_by(user_id=current_user.id).order_by(func.coalesce(Task.start_date, Task.end_date))
     task_schema = TaskSchema(many=True)
     output = task_schema.dump(task)
     return jsonify({'task': output})
