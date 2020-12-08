@@ -112,10 +112,10 @@ class GetUser(Resource):
         return users.get_user(user_id)
 
 
-@user_ns.route('/')
-class GetUsers(Resource):
-    def get(self):
-        return users.get_users()
+#@user_ns.route('/')
+#class GetUsers(Resource):
+#    def get(self):
+#        return users.get_users()
 
 
 @user_ns.route('/edit/<int:user_id>', methods=['GET', 'POST'])

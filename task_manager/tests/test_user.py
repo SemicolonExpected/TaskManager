@@ -84,6 +84,7 @@ class TestUser(unittest.TestCase):
         #user.delete_user()  # removing this so that we can test our function instead
         path = '/user/delete/{}'.format(user.id)
         response = self.client.get(path, follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
         response = self.client.post(path, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         db_user = User.query.filter_by(username='bob').first()
