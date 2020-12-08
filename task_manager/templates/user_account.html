@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Default form register -->
 <div style="height: 100vh">
-    <div class="flex-center flex-column color block aqua-gradient color-block">
+    <div class="flex-center flex-column">
         <form class="text-center border border-light p-5 color block white" style="width:75vh;" action="" method="post">
             <h1>Hi, {{ current_user.username }}</h1>
             <hr>
@@ -37,13 +37,4 @@
         </form>
     </div>
 </div>
-
-<!-- jQuery -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
 {% endblock %}
