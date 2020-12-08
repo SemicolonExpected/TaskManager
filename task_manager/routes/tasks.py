@@ -109,8 +109,7 @@ def model_delete_task(task_id):
     DELETE TASK
     '''
     task_to_delete = Task.query.get_or_404(task_id)
-    assignment_to_delete = Assignment.query.get_or_404(task_id)
-
+    assignment_to_delete = Assignment.query.filter_by(task_id=task_id).first()
     try:
         db.session.delete(assignment_to_delete)
         db.session.delete(task_to_delete)
@@ -123,5 +122,5 @@ def model_delete_task(task_id):
     except Exception as e:
         flash("There was a problem deleting that task")
         print(e)
-#     return make_response(
-#         render_template('dashboard.html', title='Dashboard'))
+    return make_response(
+        render_template('dashboard.html', title='Dashboard'))
