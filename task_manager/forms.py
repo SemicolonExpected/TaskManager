@@ -41,8 +41,11 @@ class UpdateUserForm(FlaskForm):
 class CreateTaskForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired(),
                                              Length(min=4, max=25)])
+    #priority = RadioField('Priority', choices=['1', '2', '3', '4', '5'],
+    #                      default='1', validators=[InputRequired()],
+    #                      coerce=int)
     priority = RadioField('Priority', choices=['1', '2', '3', '4', '5'],
-                          default='1', validators=[InputRequired()],
+                          default='1',
                           coerce=int)
     description = StringField('Description', validators=[InputRequired()])
     try:
