@@ -12,10 +12,10 @@ def get_user(user_id):
     return jsonify({'user': user_list})
 
 
-def get_users():
-    users = User.query.all()
-    users_list = user_schema.dump(users, many=True)
-    return jsonify({'users': users_list})
+#def get_users():
+#    users = User.query.all()
+#    users_list = user_schema.dump(users, many=True)
+#    return jsonify({'users': users_list})
 
 
 def delete_user(user_id):

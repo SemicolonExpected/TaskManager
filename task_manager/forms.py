@@ -41,20 +41,25 @@ class UpdateUserForm(FlaskForm):
 class CreateTaskForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired(),
                                              Length(min=4, max=25)])
+    #priority = RadioField('Priority', choices=['1', '2', '3', '4', '5'],
+    #                      default='1', validators=[InputRequired()],
+    #                      coerce=int)
     priority = RadioField('Priority', choices=['1', '2', '3', '4', '5'],
-                          default='1', validators=[InputRequired()],
+                          default='1',
                           coerce=int)
     description = StringField('Description', validators=[InputRequired()])
-    start_date = DateTimeLocalField('Start Date', format='%Y-%m-%dT%H:%M',
-                                    validators=[InputRequired()])
-    end_date = DateTimeLocalField('End Date', format='%Y-%m-%dT%H:%M',
-                                  validators=[InputRequired()])
+    try:
+        start_date = DateTimeLocalField('Start Date', format='%Y-%m-%dT%H:%M', validators=[InputRequired()])
+        end_date = DateTimeLocalField('End Date', format='%Y-%m-%dT%H:%M', validators=[InputRequired()])
+    except Exception as e:
+        start_date = None
+        end_date = None
 
     def validate_dates(self):
-        if self.start_date.data >= self.end_date.data:
-            return False
-        else:
-            return True
+        if self.start_date.data and self.end_date.data:
+            if self.start_date.data >= self.end_date.data:
+                return False
+        return True
 
 
 class LoginForm(FlaskForm):

@@ -1,51 +1,57 @@
 {% extends 'base.html' %}
+
+{% block head %}
+<title>Task Manager</title>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
-<div style="height: 100vh">
-    <div class="flex-center flex-column aqua-gradient color-block">
-        <div class="form" style="justify-content:center; display: flex;">
-            <form class="text-center border border-light p-4 mb-2 white color-block" name="createTask-form"
-                action="" method="POST">
-                <p class="h3 mb-2">Create Task</p>
-                {{ form.hidden_tag() }}
-                <label for="title">Title:</label>
-                {% for error in form.title.errors %}
-                    <span style="color: #ff0000;">{{ error }}</span>
-                {% endfor %}
-                <input class="form-control mb-2" type="text" name="title" id="title"
-                       placeholder="Title">
-                <label for="priority">Priority:</label><br>
-                <input type="radio" name="priority"
-                       id="1" value=1> <label for="1">1</label>
-                <input type="radio" name="priority"
-                       id="2" value=2> <label for="2">2</label>
-                <input type="radio" name="priority"
-                           id="3" value=3> <label for="3">3</label>
-                <input type="radio" name="priority"
-                       id="4" value=4> <label for="4">4</label>
-                <input type="radio" name="priority"
-                       id="5" value=4> <label for="5">5</label><br>
-                {% for error in form.description.errors %}
-                    <span style="color: #ff0000;">{{ error }}</span>
-                {% endfor %}
-                <label for="description">Description:</label>
-                <input class="form-control mb-2" type="text" name="description"
-                       id="description" placeholder="Description">
-                <label for="start_time">Start Date:</label>
-                {% for error in form.start_date.errors %}
-                    <span style="color: #ff0000;">{{ error }}</span>
-                {% endfor %}
-                <input class="form-control mb-2" type="datetime-local" name="start_date" id="start_date" placeholder="mm/dd/yyyy, --:-- __">
-                <label for="start_time">End Date:</label>
-                {% for error in form.end_date.errors %}
-                    <span style="color: #ff0000;">{{ error }}</span>
-                {% endfor %}
-                    <input class="form-control mb-2" type="datetime-local" name="end_date" id="end_date" placeholder="mm/dd/yyyy, --:-- __">
-                <input type="submit" value="Add Task">
-            </form>
-        </div>
-    </div>
+<!--<div style="height: 100vh">-->
+    <!--<div class="flex-center flex-column aqua-gradient color-block">-->
+<div class="form" style="justify-content:center; display: flex;">
+    <form class="text-center border border-light p-4 mb-2 white color-block" name="createTask-form"
+        action="" method="POST">
+        <p class="h3 mb-2">Create Task</p>
+        {{ form.hidden_tag() }}
+        <label for="title">Title:</label>
+        {% for error in form.title.errors %}
+            <span style="color: #ff0000;">{{ error }}</span>
+        {% endfor %}
+        <input class="form-control mb-2" type="text" name="title" id="title"
+               placeholder="Title">
+        <label for="priority">Priority:</label><br>
+        <input type="radio" name="priority"
+               id="1" value=1> <label for="1">1</label>
+        <input type="radio" name="priority"
+               id="2" value=2> <label for="2">2</label>
+        <input type="radio" name="priority"
+                   id="3" value=3> <label for="3">3</label>
+        <input type="radio" name="priority"
+               id="4" value=4> <label for="4">4</label>
+        <input type="radio" name="priority"
+               id="5" value=5> <label for="5">5</label><br>
+        {% for error in form.description.errors %}
+            <span style="color: #ff0000;">{{ error }}</span>
+        {% endfor %}
+        <label for="description">Description:</label>
+        <input class="form-control mb-2" type="text" name="description"
+               id="description" placeholder="Description">
+        <label for="start_time">Start Date:</label>
+        {% for error in form.start_date.errors %}
+            <span style="color: #ff0000;">{{ error }}</span>
+        {% endfor %}
+        <input class="form-control mb-2" type="datetime-local" name="start_date" id="start_date" placeholder="mm/dd/yyyy, --:-- __" onchange="updateDate()">
+        <label for="start_time">End Date:</label>
+        {% for error in form.end_date.errors %}
+            <span style="color: #ff0000;">{{ error }}</span>
+        {% endfor %}
+            <input class="form-control mb-2" type="datetime-local" name="end_date" id="end_date" placeholder="mm/dd/yyyy, --:-- __">
+        <input type="submit" value="Add Task">
+    </form>
 </div>
+    <!--</div>-->
+<!--</div>-->
 
 
 {% endblock %}

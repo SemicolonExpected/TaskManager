@@ -11,10 +11,10 @@ user_ns = Namespace('user', description='User API endpoints')
 task_ns = Namespace('task', description='Task API endpoints')
 
 
-@apis.route('/test', methods=['GET'])
-class Test(Resource):
-    def get(self):
-        return "Hello World"
+#@apis.route('/test', methods=['GET'])
+#class Test(Resource):
+#    def get(self):
+#       return "Hello World"
 
 
 @apis.route('/')
@@ -59,16 +59,6 @@ class Logout(Resource):
         return auth.logout()
 
 
-# @task_ns.route('/')
-@apis.route('/tasks')
-class ViewTask(Resource):
-    '''View All Tasks'''
-
-    @login_required
-    def get(self):
-        return make_response(render_template("viewTask.html"))
-
-
 @task_ns.route('/')
 @task_ns.route('/<int:task_id>')
 class FetchTask(Resource):
@@ -100,7 +90,7 @@ class UpdateTask(Resource):
         return tasks.model_post_update_task(task_id)
 
 
-@task_ns.route('/delete/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/delete/<task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
     def get(self, task_id):
         return tasks.model_delete_task(task_id)
@@ -112,10 +102,10 @@ class GetUser(Resource):
         return users.get_user(user_id)
 
 
-@user_ns.route('/')
-class GetUsers(Resource):
-    def get(self):
-        return users.get_users()
+#@user_ns.route('/')
+#class GetUsers(Resource):
+#    def get(self):
+#        return users.get_users()
 
 
 @user_ns.route('/edit/<int:user_id>', methods=['GET', 'POST'])

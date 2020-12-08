@@ -30,7 +30,7 @@
 <header>
   <nav class="navbar d-flex fixed-top navbar-expand-lg navbar-dark white">
     <div class="mr-auto flex-row">
-      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"
+      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.PNG') }}" alt="logo"
           style="width: 40px;height: 30px;">
         <div class="float-right d-flex flex-row">
           <div class="pt-2 "><strong>TaskManager</strong></div>
@@ -64,20 +64,24 @@
 <!--Main Navigation-->
 
 <body>
-  <hr>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <div class="pt-4">
-  <ul class=flashes>
-    {% for message in messages %}
-    <li class="text-center pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
-    {% endfor %}
-  </ul>
-</div>
-  {% endif %}
-  {% endwith %}
-  {% block content %}
-  {% endblock %}
+  <div style="height: 100vh">
+    <div class="flex-center flex-column rare-wind-gradient color-block">
+      <hr>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class="pt-4 bg-transparent">
+        <ul class="flashes" style="padding-inline-start: 0px;">
+          {% for message in messages %}
+          <li class="text-center pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+      {% endwith %}
+      {% block content %}
+      {% endblock %}
+    </div>
+  </div>
 
   <!-- jQuery -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>

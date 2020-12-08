@@ -135,6 +135,7 @@ class TestTask(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+        end_date = start_date + timedelta(minutes=-10)
         invalid_form = self.update_task(task_id=task.id,
                                         title=None,
                                         priority=5,
@@ -143,6 +144,8 @@ class TestTask(unittest.TestCase):
                                         end_date=end_date.strftime("%Y-%m-%dT%H:%M"))  # noqa: E501
 
         self.assertEqual(invalid_form.status_code, 200)
+
+        # This doesnt actually check whether the updated task has the right info though, just whether it'll break stuff
 
     def test_delete_task_view(self):
         '''
@@ -160,3 +163,23 @@ class TestTask(unittest.TestCase):
         path = '/task/delete/{}'.format(task.id)
         response = self.client.get(path, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+
+        db_user = Task.query.filter_by(id=task.id).first()
+        self.assertEqual(db_user, None)
+
+    #@unittest.expectedFailure
+    def test_delete_multiple_tasks(self):
+        tasks = [Task(title=str(i), priority=1,
+                      description="delete task description",
+                      start_time=datetime.now(),
+                      end_time=datetime.now()) for i in range(5)]
+        [db.session.add(i) for i in tasks]
+        db.session.commit()
+        ids = [str(tasks[i].id) for i in range(len(tasks))]
+        path = '/task/delete/{}'.format(",".join(ids))
+        response = self.client.get(path, follow_redirects=True)
+        self.assertEqual(response.status_code, 200, path)
+
+        for i in ids:
+            db_user = Task.query.filter_by(id=i).first()
+            self.assertEqual(db_user, None, id)
