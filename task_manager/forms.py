@@ -56,7 +56,7 @@ class CreateTaskForm(FlaskForm):
         end_date = None
 
     def validate_dates(self):
-        if self.start_date.data or self.end_date.data:
+        if self.start_date.data and self.end_date.data:
             if self.start_date.data >= self.end_date.data:
                 return False
         return True
