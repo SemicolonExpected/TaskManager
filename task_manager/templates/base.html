@@ -70,7 +70,7 @@
       {% with messages = get_flashed_messages() %}
       {% if messages %}
       <div class="pt-4 bg-transparent">
-        <ul class=flashes>
+        <ul class="flashes flex-center">
           {% for message in messages %}
           <li class="text-center pt-2 mt-4 alert alert-info" style="list-style:none">{{ message }}</li>
           {% endfor %}
