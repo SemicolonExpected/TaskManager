@@ -116,7 +116,7 @@ def model_delete_task(task_id):
 
         # Delete associated assignment
         flash("Task deleted!")
-        return redirect('/dashboard')
+        return redirect(f'/dashboard')  # noqa: F541
 
     except Exception as e:
         flash("There was a problem deleting that task")
