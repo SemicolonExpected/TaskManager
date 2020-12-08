@@ -123,7 +123,6 @@ def model_delete_task(task_id):
         #flash("Task deleted!")
         #return redirect('/dashboard')
 
-
     except Exception as e:
         flash("There was a problem deleting that task")
         print(e)
