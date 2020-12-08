@@ -109,8 +109,11 @@ def model_delete_task(task_id):
     DELETE TASK
     '''
     task_to_delete = Task.query.get_or_404(task_id)
+    assignment_to_delete = Assignment.query.get_or_404(task_id)
 
     try:
+        db.session.delete(assignment_to_delete)
+        db.session.flush()
         db.session.delete(task_to_delete)
         db.session.flush()
         db.session.commit()
