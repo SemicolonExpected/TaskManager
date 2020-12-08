@@ -60,6 +60,9 @@ class TestUser(unittest.TestCase):
         login_ = login(self)
         path = '/user/edit/{}'.format(login_[0])
 
+        response = self.client.get(path, follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
         response = self.client.post(path, data={'username': "test_update",
                                                 'email': "test_update@test.com",
                                                 'password': "test1"},
