@@ -100,7 +100,7 @@ class UpdateTask(Resource):
         return tasks.model_post_update_task(task_id)
 
 
-@task_ns.route('/delete/<int:task_id>', methods=['GET', 'POST'])
+@task_ns.route('/delete/<task_id>', methods=['GET', 'POST'])
 class DeleteTask(Resource):
     def get(self, task_id):
         return tasks.model_delete_task(task_id)

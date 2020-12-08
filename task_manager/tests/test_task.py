@@ -166,7 +166,7 @@ class TestTask(unittest.TestCase):
         db_user = Task.query.filter_by(id=task.id).first()
         self.assertEqual(db_user, None)
 
-    @unittest.expectedFailure
+    #@unittest.expectedFailure
     def test_delete_multiple_tasks(self):
         tasks = [Task(title=str(i), priority=1,
                       description="delete task description",
