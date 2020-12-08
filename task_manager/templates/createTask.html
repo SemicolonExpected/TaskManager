@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+
+{% block head %}
+<title>Task Manager</title>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <!--<div style="height: 100vh">-->
