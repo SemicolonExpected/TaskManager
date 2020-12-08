@@ -41,7 +41,7 @@
         {% for error in form.start_date.errors %}
             <span style="color: #ff0000;">{{ error }}</span>
         {% endfor %}
-        <input class="form-control mb-2" type="datetime-local" name="start_date" id="start_date" placeholder="mm/dd/yyyy, --:-- __">
+        <input class="form-control mb-2" type="datetime-local" name="start_date" id="start_date" placeholder="mm/dd/yyyy, --:-- __" onchange="updateDate()">
         <label for="start_time">End Date:</label>
         {% for error in form.end_date.errors %}
             <span style="color: #ff0000;">{{ error }}</span>
