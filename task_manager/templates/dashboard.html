@@ -32,9 +32,9 @@
                 var tableBody = '<table width="90%" cellpadding="2" align="center" style="font-size:12px;border-collapse:collapse;" border="1"><tr style="font-weight:bold;background:grey;"><td style="color:white;padding:15px;">Select</td><td style="color:white;padding:15px;">Task Name</td><td style="color:white;padding:15px;">Priority</td><td style="color:white;padding:15px;">Description</td><td style="color:white;padding:15px;">Start Time</td><td style="color:white;padding:15px;">End Time</td><td style="color:white;padding:15px;">Actions</td></tr>';
                 
                 data.task.forEach(function (d) {
-                	if(d.priority == "null"){d.priority = "";}
-                	if(d.start_time == "null"){d.start_time = "";}
-                	if(d.end_time == "null"){d.end_time = "";}
+                	if(!d.priority){d.priority = "";}
+                	if(!d.start_time){d.start_time = "";}
+                	if(!d.end_time){d.end_time = "";}
 
                 	d.start_time = d.start_time.replace("T"," ");
                 	d.end_time = d.end_time.replace("T"," ");
