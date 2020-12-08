@@ -74,3 +74,5 @@ Heroku deployment instructions:
 
 Postgres database migration:
 `heroku run flask db upgrade`
+
+Try out Task Manager on: https://t4sk-manag3r.herokuapp.com/dashboard
