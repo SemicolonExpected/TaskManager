@@ -113,25 +113,30 @@ def model_delete_task(task_id):
     '''
     DELETE TASK
     '''
-    task_to_delete = Task.query.get_or_404(task_id)
-    assignment_to_delete = Assignment.query.filter_by(task_id=task_id).first()
+    task_id = task_id.split()
+
     try:
         # simulate a cascading delete
-        assign = Assignment.query.filter_by(task_id=task_id)
-        [db.session.delete(item) for item in assign]
-        db.session.flush()
-        db.session.delete(task_to_delete)
+        for i in range(len(task_id)):
+            task_to_delete = Task.query.get_or_404(int(task_id[i]))
 
-        # Delete associated assignment
-        #flash("Task deleted!")
-        #return redirect('/dashboard')
+            assign = Assignment.query.filter_by(task_id=int(task_id[i]))
+            [db.session.delete(item) for item in assign]
+            db.session.flush()
+            db.session.delete(task_to_delete)
 
     except Exception as e:
-        flash("There was a problem deleting that task")
+        if len(task_id) > 1:
+            flash("There was a problem deleting the tasks")
+        else:
+            flash("There was a problem deleting that task")
         print(e)
         db.session.rollback()
     else:
         db.session.commit()
-        flash("Task Deleted!")
-        return redirect(f'/dashboard')  # noqa: F541
-    #return make_response(render_template('dashboard.html', title='Dashboard'))
+        if len(task_id) > 1:
+            flash("Tasks Deleted!")
+        else:
+            flash("Task Deleted!")
+
+    return redirect(f'/dashboard')  # noqa: F541
