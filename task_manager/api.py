@@ -11,10 +11,10 @@ user_ns = Namespace('user', description='User API endpoints')
 task_ns = Namespace('task', description='Task API endpoints')
 
 
-@apis.route('/test', methods=['GET'])
-class Test(Resource):
-    def get(self):
-        return "Hello World"
+#@apis.route('/test', methods=['GET'])
+#class Test(Resource):
+#    def get(self):
+#       return "Hello World"
 
 
 @apis.route('/')
@@ -57,16 +57,6 @@ class Logout(Resource):
     @login_required
     def get(self):
         return auth.logout()
-
-
-# @task_ns.route('/')
-@apis.route('/tasks')
-class ViewTask(Resource):
-    '''View All Tasks'''
-
-    @login_required
-    def get(self):
-        return make_response(render_template("viewTask.html"))
 
 
 @task_ns.route('/')

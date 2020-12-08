@@ -135,6 +135,7 @@ class TestTask(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+        end_date = start_date + timedelta(minutes=-10)
         invalid_form = self.update_task(task_id=task.id,
                                         title=None,
                                         priority=5,
