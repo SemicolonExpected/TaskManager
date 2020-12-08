@@ -121,5 +121,5 @@ def model_delete_task(task_id):
     except Exception as e:
         flash("There was a problem deleting that task")
         print(e)
-    return make_response(
-        render_template('dashboard.html', title='Dashboard'))
+#     return make_response(
+#         render_template('dashboard.html', title='Dashboard'))
