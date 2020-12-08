@@ -78,7 +78,8 @@ class TestUser(unittest.TestCase):
         #update_user = User.query.filter_by(username='carol').first()
         #update_user.username = 'bob'
         #update_user.save_user()
-        #self.assertEqual(update_user.username, 'bob')  # <--- btw you just changed the variable should requery to check whether the change persisted in the database
+        #self.assertEqual(update_user.username, 'bob')
+        # ^ btw you just changed the variable should requery to check whether the change persisted in the database
 
     def test_delete_user(self):
         """ TEST DELETE USER """
