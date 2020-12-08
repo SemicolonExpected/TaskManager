@@ -21,12 +21,173 @@
 <dt><font face="helvetica, arial"><a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>(<a href="wtforms.form.html#Form">wtforms.form.Form</a>)
 </font></dt><dd>
 <dl>
-<dt><font face="helvetica, arial"><a href="task_manager.forms.html#LoginForm">LoginForm</a>
+<dt><font face="helvetica, arial"><a href="task_manager.forms.html#CreateTaskForm">CreateTaskForm</a>
+</font></dt><dt><font face="helvetica, arial"><a href="task_manager.forms.html#LoginForm">LoginForm</a>
 </font></dt><dt><font face="helvetica, arial"><a href="task_manager.forms.html#RegistrationForm">RegistrationForm</a>
+</font></dt><dt><font face="helvetica, arial"><a href="task_manager.forms.html#UpdateUserForm">UpdateUserForm</a>
 </font></dt></dl>
 </dd>
 </dl>
  <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CreateTaskForm">class <strong>CreateTaskForm</strong></a>(<a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#CreateTaskForm">CreateTaskForm</a>(*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+Flask-specific&nbsp;subclass&nbsp;of&nbsp;WTForms&nbsp;:class:`~wtforms.form.Form`.<br>
+&nbsp;<br>
+If&nbsp;``formdata``&nbsp;is&nbsp;not&nbsp;specified,&nbsp;this&nbsp;will&nbsp;use&nbsp;:attr:`flask.request.form`<br>
+and&nbsp;:attr:`flask.request.files`.&nbsp;&nbsp;Explicitly&nbsp;pass&nbsp;``formdata=None``&nbsp;to<br>
+prevent&nbsp;this.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="task_manager.forms.html#CreateTaskForm">CreateTaskForm</a></dd>
+<dd><a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a></dd>
+<dd><a href="wtforms.form.html#Form">wtforms.form.Form</a></dd>
+<dd>wtforms.compat.NewBase</dd>
+<dd><a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CreateTaskForm-validate_dates"><strong>validate_dates</strong></a>(self)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>description</strong> = &lt;UnboundField(StringField, ('Description',), {'v...ators.InputRequired object at 0x7ff3dc54d5b0&gt;]})&gt;</dl>
+
+<dl><dt><strong>end_date</strong> = &lt;UnboundField(DateTimeLocalField, ('End Date',),...ators.InputRequired object at 0x7ff3dc54d7c0&gt;]})&gt;</dl>
+
+<dl><dt><strong>priority</strong> = &lt;UnboundField(RadioField, ('Priority',), {'choic...t at 0x7ff3dc54d550&gt;], 'coerce': &lt;class 'int'&gt;})&gt;</dl>
+
+<dl><dt><strong>start_date</strong> = &lt;UnboundField(DateTimeLocalField, ('Start Date',...ators.InputRequired object at 0x7ff3dc54d730&gt;]})&gt;</dl>
+
+<dl><dt><strong>title</strong> = &lt;UnboundField(StringField, ('Title',), {'validat...s.validators.Length object at 0x7ff3dc54d460&gt;]})&gt;</dl>
+
+<hr>
+Methods inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
+<dl><dt><a name="CreateTaskForm-__init__"><strong>__init__</strong></a>(self, formdata=&lt;object object at 0x7ff3dc6d7300&gt;, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;equivalent.&nbsp;formdata&nbsp;should&nbsp;be&nbsp;some&nbsp;sort&nbsp;of&nbsp;request-data&nbsp;wrapper&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;get&nbsp;multiple&nbsp;parameters&nbsp;from&nbsp;the&nbsp;form&nbsp;input,&nbsp;and&nbsp;values&nbsp;are&nbsp;unicode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;strings,&nbsp;e.g.&nbsp;a&nbsp;Werkzeug/Django/WebOb&nbsp;MultiDict<br>
+:param&nbsp;obj:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided,&nbsp;this&nbsp;object&nbsp;is&nbsp;checked&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attributes&nbsp;matching&nbsp;form&nbsp;field&nbsp;names,&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;for&nbsp;field<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values.<br>
+:param&nbsp;prefix:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;all&nbsp;fields&nbsp;will&nbsp;have&nbsp;their&nbsp;name&nbsp;prefixed&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value.<br>
+:param&nbsp;data:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Accept&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;data.&nbsp;This&nbsp;is&nbsp;only&nbsp;used&nbsp;if&nbsp;`formdata`&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;are&nbsp;not&nbsp;present.<br>
+:param&nbsp;meta:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;this&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;values&nbsp;to&nbsp;override&nbsp;attributes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on&nbsp;this&nbsp;form's&nbsp;meta&nbsp;instance.<br>
+:param&nbsp;`**kwargs`:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;a&nbsp;field,&nbsp;form&nbsp;will&nbsp;assign&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;a&nbsp;matching&nbsp;keyword&nbsp;argument&nbsp;to&nbsp;the&nbsp;field,&nbsp;if&nbsp;one&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-hidden_tag"><strong>hidden_tag</strong></a>(self, *fields)</dt><dd><tt>Render&nbsp;the&nbsp;form's&nbsp;hidden&nbsp;fields&nbsp;in&nbsp;one&nbsp;call.<br>
+&nbsp;<br>
+A&nbsp;field&nbsp;is&nbsp;considered&nbsp;hidden&nbsp;if&nbsp;it&nbsp;uses&nbsp;the<br>
+:class:`~wtforms.widgets.HiddenInput`&nbsp;widget.<br>
+&nbsp;<br>
+If&nbsp;``fields``&nbsp;are&nbsp;given,&nbsp;only&nbsp;render&nbsp;the&nbsp;given&nbsp;fields&nbsp;that<br>
+are&nbsp;hidden.&nbsp;&nbsp;If&nbsp;a&nbsp;string&nbsp;is&nbsp;passed,&nbsp;render&nbsp;the&nbsp;field&nbsp;with&nbsp;that<br>
+name&nbsp;if&nbsp;it&nbsp;exists.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.13<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;No&nbsp;longer&nbsp;wraps&nbsp;inputs&nbsp;in&nbsp;hidden&nbsp;div.<br>
+&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;valid&nbsp;HTML&nbsp;5.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.13<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;Skip&nbsp;passed&nbsp;fields&nbsp;that&nbsp;aren't&nbsp;hidden.<br>
+&nbsp;&nbsp;&nbsp;Skip&nbsp;passed&nbsp;names&nbsp;that&nbsp;don't&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-is_submitted"><strong>is_submitted</strong></a>(self)</dt><dd><tt>Consider&nbsp;the&nbsp;form&nbsp;submitted&nbsp;if&nbsp;there&nbsp;is&nbsp;an&nbsp;active&nbsp;request&nbsp;and<br>
+the&nbsp;method&nbsp;is&nbsp;``POST``,&nbsp;``PUT``,&nbsp;``PATCH``,&nbsp;or&nbsp;``DELETE``.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-validate_on_submit"><strong>validate_on_submit</strong></a>(self)</dt><dd><tt>Call&nbsp;:meth:`validate`&nbsp;only&nbsp;if&nbsp;the&nbsp;form&nbsp;is&nbsp;submitted.<br>
+This&nbsp;is&nbsp;a&nbsp;shortcut&nbsp;for&nbsp;``form.<a href="#CreateTaskForm-is_submitted">is_submitted</a>()&nbsp;and&nbsp;form.<a href="#CreateTaskForm-validate">validate</a>()``.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
+<dl><dt><strong>Meta</strong> = &lt;class 'flask_wtf.form.FlaskForm.Meta'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="wtforms.form.html#Form">wtforms.form.Form</a>:<br>
+<dl><dt><a name="CreateTaskForm-__delattr__"><strong>__delattr__</strong></a>(self, name)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-__delitem__"><strong>__delitem__</strong></a>(self, name)</dt><dd><tt>Remove&nbsp;a&nbsp;field&nbsp;from&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-__setitem__"><strong>__setitem__</strong></a>(self, name, value)</dt><dd><tt>Bind&nbsp;a&nbsp;field&nbsp;to&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-validate"><strong>validate</strong></a>(self, extra_validators=None)</dt><dd><tt>Validate&nbsp;the&nbsp;form&nbsp;by&nbsp;calling&nbsp;``validate``&nbsp;on&nbsp;each&nbsp;field.<br>
+Returns&nbsp;``True``&nbsp;if&nbsp;validation&nbsp;passes.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;form&nbsp;defines&nbsp;a&nbsp;``validate_&lt;fieldname&gt;``&nbsp;method,&nbsp;it&nbsp;is<br>
+appended&nbsp;as&nbsp;an&nbsp;extra&nbsp;validator&nbsp;for&nbsp;the&nbsp;field's&nbsp;``validate``.<br>
+&nbsp;<br>
+:param&nbsp;extra_validators:&nbsp;A&nbsp;dict&nbsp;mapping&nbsp;field&nbsp;names&nbsp;to&nbsp;lists&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;extra&nbsp;validator&nbsp;methods&nbsp;to&nbsp;run.&nbsp;Extra&nbsp;validators&nbsp;run&nbsp;after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validators&nbsp;passed&nbsp;when&nbsp;creating&nbsp;the&nbsp;field.&nbsp;If&nbsp;the&nbsp;form&nbsp;has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;``validate_&lt;fieldname&gt;``,&nbsp;it&nbsp;is&nbsp;the&nbsp;last&nbsp;extra&nbsp;validator.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><a name="CreateTaskForm-__contains__"><strong>__contains__</strong></a>(self, name)</dt><dd><tt>Returns&nbsp;`True`&nbsp;if&nbsp;the&nbsp;named&nbsp;field&nbsp;is&nbsp;a&nbsp;member&nbsp;of&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-__getitem__"><strong>__getitem__</strong></a>(self, name)</dt><dd><tt>Dict-style&nbsp;access&nbsp;to&nbsp;this&nbsp;form's&nbsp;fields.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-__iter__"><strong>__iter__</strong></a>(self)</dt><dd><tt>Iterate&nbsp;form&nbsp;fields&nbsp;in&nbsp;creation&nbsp;order.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-populate_obj"><strong>populate_obj</strong></a>(self, obj)</dt><dd><tt>Populates&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;passed&nbsp;`obj`&nbsp;with&nbsp;data&nbsp;from&nbsp;the&nbsp;form's<br>
+fields.<br>
+&nbsp;<br>
+:note:&nbsp;This&nbsp;is&nbsp;a&nbsp;destructive&nbsp;operation;&nbsp;Any&nbsp;attribute&nbsp;with&nbsp;the&nbsp;same&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;field&nbsp;will&nbsp;be&nbsp;overridden.&nbsp;Use&nbsp;with&nbsp;caution.</tt></dd></dl>
+
+<dl><dt><a name="CreateTaskForm-process"><strong>process</strong></a>(self, formdata=None, obj=None, data=None, **kwargs)</dt><dd><tt>Take&nbsp;form,&nbsp;object&nbsp;data,&nbsp;and&nbsp;keyword&nbsp;arg&nbsp;input&nbsp;and&nbsp;have&nbsp;the&nbsp;fields<br>
+process&nbsp;them.<br>
+&nbsp;<br>
+:param&nbsp;formdata:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;equivalent.<br>
+:param&nbsp;obj:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided,&nbsp;this&nbsp;object&nbsp;is&nbsp;checked&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attributes&nbsp;matching&nbsp;form&nbsp;field&nbsp;names,&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;for&nbsp;field<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values.<br>
+:param&nbsp;data:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;must&nbsp;be&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;data.&nbsp;This&nbsp;is&nbsp;only&nbsp;used&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;field.<br>
+:param&nbsp;`**kwargs`:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;a&nbsp;field,&nbsp;form&nbsp;will&nbsp;assign&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;a&nbsp;matching&nbsp;keyword&nbsp;argument&nbsp;to&nbsp;the&nbsp;field,&nbsp;if&nbsp;one&nbsp;exists.</tt></dd></dl>
+
+<hr>
+Readonly properties inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><strong>data</strong></dt>
+</dl>
+<dl><dt><strong>errors</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -51,17 +212,17 @@ prevent&nbsp;this.<br>&nbsp;</tt></td></tr>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>password</strong> = &lt;UnboundField(PasswordField, ('Password',), {'va...dators.DataRequired object at 0x7f15129331f0&gt;]})&gt;</dl>
+<dl><dt><strong>password</strong> = &lt;UnboundField(PasswordField, ('Password',), {'va...s.validators.Length object at 0x7ff3dc54daf0&gt;]})&gt;</dl>
 
 <dl><dt><strong>remember_me</strong> = &lt;UnboundField(BooleanField, ('Remember Me',), {})&gt;</dl>
 
 <dl><dt><strong>submit</strong> = &lt;UnboundField(SubmitField, ('Sign In',), {})&gt;</dl>
 
-<dl><dt><strong>username</strong> = &lt;UnboundField(StringField, ('Username',), {'vali...dators.DataRequired object at 0x7f1512933100&gt;]})&gt;</dl>
+<dl><dt><strong>username</strong> = &lt;UnboundField(StringField, ('Username',), {'vali...s.validators.Length object at 0x7ff3dc54d910&gt;]})&gt;</dl>
 
 <hr>
 Methods inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
-<dl><dt><a name="LoginForm-__init__"><strong>__init__</strong></a>(self, formdata=&lt;object object at 0x7f15120423d0&gt;, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
+<dl><dt><a name="LoginForm-__init__"><strong>__init__</strong></a>(self, formdata=&lt;object object at 0x7ff3dc6d7300&gt;, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
 &nbsp;&nbsp;&nbsp;&nbsp;equivalent.&nbsp;formdata&nbsp;should&nbsp;be&nbsp;some&nbsp;sort&nbsp;of&nbsp;request-data&nbsp;wrapper&nbsp;which<br>
 &nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;get&nbsp;multiple&nbsp;parameters&nbsp;from&nbsp;the&nbsp;form&nbsp;input,&nbsp;and&nbsp;values&nbsp;are&nbsp;unicode<br>
@@ -210,19 +371,19 @@ Methods defined here:<br>
 
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>email</strong> = &lt;UnboundField(StringField, ('Email',), {'validat...ms.validators.Email object at 0x7f1511e5acd0&gt;]})&gt;</dl>
+<dl><dt><strong>email</strong> = &lt;UnboundField(StringField, ('Email',), {'validat...s.validators.Length object at 0x7ff3dc54df40&gt;]})&gt;</dl>
 
-<dl><dt><strong>password</strong> = &lt;UnboundField(PasswordField, ('Password',), {'va...dators.DataRequired object at 0x7f1511e64160&gt;]})&gt;</dl>
+<dl><dt><strong>password</strong> = &lt;UnboundField(PasswordField, ('Password',), {'va...dators.DataRequired object at 0x7ff3dc55a070&gt;]})&gt;</dl>
 
-<dl><dt><strong>password2</strong> = &lt;UnboundField(PasswordField, ('Re-Enter Password....validators.EqualTo object at 0x7f1511e643d0&gt;]})&gt;</dl>
+<dl><dt><strong>password2</strong> = &lt;UnboundField(PasswordField, ('Re-Enter Password....validators.EqualTo object at 0x7ff3dc55a1c0&gt;]})&gt;</dl>
 
 <dl><dt><strong>submit</strong> = &lt;UnboundField(SubmitField, ('Register',), {})&gt;</dl>
 
-<dl><dt><strong>username</strong> = &lt;UnboundField(StringField, ('Username',), {'vali...dators.DataRequired object at 0x7f1511e5a8b0&gt;]})&gt;</dl>
+<dl><dt><strong>username</strong> = &lt;UnboundField(StringField, ('Username',), {'vali...s.validators.Length object at 0x7ff3dc54dd00&gt;]})&gt;</dl>
 
 <hr>
 Methods inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
-<dl><dt><a name="RegistrationForm-__init__"><strong>__init__</strong></a>(self, formdata=&lt;object object at 0x7f15120423d0&gt;, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
+<dl><dt><a name="RegistrationForm-__init__"><strong>__init__</strong></a>(self, formdata=&lt;object object at 0x7ff3dc6d7300&gt;, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
 &nbsp;&nbsp;&nbsp;&nbsp;equivalent.&nbsp;formdata&nbsp;should&nbsp;be&nbsp;some&nbsp;sort&nbsp;of&nbsp;request-data&nbsp;wrapper&nbsp;which<br>
 &nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;get&nbsp;multiple&nbsp;parameters&nbsp;from&nbsp;the&nbsp;form&nbsp;input,&nbsp;and&nbsp;values&nbsp;are&nbsp;unicode<br>
@@ -308,6 +469,165 @@ fields.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;field&nbsp;will&nbsp;be&nbsp;overridden.&nbsp;Use&nbsp;with&nbsp;caution.</tt></dd></dl>
 
 <dl><dt><a name="RegistrationForm-process"><strong>process</strong></a>(self, formdata=None, obj=None, data=None, **kwargs)</dt><dd><tt>Take&nbsp;form,&nbsp;object&nbsp;data,&nbsp;and&nbsp;keyword&nbsp;arg&nbsp;input&nbsp;and&nbsp;have&nbsp;the&nbsp;fields<br>
+process&nbsp;them.<br>
+&nbsp;<br>
+:param&nbsp;formdata:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;equivalent.<br>
+:param&nbsp;obj:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided,&nbsp;this&nbsp;object&nbsp;is&nbsp;checked&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attributes&nbsp;matching&nbsp;form&nbsp;field&nbsp;names,&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;for&nbsp;field<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values.<br>
+:param&nbsp;data:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;must&nbsp;be&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;data.&nbsp;This&nbsp;is&nbsp;only&nbsp;used&nbsp;if<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;field.<br>
+:param&nbsp;`**kwargs`:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;a&nbsp;field,&nbsp;form&nbsp;will&nbsp;assign&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;a&nbsp;matching&nbsp;keyword&nbsp;argument&nbsp;to&nbsp;the&nbsp;field,&nbsp;if&nbsp;one&nbsp;exists.</tt></dd></dl>
+
+<hr>
+Readonly properties inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><strong>data</strong></dt>
+</dl>
+<dl><dt><strong>errors</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UpdateUserForm">class <strong>UpdateUserForm</strong></a>(<a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#UpdateUserForm">UpdateUserForm</a>(*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+Flask-specific&nbsp;subclass&nbsp;of&nbsp;WTForms&nbsp;:class:`~wtforms.form.Form`.<br>
+&nbsp;<br>
+If&nbsp;``formdata``&nbsp;is&nbsp;not&nbsp;specified,&nbsp;this&nbsp;will&nbsp;use&nbsp;:attr:`flask.request.form`<br>
+and&nbsp;:attr:`flask.request.files`.&nbsp;&nbsp;Explicitly&nbsp;pass&nbsp;``formdata=None``&nbsp;to<br>
+prevent&nbsp;this.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="task_manager.forms.html#UpdateUserForm">UpdateUserForm</a></dd>
+<dd><a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a></dd>
+<dd><a href="wtforms.form.html#Form">wtforms.form.Form</a></dd>
+<dd>wtforms.compat.NewBase</dd>
+<dd><a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UpdateUserForm-__init__"><strong>__init__</strong></a>(self, user_name, user_email, *args, **kwargs)</dt><dd><tt>:param&nbsp;formdata:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;to&nbsp;pass&nbsp;data&nbsp;coming&nbsp;from&nbsp;the&nbsp;enduser,&nbsp;usually&nbsp;`request.POST`&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;equivalent.&nbsp;formdata&nbsp;should&nbsp;be&nbsp;some&nbsp;sort&nbsp;of&nbsp;request-data&nbsp;wrapper&nbsp;which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;get&nbsp;multiple&nbsp;parameters&nbsp;from&nbsp;the&nbsp;form&nbsp;input,&nbsp;and&nbsp;values&nbsp;are&nbsp;unicode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;strings,&nbsp;e.g.&nbsp;a&nbsp;Werkzeug/Django/WebOb&nbsp;MultiDict<br>
+:param&nbsp;obj:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided,&nbsp;this&nbsp;object&nbsp;is&nbsp;checked&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attributes&nbsp;matching&nbsp;form&nbsp;field&nbsp;names,&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;for&nbsp;field<br>
+&nbsp;&nbsp;&nbsp;&nbsp;values.<br>
+:param&nbsp;prefix:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;all&nbsp;fields&nbsp;will&nbsp;have&nbsp;their&nbsp;name&nbsp;prefixed&nbsp;with&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value.<br>
+:param&nbsp;data:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Accept&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;data.&nbsp;This&nbsp;is&nbsp;only&nbsp;used&nbsp;if&nbsp;`formdata`&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;`obj`&nbsp;are&nbsp;not&nbsp;present.<br>
+:param&nbsp;meta:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;provided,&nbsp;this&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;values&nbsp;to&nbsp;override&nbsp;attributes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;on&nbsp;this&nbsp;form's&nbsp;meta&nbsp;instance.<br>
+:param&nbsp;`**kwargs`:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`formdata`&nbsp;is&nbsp;empty&nbsp;or&nbsp;not&nbsp;provided&nbsp;and&nbsp;`obj`&nbsp;does&nbsp;not&nbsp;contain<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;attribute&nbsp;named&nbsp;the&nbsp;same&nbsp;as&nbsp;a&nbsp;field,&nbsp;form&nbsp;will&nbsp;assign&nbsp;the&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;a&nbsp;matching&nbsp;keyword&nbsp;argument&nbsp;to&nbsp;the&nbsp;field,&nbsp;if&nbsp;one&nbsp;exists.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-validate_email"><strong>validate_email</strong></a>(self, email)</dt></dl>
+
+<dl><dt><a name="UpdateUserForm-validate_username"><strong>validate_username</strong></a>(self, username)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>email</strong> = &lt;UnboundField(StringField, ('Email',), {'validat...s.validators.Length object at 0x7ff3dc54d070&gt;]})&gt;</dl>
+
+<dl><dt><strong>password</strong> = &lt;UnboundField(PasswordField, ('Password',), {'va...dators.DataRequired object at 0x7ff3dc54d250&gt;]})&gt;</dl>
+
+<dl><dt><strong>submit</strong> = &lt;UnboundField(SubmitField, ('Update',), {})&gt;</dl>
+
+<dl><dt><strong>username</strong> = &lt;UnboundField(StringField, ('Username',), {'vali...s.validators.Length object at 0x7ff3dcff47f0&gt;]})&gt;</dl>
+
+<hr>
+Methods inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
+<dl><dt><a name="UpdateUserForm-hidden_tag"><strong>hidden_tag</strong></a>(self, *fields)</dt><dd><tt>Render&nbsp;the&nbsp;form's&nbsp;hidden&nbsp;fields&nbsp;in&nbsp;one&nbsp;call.<br>
+&nbsp;<br>
+A&nbsp;field&nbsp;is&nbsp;considered&nbsp;hidden&nbsp;if&nbsp;it&nbsp;uses&nbsp;the<br>
+:class:`~wtforms.widgets.HiddenInput`&nbsp;widget.<br>
+&nbsp;<br>
+If&nbsp;``fields``&nbsp;are&nbsp;given,&nbsp;only&nbsp;render&nbsp;the&nbsp;given&nbsp;fields&nbsp;that<br>
+are&nbsp;hidden.&nbsp;&nbsp;If&nbsp;a&nbsp;string&nbsp;is&nbsp;passed,&nbsp;render&nbsp;the&nbsp;field&nbsp;with&nbsp;that<br>
+name&nbsp;if&nbsp;it&nbsp;exists.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.13<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;No&nbsp;longer&nbsp;wraps&nbsp;inputs&nbsp;in&nbsp;hidden&nbsp;div.<br>
+&nbsp;&nbsp;&nbsp;This&nbsp;is&nbsp;valid&nbsp;HTML&nbsp;5.<br>
+&nbsp;<br>
+..&nbsp;versionchanged::&nbsp;0.13<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;Skip&nbsp;passed&nbsp;fields&nbsp;that&nbsp;aren't&nbsp;hidden.<br>
+&nbsp;&nbsp;&nbsp;Skip&nbsp;passed&nbsp;names&nbsp;that&nbsp;don't&nbsp;exist.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-is_submitted"><strong>is_submitted</strong></a>(self)</dt><dd><tt>Consider&nbsp;the&nbsp;form&nbsp;submitted&nbsp;if&nbsp;there&nbsp;is&nbsp;an&nbsp;active&nbsp;request&nbsp;and<br>
+the&nbsp;method&nbsp;is&nbsp;``POST``,&nbsp;``PUT``,&nbsp;``PATCH``,&nbsp;or&nbsp;``DELETE``.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-validate_on_submit"><strong>validate_on_submit</strong></a>(self)</dt><dd><tt>Call&nbsp;:meth:`validate`&nbsp;only&nbsp;if&nbsp;the&nbsp;form&nbsp;is&nbsp;submitted.<br>
+This&nbsp;is&nbsp;a&nbsp;shortcut&nbsp;for&nbsp;``form.<a href="#UpdateUserForm-is_submitted">is_submitted</a>()&nbsp;and&nbsp;form.<a href="#UpdateUserForm-validate">validate</a>()``.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_wtf.form.html#FlaskForm">flask_wtf.form.FlaskForm</a>:<br>
+<dl><dt><strong>Meta</strong> = &lt;class 'flask_wtf.form.FlaskForm.Meta'&gt;</dl>
+
+<hr>
+Methods inherited from <a href="wtforms.form.html#Form">wtforms.form.Form</a>:<br>
+<dl><dt><a name="UpdateUserForm-__delattr__"><strong>__delattr__</strong></a>(self, name)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-__delitem__"><strong>__delitem__</strong></a>(self, name)</dt><dd><tt>Remove&nbsp;a&nbsp;field&nbsp;from&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-__setitem__"><strong>__setitem__</strong></a>(self, name, value)</dt><dd><tt>Bind&nbsp;a&nbsp;field&nbsp;to&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-validate"><strong>validate</strong></a>(self, extra_validators=None)</dt><dd><tt>Validate&nbsp;the&nbsp;form&nbsp;by&nbsp;calling&nbsp;``validate``&nbsp;on&nbsp;each&nbsp;field.<br>
+Returns&nbsp;``True``&nbsp;if&nbsp;validation&nbsp;passes.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;form&nbsp;defines&nbsp;a&nbsp;``validate_&lt;fieldname&gt;``&nbsp;method,&nbsp;it&nbsp;is<br>
+appended&nbsp;as&nbsp;an&nbsp;extra&nbsp;validator&nbsp;for&nbsp;the&nbsp;field's&nbsp;``validate``.<br>
+&nbsp;<br>
+:param&nbsp;extra_validators:&nbsp;A&nbsp;dict&nbsp;mapping&nbsp;field&nbsp;names&nbsp;to&nbsp;lists&nbsp;of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;extra&nbsp;validator&nbsp;methods&nbsp;to&nbsp;run.&nbsp;Extra&nbsp;validators&nbsp;run&nbsp;after<br>
+&nbsp;&nbsp;&nbsp;&nbsp;validators&nbsp;passed&nbsp;when&nbsp;creating&nbsp;the&nbsp;field.&nbsp;If&nbsp;the&nbsp;form&nbsp;has<br>
+&nbsp;&nbsp;&nbsp;&nbsp;``validate_&lt;fieldname&gt;``,&nbsp;it&nbsp;is&nbsp;the&nbsp;last&nbsp;extra&nbsp;validator.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="wtforms.form.html#BaseForm">wtforms.form.BaseForm</a>:<br>
+<dl><dt><a name="UpdateUserForm-__contains__"><strong>__contains__</strong></a>(self, name)</dt><dd><tt>Returns&nbsp;`True`&nbsp;if&nbsp;the&nbsp;named&nbsp;field&nbsp;is&nbsp;a&nbsp;member&nbsp;of&nbsp;this&nbsp;form.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-__getitem__"><strong>__getitem__</strong></a>(self, name)</dt><dd><tt>Dict-style&nbsp;access&nbsp;to&nbsp;this&nbsp;form's&nbsp;fields.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-__iter__"><strong>__iter__</strong></a>(self)</dt><dd><tt>Iterate&nbsp;form&nbsp;fields&nbsp;in&nbsp;creation&nbsp;order.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-populate_obj"><strong>populate_obj</strong></a>(self, obj)</dt><dd><tt>Populates&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;passed&nbsp;`obj`&nbsp;with&nbsp;data&nbsp;from&nbsp;the&nbsp;form's<br>
+fields.<br>
+&nbsp;<br>
+:note:&nbsp;This&nbsp;is&nbsp;a&nbsp;destructive&nbsp;operation;&nbsp;Any&nbsp;attribute&nbsp;with&nbsp;the&nbsp;same&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;a&nbsp;field&nbsp;will&nbsp;be&nbsp;overridden.&nbsp;Use&nbsp;with&nbsp;caution.</tt></dd></dl>
+
+<dl><dt><a name="UpdateUserForm-process"><strong>process</strong></a>(self, formdata=None, obj=None, data=None, **kwargs)</dt><dd><tt>Take&nbsp;form,&nbsp;object&nbsp;data,&nbsp;and&nbsp;keyword&nbsp;arg&nbsp;input&nbsp;and&nbsp;have&nbsp;the&nbsp;fields<br>
 process&nbsp;them.<br>
 &nbsp;<br>
 :param&nbsp;formdata:<br>
