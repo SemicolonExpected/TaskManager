@@ -4,6 +4,17 @@
 
 {% block head %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	function getString(){
+		items = document.getElementsByClass("deleting");
+		str = "";
+		for(var i = 0; i < items.length()-1; i++){
+			str = str + items[i].value + " ";
+		}
+		str += items[items.length-1];
+		return str
+	}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +28,7 @@
 <div id="tableBody1"></div>
 <br>
 <h5 style="text-align: center" >
-	<button style="text-align: center" >Remove Selected</button>  <!--Doesnt do anything yet-->
+	<a href="/task/delete/" onclick = "location.href=this.href+getString();""><button style="text-align: center" >Remove Selected</button></a>  <!--Doesnt do anything yet-->
 	<a href="/task/create"><button style="text-align: center" >Create Task</button></a> 
 </h5>
 
@@ -38,7 +49,7 @@
 
             	d.start_time = d.start_time.replace("T"," ");
             	d.end_time = d.end_time.replace("T"," ");
-                tableBody += '<tr align="center"><td> <input type="checkbox" id="' + d.id + '"></td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
+                tableBody += '<tr align="center"><td> <input type="checkbox" class = "deleting" value="' + d.id + '"></td><td>' + d.title + '</td><td>' + d.priority + '</td><td>' + d.description + '</td><td>' + d.start_time + '</td><td>' + d.end_time  + '</td><td>' + '<a href="/task/delete/'+d.id +' ">Delete</a> <br><a href="/task/update/'+d.id +' ">Update</a>' + '</td></tr>';
             });
             tableBody += '<table>';
 
