@@ -7,14 +7,17 @@
 <script type="text/javascript">
 	function getString(){
 		items = document.getElementsByClassName("deleting");
-		str = "";
-		for(var i = 0; i < items.length; i++){
-			if(items[i].checked){
-				str = str + items[i].value + ",";
+		if(items.length > 0){
+			str = "";
+			for(var i = 0; i < items.length; i++){
+				if(items[i].checked){
+					str = str + items[i].value + ",";
+				}
 			}
+			str = str.slice(0,-1);
+			location.href='/task/delete/'+str;
 		}
-		str = str.slice(0,-1);
-		return str
+		//return str
 	}
 </script>
 {% endblock %}
@@ -30,7 +33,7 @@
 <div id="tableBody1"></div>
 <br>
 <h5 style="text-align: center" >
-	<button style="text-align: center" onclick = "location.href='/task/delete/'+getString();">Remove Selected</button>  <!--Doesnt do anything yet-->
+	<button style="text-align: center" onclick = "getString();">Remove Selected</button>  <!--Doesnt do anything yet-->
 	<a href="/task/create"><button style="text-align: center" >Create Task</button></a> 
 </h5>
 
