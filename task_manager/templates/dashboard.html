@@ -6,9 +6,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	function getString(){
-		items = document.getElementsByClass("deleting");
+		items = document.getElementsByClassName("deleting");
 		str = "";
-		for(var i = 0; i < items.length()-1; i++){
+		for(var i = 0; i < items.length-1; i++){
 			str = str + items[i].value + " ";
 		}
 		str += items[items.length-1];
