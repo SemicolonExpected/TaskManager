@@ -112,6 +112,7 @@ def model_delete_task(task_id):
 
     try:
         db.session.delete(task_to_delete)
+        db.session.flush()
         db.session.commit()
 
         # Delete associated assignment
